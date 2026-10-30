@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Happy Birthday, Niko! 🎉</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ─────────────────────────────────────────── */
+/* ── DESIGN TOKENS ─────────────────────────────────────── */
 :root{
   --black:#0a0a0f;
   --deep:#0f0d1a;
@@ -24,61 +24,64 @@
   --blue-pale:rgba(111,163,239,.1);
   --lily:#c084fc;
   --lily-pale:rgba(192,132,252,.1);
+  --gold:#f5b942;
   --card:rgba(255,255,255,.04);
-  --card-border:rgba(255,255,255,.08);
+  --card-border:rgba(255,255,255,.09);
   --glow-pink:0 0 60px rgba(240,126,180,.25);
   --glow-blue:0 0 60px rgba(111,163,239,.2);
-  --r:20px;
   --font-serif:'Playfair Display', Georgia, serif;
-  --font-sans:'DM Sans', system-ui, sans-serif;
+  --font-sans:'DM Sans', system-ui, -apple-system, sans-serif;
   --font-script:'Dancing Script', cursive;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
+html,body{
+  width:100%;height:100dvh;overflow:hidden;
   font-family:var(--font-sans);color:var(--ink);
-  background:var(--black);min-height:100vh;overflow-x:hidden;
+  background:var(--black);position:relative;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 800px 600px at 10% 20%, rgba(111,163,239,.08) 0, transparent 70%),
+    radial-gradient(ellipse 600px 600px at 90% 10%, rgba(240,126,180,.08) 0, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 50% 90%, rgba(192,132,252,.07) 0, transparent 70%);
 }
 img,video{display:block;max-width:100%}
 h1,h2,h3{font-family:var(--font-serif)}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 :focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:6px}
 
-/* ── LILY PETAL BACKGROUND ──────────────────────────── */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 800px 600px at 10% 20%, rgba(111,163,239,.07) 0, transparent 70%),
-    radial-gradient(ellipse 600px 600px at 90% 10%, rgba(240,126,180,.07) 0, transparent 70%),
-    radial-gradient(ellipse 500px 400px at 50% 90%, rgba(192,132,252,.06) 0, transparent 70%);
+/* ── STAGES (GATE, UNWRAP, FULL-PAGE PARTY) ──────────── */
+.stage{
+  position:fixed;inset:0;width:100vw;height:100dvh;
+  display:none;z-index:10;box-sizing:border-box;
 }
-
-/* ── STAGES ─────────────────────────────────────────── */
-.stage{display:none;min-height:100svh;padding:32px 20px 64px;align-items:center;justify-content:center;flex-direction:column;position:relative;z-index:1}
 .stage.on{display:flex}
-.wrap{width:min(660px,100%);margin:0 auto}
-main{display:none;position:relative;z-index:1}
-main.on{display:block}
 
-/* ── TYPOGRAPHY ─────────────────────────────────────── */
-.label{letter-spacing:.25em;text-transform:uppercase;font-size:.65rem;font-weight:600;color:var(--ink-soft);text-align:center;margin-bottom:10px}
-.headline{font-size:clamp(2rem,7vw,3.4rem);line-height:1.05;text-align:center}
+#stage-gate, #stage-unwrap{
+  padding:24px 18px;align-items:center;justify-content:center;flex-direction:column;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+.wrap-stage{width:min(440px,100%);margin:0 auto;text-align:center}
+
+.label{letter-spacing:.25em;text-transform:uppercase;font-size:.65rem;font-weight:600;color:var(--ink-soft);text-align:center;margin-bottom:8px}
+.headline{font-size:clamp(1.8rem,6vw,3rem);line-height:1.08;text-align:center}
 .headline em{font-style:italic;color:var(--pink)}
-.sub{text-align:center;color:var(--ink-soft);font-size:.95rem;font-weight:400;max-width:44ch;margin:10px auto 0;line-height:1.65}
-.sec-head{font-size:clamp(1.55rem,5vw,2.2rem);text-align:center;margin-bottom:8px}
+.sub{text-align:center;color:var(--ink-soft);font-size:.9rem;font-weight:400;max-width:44ch;margin:8px auto 0;line-height:1.6}
+.sec-head{font-size:clamp(1.5rem,5vw,2.1rem);text-align:center;margin-bottom:6px}
 .sec-head span{color:var(--pink)}
+.lily-divider{text-align:center;font-size:1.3rem;letter-spacing:.45em;color:var(--lily);opacity:.55;padding:8px 0;user-select:none}
 
-/* ── GATE ────────────────────────────────────────────── */
+/* ── 1. GATE ─────────────────────────────────────────── */
 .gate-card{
-  background:var(--card);border:1px solid var(--card-border);
-  border-radius:28px;padding:36px 28px;margin:30px auto 0;
-  width:min(420px,100%);text-align:center;
-  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,.04);border:1px solid var(--card-border);
+  border-radius:26px;padding:30px 24px;margin:22px auto 0;
+  width:min(400px,100%);text-align:center;backdrop-filter:blur(14px);
 }
 .gate-card.shake{animation:shake .4s ease}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-9px)}75%{transform:translateX(8px)}}
-.gate-card h2{font-family:var(--font-serif);font-size:1.5rem;color:var(--ink);margin-bottom:4px}
-.gate-fmt{color:var(--ink-soft);font-size:.72rem;letter-spacing:.3em;font-weight:600;margin-bottom:24px}
+.gate-card h2{font-family:var(--font-serif);font-size:1.45rem;color:var(--ink);margin-bottom:4px}
+.gate-fmt{color:var(--ink-soft);font-size:.7rem;letter-spacing:.3em;font-weight:600;margin-bottom:20px}
 .slots{display:flex;gap:6px;justify-content:center;margin-bottom:6px}
 .slot{width:28px;text-align:center}
 .slot .star{font-size:.7rem;height:1em;color:var(--pink);opacity:.5}
@@ -87,878 +90,398 @@ main.on{display:block}
 .slot .line{height:2px;border-radius:2px;background:rgba(255,255,255,.1);margin-top:3px}
 .slot.filled .line{background:var(--pink)}
 .slot.gap{margin-left:10px}
-.hint{min-height:1.4em;color:var(--blue);font-weight:600;font-size:.88rem;margin:8px 0}
+.hint{min-height:1.4em;color:var(--blue);font-weight:600;font-size:.85rem;margin:8px 0}
 .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
 .key{
   background:rgba(255,255,255,.05);border:1px solid var(--card-border);
   color:var(--ink);font-size:1.35rem;font-weight:600;
-  padding:14px 0;border-radius:14px;
+  padding:13px 0;border-radius:14px;
   transition:background .12s,transform .08s;
 }
 .key:active{transform:scale(.93);background:rgba(255,255,255,.1)}
 .key.utility{color:var(--ink-soft);font-size:1rem}
 .keypad .spacer{visibility:hidden}
 
-/* ── UNWRAP ──────────────────────────────────────────── */
-.gift-btn{
-  font-size:clamp(5rem,28vw,9rem);line-height:1;display:block;
-  margin:32px auto 8px;transition:transform .1s;
-  filter:drop-shadow(0 20px 30px rgba(240,126,180,.3));
+/* ── 2. UNWRAP (ESCALATING SHAKE & CRACKS) ───────────── */
+.gift-interactive-wrap{
+  position:relative;display:inline-block;
+  margin:24px auto 14px;min-height:140px;
 }
-.gift-btn:active{transform:scale(.9) rotate(-4deg)}
-.gift-btn.wiggle{animation:wiggle .3s ease}
-@keyframes wiggle{0%,100%{transform:none}30%{transform:rotate(-6deg) scale(1.06)}70%{transform:rotate(6deg) scale(1.06)}}
-.tap-count{font-size:1.1rem;font-weight:600;color:var(--pink);text-align:center}
-.tap-bar{height:6px;background:rgba(255,255,255,.08);border-radius:99px;width:min(320px,85%);margin:14px auto 0;overflow:hidden}
+.gift-btn{
+  font-size:clamp(5rem,24vw,8.5rem);line-height:1;display:block;
+  transition:transform .12s;cursor:pointer;
+  filter:drop-shadow(0 20px 30px rgba(240,126,180,.35));
+}
+.gift-btn:active{transform:scale(.92) rotate(-3deg)}
+.gift-btn.shake-mild{animation:wiggleMild .35s ease}
+.gift-btn.shake-med{animation:wiggleMed .24s ease}
+.gift-btn.shake-wild{animation:wiggleWild .16s ease infinite}
+@keyframes wiggleMild{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg) scale(1.03)}75%{transform:rotate(4deg) scale(1.03)}}
+@keyframes wiggleMed{0%,100%{transform:rotate(0)}20%{transform:rotate(-8deg) scale(1.08)}40%{transform:rotate(8deg) scale(1.08)}60%{transform:rotate(-6deg) scale(1.08)}80%{transform:rotate(6deg) scale(1.08)}}
+@keyframes wiggleWild{0%,100%{transform:rotate(0)}15%{transform:rotate(-13deg) translate(-3px,-2px) scale(1.14)}35%{transform:rotate(13deg) translate(3px,2px) scale(1.15)}55%{transform:rotate(-11deg) translate(-2px,2px) scale(1.14)}75%{transform:rotate(11deg) translate(2px,-2px) scale(1.15)}}
+
+.gift-cracks-overlay{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+}
+.crack-path{opacity:0;transition:opacity .2s ease}
+.crack-path.crack-visible{opacity:1}
+
+.tap-count{
+  font-size:1.1rem;font-weight:600;color:var(--pink);text-align:center;
+  margin:16px 0 0;white-space:nowrap;display:block;min-height:1.6em;
+}
+.tap-bar{height:6px;background:rgba(255,255,255,.08);border-radius:99px;width:min(320px,85%);margin:12px auto 0;overflow:hidden}
 .tap-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--pink));border-radius:99px;transition:width .15s ease}
 
-/* ── PARTY ROOM ──────────────────────────────────────── */
-.room{
-  width:min(660px,100%);border-radius:28px;padding:30px 22px 36px;text-align:center;
-  background:rgba(15,13,26,.7);border:1px solid var(--card-border);
-  backdrop-filter:blur(16px);
+/* ── CHANGE 1: FULL-PAGE PARTY STAGE (100dvh, NO CARDS) ── */
+#stage-party{
+  width:100vw;height:100dvh;max-height:100dvh;padding:0;margin:0;
+  overflow:hidden;background:radial-gradient(circle at 50% 25%, #16102c 0%, #08060e 100%);
+  transition:background .8s ease;display:none;flex-direction:column;justify-content:space-between;align-items:center;
 }
-.room.lit{border-color:rgba(240,126,180,.25);box-shadow:var(--glow-pink)}
-.bulbs{display:flex;justify-content:space-between;padding:0 4px;min-height:44px}
-.bulb{font-size:1.4rem;opacity:.18;filter:grayscale(1);transition:opacity .5s,filter .5s}
-.room.lit .bulb{opacity:1;filter:none;animation:sway 2.8s ease-in-out infinite alternate}
+#stage-party.on{display:flex}
+#stage-party.lit{
+  background:radial-gradient(circle at 50% 25%, #2a1438 0%, #0d0918 100%);
+  box-shadow:inset 0 0 100px rgba(240,126,180,.12);
+}
+
+/* Bulbs spanning the very top */
+.stage-party-top{width:100%;padding:14px 20px 0;display:flex;flex-direction:column;align-items:center;position:relative;z-index:15}
+.stage-party-bulbs{display:flex;width:100%;justify-content:space-around;max-width:900px;min-height:36px}
+.stage-party-bulbs .bulb{font-size:clamp(1.4rem,4.5vmin,2.1rem);opacity:.18;filter:grayscale(1);transition:opacity .5s,filter .5s}
+#stage-party.lit .stage-party-bulbs .bulb{opacity:1;filter:none;animation:sway 2.8s ease-in-out infinite alternate}
 .bulb:nth-child(2n){animation-delay:.35s}.bulb:nth-child(3n){animation-delay:.7s}
 @keyframes sway{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
-.room .banner{font-family:var(--font-script);font-size:clamp(1.6rem,5.5vw,2.5rem);opacity:0;transform:translateY(10px);transition:all .7s ease .15s;margin:8px 0}
-.room.lit .banner{opacity:1;transform:none;color:var(--pink)}
-.balloon-zone{min-height:56px;font-size:2rem;letter-spacing:.3em}
-.balloon{display:inline-block;animation:floatUp 2.8s ease-in forwards}
-@keyframes floatUp{0%{transform:translateY(0);opacity:0}10%{opacity:1}80%{opacity:1}100%{transform:translateY(-120px);opacity:0}}
-.cake{font-size:clamp(4rem,18vw,6.5rem);line-height:1.2;margin:8px 0 2px}
-.candles{font-size:2.6rem;letter-spacing:.4em;min-height:1.3em}
-.candles button{transition:opacity .2s,filter .2s}
-.candles button.out{opacity:.18;filter:grayscale(1)}
-.party-label{font-size:.9rem;color:var(--ink-soft);font-weight:400;margin:4px 0 14px}
-.party-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+
+.stage-party-banner{
+  font-family:var(--font-script);font-size:clamp(1.8rem,6vmin,3rem);color:var(--pink);
+  margin:4px 0 0;text-align:center;opacity:0;transform:translateY(8px);transition:all .7s ease .2s;
+}
+#stage-party.lit .stage-party-banner{opacity:1;transform:none}
+
+/* Hanging Pull Cord for Lights */
+.stage-pull-cord{display:flex;flex-direction:column;align-items:center;margin:8px auto 0;cursor:pointer;outline:none}
+.cord-chain{width:2.5px;height:clamp(45px,9vh,75px);background:repeating-linear-gradient(180deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.5) 4px,transparent 4px,transparent 8px);margin:0 auto;transition:height .18s ease}
+.cord-knob{
+  width:clamp(42px,8vmin,52px);height:clamp(42px,8vmin,52px);border-radius:50%;
+  background:rgba(255,255,255,.08);border:1.5px solid var(--pink);
+  display:flex;align-items:center;justify-content:center;font-size:clamp(1.2rem,3vmin,1.5rem);
+  box-shadow:0 4px 18px rgba(240,126,180,.35);transition:transform .18s ease,box-shadow .3s ease,background .3s ease;
+}
+.stage-pull-cord:hover .cord-knob{transform:scale(1.08);box-shadow:0 6px 26px rgba(240,126,180,.6)}
+.stage-pull-cord.pulled .cord-chain{height:clamp(65px,13vh,95px)}
+.stage-pull-cord.pulled .cord-knob{transform:translateY(20px);box-shadow:0 0 32px rgba(240,126,180,.9),0 0 60px rgba(111,163,239,.6);background:rgba(240,126,180,.3)}
+.cord-tag{margin-top:6px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);font-weight:600}
+
+/* Stage Party Center (Dominant Visual Cake / Cutting) */
+.stage-party-center{
+  flex:1;width:100%;max-width:760px;display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;padding:10px 20px;position:relative;z-index:10;
+}
+.balloon-zone-full{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:8}
+.balloon{display:inline-block;position:absolute;bottom:0;animation:floatUpFull 3.6s ease-in forwards;font-size:clamp(2.5rem,8vmin,4.2rem)}
+@keyframes floatUpFull{from{transform:translateY(40px);opacity:0}15%{opacity:1}to{transform:translateY(-110vh);opacity:0}}
+
+/* Step 2 Balloons Button */
+#balloonsStep{display:none;margin-top:14px;animation:fadeIn .5s ease}
+#balloonsStep.active{display:block}
+
+/* Step 3 Cake & Candles (Dominant Centered Visual >= 1/3 viewport) */
+#candlesZone{display:none;width:100%;flex-direction:column;align-items:center;animation:fadeIn .5s ease}
+#candlesZone.active{display:flex}
+.cake-dominant{
+  font-size:clamp(6.5rem,28vmin,11rem);line-height:1.1;margin:6px 0;
+  filter:drop-shadow(0 20px 40px rgba(240,126,180,.3));
+  user-select:none;
+}
+.candles-large{
+  display:flex;justify-content:center;gap:clamp(12px,4vw,28px);
+  min-height:60px;margin-bottom:8px;
+}
+.candles-large button{
+  font-size:clamp(2.6rem,8vmin,4rem);padding:8px 12px;cursor:pointer;
+  transition:transform .2s ease,opacity .25s ease,filter .25s ease;
+  min-width:54px;min-height:54px;display:flex;align-items:center;justify-content:center;
+}
+.candles-large button:hover{transform:scale(1.15)}
+.candles-large button.out{opacity:.18;filter:grayscale(1);transform:scale(.9)}
+.candles-prompt{font-size:.92rem;color:var(--ink-soft);font-weight:500;margin-top:4px}
+
+/* Step 4 Cake Time (Drag to Cut across full stage) */
+#cakeTimeBox{display:none;width:100%;max-width:680px;flex-direction:column;align-items:center;animation:fadeIn .5s ease}
+#cakeTimeBox.active{display:flex}
+.cake-time-title-full{font-family:var(--font-serif);font-size:clamp(1.7rem,5.5vmin,2.4rem);color:var(--ink);margin-bottom:2px}
+.cake-time-sub-full{font-size:.88rem;color:var(--ink-soft);margin-bottom:12px}
+.cake-drag-badge-full{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);background:rgba(240,126,180,.14);padding:5px 14px;border-radius:99px;margin-bottom:6px}
+.cake-drag-title-full{font-weight:600;font-size:1.05rem;color:var(--ink);margin-bottom:2px}
+.cake-drag-hint-full{font-size:.82rem;color:var(--ink-soft);margin-bottom:16px}
+
+.cake-cut-arena-full{
+  position:relative;width:clamp(280px,50vmin,420px);height:clamp(200px,36vmin,300px);
+  margin:0 auto 16px;user-select:none;touch-action:none;cursor:crosshair;
+}
+.cake-cut-line-full{
+  position:absolute;top:54%;left:10%;width:80%;height:14px;
+  border-bottom:3px dashed rgba(240,126,180,.8);pointer-events:none;
+  filter:drop-shadow(0 0 8px rgba(240,126,180,.8));z-index:6;
+}
+.knife-cursor-full{
+  position:absolute;top:38%;left:8%;font-size:clamp(2.4rem,6vmin,3.5rem);
+  transform:rotate(-35deg);cursor:grab;filter:drop-shadow(0 6px 14px rgba(0,0,0,.6));
+  z-index:10;touch-action:none;user-select:none;transition:transform .1s ease;
+}
+.knife-cursor-full:active{cursor:grabbing;transform:rotate(-45deg) scale(1.15)}
+.knife-pulse-full{
+  position:absolute;top:38%;left:7%;width:50px;height:50px;border-radius:50%;
+  border:2.5px solid var(--pink);animation:knifePulse 1.6s infinite ease-out;pointer-events:none;z-index:5;
+}
+@keyframes knifePulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.8);opacity:0}}
+
+.cut-progress-box-full{width:min(440px,90vw);margin:0 auto}
+.cut-progress-bar-full{height:10px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;position:relative}
+.cut-progress-fill-full{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--pink),#ff4d8d);border-radius:99px;transition:width .1s ease}
+.cut-progress-labels-full{display:flex;justify-content:space-between;font-size:.84rem;color:var(--ink-soft);margin-top:8px;font-weight:500}
+
+.cake-halves-full{display:flex;justify-content:center;align-items:center;width:100%;height:100%}
+.cake-half-left, .cake-half-right{transform-origin:120px 130px;transition:transform .65s cubic-bezier(.34,1.56,.64,1)}
+.cake-halves-full.split .cake-half-left{transform:translateX(-22px) rotate(-4deg)}
+.cake-halves-full.split .cake-half-right{transform:translateX(22px) rotate(4deg)}
+
+/* Step 5 Make a Wish Modal */
+.make-wish-modal-full{display:none;padding:12px;animation:fadeIn .5s ease}
+.make-wish-modal-full.active{display:block}
+.wish-mascot-full{font-size:clamp(3.5rem,10vmin,5rem);margin-bottom:8px;animation:mascotBounce 2s infinite ease-in-out}
+@keyframes mascotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* Stage Party Bottom */
+.stage-party-bottom{width:100%;padding:10px 20px 24px;display:flex;flex-direction:column;align-items:center;z-index:15}
+.wish-line-full{min-height:1.6em;font-weight:600;color:var(--lily);font-size:.96rem;margin-bottom:8px;text-align:center}
+
 .btn{
   background:var(--pink);color:#fff;font-weight:600;font-size:.95rem;
-  padding:12px 22px;border-radius:999px;
-  transition:transform .1s,opacity .15s,background .15s;
+  padding:12px 24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:transform .1s,opacity .15s,background .15s,box-shadow .2s;
 }
 .btn:active{transform:scale(.96)}
 .btn.outline{background:transparent;border:1.5px solid rgba(255,255,255,.2);color:var(--ink)}
-.btn.blue{background:var(--blue-deep)}
+.btn.blue{background:var(--blue-deep);box-shadow:0 8px 24px rgba(58,111,216,.35)}
 .btn[disabled]{opacity:.3;pointer-events:none}
-.wish-line{min-height:1.5em;font-weight:500;color:var(--lily);margin-top:14px;font-size:.9rem}
 
-/* ── HERO ─────────────────────────────────────────────── */
-.hero{padding:80px 20px 30px;text-align:center}
-.hero-name{font-size:clamp(2.6rem,10vw,4.6rem);line-height:1;margin-bottom:16px}
+/* ── CHANGE 2: STORY-STYLE CARD DECK (NO SCROLL, 100dvh) ── */
+#main.deck-mode{
+  display:none;position:fixed;inset:0;width:100vw;height:100dvh;
+  max-height:100dvh;overflow:hidden;background:var(--black);z-index:20;
+  flex-direction:column;justify-content:space-between;
+}
+#main.deck-mode.on{display:flex}
+
+/* Segments Progress Bar across the top */
+.deck-top-bar{width:100%;padding:14px 18px 8px;display:flex;flex-direction:column;gap:10px;z-index:30;position:relative}
+.deck-segments-bar{display:flex;gap:5px;width:100%;max-width:760px;margin:0 auto}
+.deck-seg{flex:1;height:3.5px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden}
+.deck-seg-fill{height:100%;width:0%;background:#ffffff;border-radius:99px;transition:width .25s ease}
+.deck-seg.done .deck-seg-fill, .deck-seg.active .deck-seg-fill{width:100%}
+
+.deck-nav-header{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:760px;margin:0 auto}
+.deck-nav-btn{
+  font-size:.82rem;font-weight:600;color:var(--ink-soft);padding:6px 14px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid var(--card-border);transition:background .15s,color .15s;
+}
+.deck-nav-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.deck-nav-btn.primary{background:var(--pink);color:#fff;border-color:transparent}
+.deck-nav-btn[disabled]{opacity:.2;pointer-events:none}
+.deck-step-counter{font-size:.78rem;letter-spacing:.14em;color:rgba(255,255,255,.45);font-weight:600}
+
+/* The Cards Deck Container */
+.deck-viewport{
+  flex:1;width:100%;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.deck-card{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:16px 20px 24px;box-sizing:border-box;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:scale(.97);transition:opacity .35s ease,transform .35s ease,visibility .35s ease;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+.deck-card.active{
+  opacity:1;visibility:visible;pointer-events:auto;transform:scale(1);z-index:2;
+}
+.deck-card-content{width:min(660px,100%);margin:auto 0;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+/* Card 1 Hero */
+.hero-name{font-size:clamp(2.4rem,8.5vmin,4.5rem);line-height:1.02;margin-bottom:14px}
 .hero-name em{font-style:italic;color:var(--pink)}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid var(--card-border);border-radius:999px;
-  padding:7px 18px;font-size:.82rem;color:var(--ink-soft);
-  backdrop-filter:blur(8px);margin-bottom:10px;
-}
-.hero-date{color:var(--ink-soft);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--card-border);border-radius:999px;padding:7px 18px;font-size:.84rem;color:var(--ink-soft);backdrop-filter:blur(8px);margin-bottom:10px}
+.hero-badge{display:inline-block;margin-top:14px;background:rgba(255,255,255,.05);border:1.5px dashed var(--pink);color:var(--pink);font-weight:600;padding:7px 18px;border-radius:999px;font-size:.82rem}
+.hero-date{color:var(--ink-soft);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin-top:10px}
 
-/* ── LILY DIVIDER ─────────────────────────────────────── */
-.lily-divider{text-align:center;font-size:1.4rem;letter-spacing:.5em;color:var(--lily);opacity:.55;padding:10px 0;user-select:none}
+/* Card 2 Phone Messages */
+.phone-mockup{
+  width:min(340px,92vw);margin:0 auto;background:#0d0c14;border:2.5px solid rgba(255,255,255,.14);
+  border-radius:38px;padding:14px 14px 22px;box-shadow:0 20px 50px rgba(0,0,0,.65);box-sizing:border-box;
+}
+.phone-notch{width:84px;height:16px;background:#000;border-radius:99px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center}
+.phone-cam{width:7px;height:7px;border-radius:50%;background:#1b1926}
+.phone-chat-header{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:8px}
+.phone-header-title{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.phone-header-date{font-size:.66rem;color:rgba(255,255,255,.38)}
+.phone-chat-messages{display:flex;flex-direction:column;gap:9px;text-align:left;min-height:200px}
+.chat-bubble{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#f3eef8;
+  padding:9px 13px;border-radius:16px 16px 16px 4px;font-size:.86rem;line-height:1.4;
+  max-width:88%;align-self:flex-start;box-shadow:0 4px 14px rgba(0,0,0,.25);box-sizing:border-box;
+  opacity:0;transform:translateY(12px) scale(.96);transition:opacity .4s ease,transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.chat-bubble.bubble-visible{opacity:1;transform:translateY(0) scale(1)}
 
-/* ── PHOTO GRID ───────────────────────────────────────── */
-section{padding:50px 20px}
-.photo-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  grid-template-rows:auto;
-  gap:14px;margin-top:28px;
+/* Card 3 & 4 Gallery (Split into two cards for perfect 390x844 fit & orange saree headroom) */
+.gallery-grid-deck{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:min(520px,100%);margin-top:16px}
+.gallery-grid-deck .p-slot{
+  border-radius:16px;overflow:hidden;position:relative;background:rgba(255,255,255,.03);
+  border:1px solid var(--card-border);aspect-ratio:1;
 }
-.photo-grid .p-slot{
-  border-radius:16px;overflow:hidden;position:relative;
-  background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.12);
-  aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:6px;text-align:center;
-  transition:border-color .2s,background .2s;
-  cursor:default;
-}
-.photo-grid .p-slot img,
-.photo-grid .p-slot video{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;
-}
-.photo-grid .p-slot.wide{grid-column:span 2;aspect-ratio:16/9}
-.photo-grid .p-slot.tall{grid-row:span 2;aspect-ratio:unset}
-.slot-label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);font-weight:600;position:relative;z-index:1;pointer-events:none}
-.slot-icon{font-size:2rem;opacity:.25;position:relative;z-index:1;pointer-events:none}
+.gallery-grid-deck .p-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px}
+.gallery-grid-deck .p-slot.wide{grid-column:span 2;aspect-ratio:16/9}
+.gallery-grid-deck .p-slot.tall{grid-row:span 2;aspect-ratio:unset}
+/* Orange saree portrait headroom fix */
+.gallery-grid-deck .p-slot img[src*="photo-02-orange-saree"], #slot2 img{object-position:center 12% !important}
 
-/* ── VIDEO SLOT ───────────────────────────────────────── */
-.vid-wrap{
-  margin:28px auto 0;border-radius:20px;overflow:hidden;
-  border:1px solid var(--card-border);
-  background:rgba(255,255,255,.03);
-  aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;
-  position:relative;
-}
-.vid-wrap video,
-.vid-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;object-fit:cover;border-radius:20px}
-.vid-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.3;pointer-events:none}
-.vid-placeholder span{font-size:3rem}
-.vid-placeholder p{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.childhood-polaroid-deck{margin:18px auto 0;width:min(240px,70vw);text-align:center}
+.childhood-polaroid-deck .polar-frame{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12);aspect-ratio:3/4}
+.childhood-polaroid-deck .polar-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.childhood-polaroid-deck figcaption{margin-top:8px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600}
 
-/* ── SONG ─────────────────────────────────────────────── */
-.song-wrap{
-  margin:28px auto 0;border-radius:20px;overflow:hidden;
-  border:1px solid var(--card-border);aspect-ratio:16/9;
+/* Card 5 Birthday Reel */
+.reel-video-deck{
+  width:100%;max-width:320px;aspect-ratio:9/16;max-height:clamp(400px,62vh,560px);
+  object-fit:cover;border-radius:20px;border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 16px 45px rgba(0,0,0,.5);
 }
-.song-wrap iframe{width:100%;height:100%;border:none;display:block;border-radius:20px}
 
-/* ── MEMORY REEL ──────────────────────────────────────── */
-.reel{
-  margin:28px auto 0;border-radius:20px;overflow:hidden;
-  position:relative;aspect-ratio:4/3;
-  border:1px solid var(--card-border);
-}
-.reel .frame{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:10px;
-  opacity:0;transition:opacity .5s;padding:24px;text-align:center;
-}
-.reel .frame.act{opacity:1}
-.reel .frame .emo{font-size:3.6rem}
-.reel .frame .cap{font-family:var(--font-serif);font-size:1.2rem;color:var(--ink)}
-.reel .frame .cap small{display:block;font-family:var(--font-sans);color:var(--ink-soft);font-size:.85rem;font-weight:400;margin-top:4px}
-.reel-dots{text-align:center;margin-top:10px;letter-spacing:.3em;font-size:.65rem;color:rgba(255,255,255,.25)}
-.reel-dots .active-dot{color:var(--pink)}
+/* Card 6 Clips Strip */
+.niko-clips{display:flex;gap:12px;overflow-x:auto;padding:16px 4px 10px;width:min(600px,100%);scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.niko-clips video{width:clamp(140px,38vw,170px);flex:0 0 auto;aspect-ratio:9/16;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.12);scroll-snap-align:start;background:#000}
 
-/* ── WISH CARDS ───────────────────────────────────────── */
-.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-top:28px}
-.flip{perspective:1000px;min-height:180px;cursor:pointer}
-.flip-inner{position:relative;width:100%;height:100%;min-height:180px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.3,1)}
-.flip.flipped .flip-inner{transform:rotateY(180deg)}
-.face{
+/* Card 7 A Few Things About You (Scaled up to fill card) */
+.deck-traits-wrap{width:min(520px,92vw);margin:18px auto 0}
+.reel-scaled{
+  width:100%;height:clamp(280px,46vh,400px);border-radius:24px;overflow:hidden;
+  position:relative;border:1px solid var(--card-border);box-shadow:0 18px 45px rgba(0,0,0,.5);
+}
+.reel-scaled .frame{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;opacity:0;transition:opacity .5s;padding:24px 20px;text-align:center;
+}
+.reel-scaled .frame.act{opacity:1}
+.reel-scaled .frame .emo{font-size:clamp(4.2rem,14vmin,6rem);line-height:1}
+.reel-scaled .frame .cap{font-family:var(--font-serif);font-size:clamp(1.6rem,5.5vmin,2.2rem);color:#fff;font-weight:700}
+.reel-scaled .frame .cap small{display:block;font-family:var(--font-sans);color:var(--ink-soft);font-size:clamp(.95rem,3vmin,1.1rem);font-weight:400;margin-top:8px;max-width:32ch}
+.reel-dots-scaled{text-align:center;margin-top:10px;letter-spacing:.3em;font-size:.7rem;color:rgba(255,255,255,.25)}
+.reel-dots-scaled .active-dot{color:var(--pink)}
+
+/* Card 8 Three Boxes (Bug fix: no text overflow, no button overlap) */
+.box-grid-deck{display:flex;flex-direction:column;gap:12px;width:min(480px,94vw);margin:18px auto 0}
+.box-card-deck{
+  background:rgba(255,255,255,.04);border:1px solid var(--card-border);border-radius:18px;
+  padding:16px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;
+  transition:background .2s,border-color .2s;
+}
+.box-header-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%}
+.box-header-row .box-icon{font-size:1.8rem}
+.box-header-row .box-title{font-weight:600;font-size:1rem;color:#fff;white-space:nowrap}
+.box-open-btn{margin-top:10px;font-size:.82rem;padding:7px 18px}
+.box-reveal-p{display:none;font-size:.9rem;line-height:1.6;color:var(--ink-soft);margin-top:10px;text-align:center}
+
+/* Card 9 Scratch Card */
+.scratch-wrap-deck{position:relative;width:min(420px,90vw);margin:20px auto 0;border-radius:20px;overflow:hidden;border:1px solid var(--card-border);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.scratch-under-deck{background:rgba(255,255,255,.04);padding:36px 24px;text-align:center}
+.scratch-under-deck .script{font-family:var(--font-script);font-size:1.8rem;color:var(--pink);margin-bottom:8px}
+.scratch-under-deck p{color:var(--ink-soft);font-size:.9rem;line-height:1.65}
+.scratch-wrap-deck canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
+.scratch-note-deck{text-align:center;color:var(--ink-soft);font-size:.82rem;margin-top:10px}
+
+/* Card 10 Flip Wishes (Bug fix: equalised heights, zero back text clipping) */
+.flip-grid-deck{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:min(520px,94vw);margin:16px auto 0}
+.deck-flip-card{perspective:1000px;min-height:220px;height:clamp(220px,32vh,270px);cursor:pointer}
+.deck-flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.3,1)}
+.deck-flip-card.flipped .deck-flip-inner{transform:rotateY(180deg)}
+.deck-flip-face{
   position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
-  border-radius:18px;padding:20px 16px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;gap:8px;border:1px solid var(--card-border);
+  border-radius:20px;padding:16px 14px;display:flex;flex-direction:column;justify-content:space-between;
+  align-items:center;text-align:center;box-shadow:0 10px 26px rgba(0,0,0,.35);box-sizing:border-box;
 }
-.face.front{background:linear-gradient(145deg,rgba(240,126,180,.15),rgba(111,163,239,.12));color:var(--ink);font-weight:600;font-size:.95rem}
-.face.front .emo{font-size:2rem}
-.face.back{background:rgba(255,255,255,.04);transform:rotateY(180deg);font-size:.9rem;color:var(--ink);font-weight:400;line-height:1.5}
-.face.back small{color:var(--ink-soft);font-size:.8rem;margin-top:4px}
+.deck-flip-front{background:#ffffff;color:#1e1a24;border:1px solid rgba(255,255,255,.2)}
+.deck-flip-back{background:#ffffff;color:#1e1a24;border:1px solid rgba(255,255,255,.2);transform:rotateY(180deg)}
+.deck-flip-title{font-weight:700;font-size:.88rem;color:#1f1929;line-height:1.2}
+.deck-flip-svg-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:4px 0}
+.deck-flip-pill{background:rgba(240,126,180,.15);color:#c93a82;font-weight:700;font-size:.74rem;padding:6px 14px;border-radius:99px}
+.deck-flip-back-body{flex:1;display:flex;align-items:center;justify-content:center;font-size:.85rem;line-height:1.55;color:#2e2438;font-weight:500;padding:4px}
+.wishes-tracker-deck{margin:14px auto 0;max-width:320px;text-align:center}
+.wishes-tracker-text-deck{font-size:.8rem;color:var(--ink-soft);font-weight:600;margin-bottom:6px}
+.wishes-tracker-bar-deck{height:5px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+.wishes-tracker-fill-deck{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--lily));border-radius:99px;transition:width .4s ease}
 
-/* ── SCRATCH ──────────────────────────────────────────── */
-.scratch-wrap{position:relative;width:min(440px,100%);margin:28px auto 0;border-radius:var(--r);overflow:hidden;border:1px solid var(--card-border)}
-.scratch-under{background:rgba(255,255,255,.04);padding:40px 28px;text-align:center}
-.scratch-under .script{font-family:var(--font-script);font-size:1.8rem;color:var(--pink);margin-bottom:8px}
-.scratch-under p{color:var(--ink-soft);font-size:.9rem;line-height:1.65}
-.scratch-wrap canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
-.scratch-note{text-align:center;color:var(--ink-soft);font-size:.82rem;margin-top:8px}
-
-/* ── LETTER ────────────────────────────────────────────── */
-.letter{
-  width:min(580px,100%);margin:28px auto 0;
-  background:rgba(255,255,255,.03);border:1px solid var(--card-border);
-  border-radius:20px;padding:38px 32px;line-height:1.75;
+/* Card 11 Niko Wrapped (Bug fix: ZERO text ghosting, solid dark card background, continue button on card 7) */
+.wrapped-container-deck{
+  width:min(480px,92vw);margin:16px auto 0;border-radius:26px;
+  min-height:clamp(360px,56vh,480px);position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 50px rgba(0,0,0,.6);
+  cursor:pointer;user-select:none;background:#0c0a18;display:flex;flex-direction:column;outline:none;
 }
-.letter .salutation{font-family:var(--font-script);font-size:1.9rem;color:var(--pink);margin-bottom:16px}
-.letter p{color:var(--ink);font-weight:300;margin-bottom:14px;font-size:.96rem}
-.letter .sign{font-family:var(--font-script);font-size:1.5rem;color:var(--blue);text-align:right;margin-top:8px}
+.wrapped-story-bars-deck{display:flex;gap:5px;padding:14px 16px 0;position:relative;z-index:10}
+.wrapped-bar-deck{flex:1;height:3px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden}
+.wrapped-bar-deck-fill{height:100%;width:0%;background:#ffffff;border-radius:99px;transition:width .2s ease}
+.wrapped-bar-deck.done .wrapped-bar-deck-fill, .wrapped-bar-deck.active .wrapped-bar-deck-fill{width:100%}
+.wrapped-cards-stack-deck{flex:1;position:relative;width:100%;background:#0c0a18}
+.wrapped-slide-deck{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;padding:24px 20px 38px;box-sizing:border-box;
+  opacity:0;visibility:hidden;pointer-events:none;transform:scale(.96);
+  background:#0c0a18; /* solid background prevents ghosting */
+  transition:opacity .25s ease,transform .25s ease,visibility .25s ease;
+}
+.wrapped-slide-deck.active{opacity:1;visibility:visible;pointer-events:auto;transform:scale(1);z-index:5}
+.wrapped-kicker-deck{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:700;margin-bottom:12px}
+.wrapped-big-text-deck{font-family:var(--font-serif);font-size:clamp(1.7rem,6vmin,2.5rem);line-height:1.15;font-weight:700;color:#ffffff;max-width:15ch}
+.wrapped-badge-deck{margin-top:16px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);padding:6px 16px;border-radius:99px;border:1px solid rgba(255,255,255,.12)}
+.wrapped-tap-hint-deck{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.1em;pointer-events:none;z-index:10}
 
-/* ── FOOTER ────────────────────────────────────────────── */
-footer{padding:60px 20px 48px;text-align:center;color:var(--ink-soft);font-size:.82rem}
-footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink);display:block;margin-bottom:6px}
+/* Card 12 Song */
+.song-wrap-deck{width:min(520px,94vw);margin:18px auto 0;border-radius:20px;overflow:hidden;border:1px solid var(--card-border);aspect-ratio:16/9}
+.song-wrap-deck iframe{width:100%;height:100%;border:none;display:block;border-radius:20px}
 
-/* ── CONFETTI ───────────────────────────────────────────── */
+/* Card 13 Letter + Footer */
+.letter-deck{
+  width:min(560px,94vw);margin:14px auto 0;background:rgba(255,255,255,.03);border:1px solid var(--card-border);
+  border-radius:22px;padding:26px 24px;line-height:1.7;text-align:left;box-sizing:border-box;
+}
+.letter-deck .salutation{font-family:var(--font-script);font-size:1.85rem;color:var(--pink);margin-bottom:12px}
+.letter-deck p{color:var(--ink);font-weight:300;margin-bottom:12px;font-size:.92rem}
+.letter-deck .sign{font-family:var(--font-script);font-size:1.45rem;color:var(--blue);text-align:right;margin-top:6px}
+.footer-deck{padding:14px 20px 0;text-align:center;color:var(--ink-soft);font-size:.78rem}
+.footer-deck .script{font-family:var(--font-script);font-size:1.3rem;color:var(--pink);display:block;margin-bottom:4px}
+
+/* ── CONFETTI & ACCESSIBILITY ────────────────────────── */
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:100}
 
-/* ── SCROLLBAR ──────────────────────────────────────────── */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--deep)}
-::-webkit-scrollbar-thumb{background:rgba(240,126,180,.3);border-radius:3px}
-
-@media(max-width:480px){
-  .photo-grid{gap:10px}
-  .letter{padding:28px 20px}
-}
 @media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation-duration:.001s!important;transition-duration:.001s!important;scroll-behavior:auto!important}
+  *,*:before,*:after{animation-duration:.001s !important;transition-duration:.001s !important;scroll-behavior:auto !important}
+  .deck-card{transition:none !important}
+  .wrapped-slide-deck{transition:none !important}
 }
-
-/* ── CAKE TIME (LIKE INSTAGRAM REEL) ────────── */
-.cake-time-box{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:24px;
-  padding:22px 16px 24px;
-  margin:18px auto 14px;
-  max-width:440px;
-  text-align:center;
-  backdrop-filter:blur(14px);
-  position:relative;
-  box-shadow:0 14px 40px rgba(0,0,0,.35);
-  display:none;
-}
-.cake-time-box.active{
-  display:block;
-  animation:fadeIn .5s ease;
-}
-.cake-time-title{
-  font-family:var(--font-serif);
-  font-size:1.6rem;
-  color:var(--ink);
-  margin-bottom:2px;
-}
-.cake-time-sub{
-  font-size:.82rem;
-  color:var(--ink-soft);
-  margin-bottom:12px;
-}
-.cake-drag-badge{
-  display:inline-block;
-  font-size:.65rem;
-  font-weight:700;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--pink);
-  background:rgba(240,126,180,.14);
-  padding:4px 12px;
-  border-radius:99px;
-  margin-bottom:6px;
-}
-.cake-drag-title{
-  font-weight:600;
-  font-size:.95rem;
-  color:var(--ink);
-  margin-bottom:2px;
-}
-.cake-drag-hint{
-  font-size:.76rem;
-  color:var(--ink-soft);
-  margin-bottom:14px;
-}
-.cake-cut-arena{
-  position:relative;
-  width:260px;
-  height:180px;
-  margin:0 auto 14px;
-  user-select:none;
-  touch-action:none;
-  cursor:crosshair;
-}
-.cake-svg-wrap{
-  width:100%;
-  height:100%;
-  position:relative;
-}
-.cake-cut-line{
-  position:absolute;
-  top:85px;
-  left:35px;
-  width:190px;
-  height:10px;
-  border-bottom:2.5px dashed rgba(240,126,180,.7);
-  pointer-events:none;
-  filter:drop-shadow(0 0 6px rgba(240,126,180,.7));
-  z-index:5;
-}
-.knife-cursor{
-  position:absolute;
-  top:58px;
-  left:18px;
-  font-size:2.2rem;
-  transform:rotate(-35deg);
-  cursor:grab;
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));
-  transition:transform .1s ease;
-  z-index:10;
-  touch-action:none;
-  user-select:none;
-}
-.knife-cursor:active{
-  cursor:grabbing;
-  transform:rotate(-45deg) scale(1.15);
-}
-.knife-pulse{
-  position:absolute;
-  top:58px;
-  left:16px;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:2px solid var(--pink);
-  animation:knifePulse 1.6s infinite ease-out;
-  pointer-events:none;
-  z-index:6;
-}
-@keyframes knifePulse{
-  0%{transform:scale(.6);opacity:1}
-  100%{transform:scale(1.8);opacity:0}
-}
-.cut-progress-box{
-  width:min(300px,90%);
-  margin:0 auto;
-}
-.cut-progress-bar{
-  height:8px;
-  background:rgba(255,255,255,.08);
-  border-radius:99px;
-  overflow:hidden;
-  position:relative;
-}
-.cut-progress-fill{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,var(--blue),var(--pink),#ff4d8d);
-  border-radius:99px;
-  transition:width .1s ease;
-}
-.cut-progress-labels{
-  display:flex;
-  justify-content:space-between;
-  font-size:.76rem;
-  color:var(--ink-soft);
-  margin-top:6px;
-  font-weight:500;
-}
-.cake-halves{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:100%;
-  height:100%;
-}
-.cake-half-left, .cake-half-right{
-  transform-origin:120px 130px;
-  transition:transform .65s cubic-bezier(.34,1.56,.64,1);
-}
-.cake-halves.split .cake-half-left{
-  transform:translateX(-16px) rotate(-3.5deg);
-}
-.cake-halves.split .cake-half-right{
-  transform:translateX(16px) rotate(3.5deg);
-}
-.make-wish-modal{
-  display:none;
-  animation:fadeIn .5s ease;
-  padding:10px 4px 6px;
-}
-.make-wish-modal.active{
-  display:block;
-}
-.wish-mascot{
-  font-size:3.5rem;
-  margin-bottom:8px;
-  animation:mascotBounce 2s infinite ease-in-out;
-}
-@keyframes mascotBounce{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
-}
-
-/* ── REEL WISH CARDS (LIKE INSTAGRAM REEL) ────────── */
-.wish-cards-section{
-  padding:50px 20px;
-}
-.cards-scroll-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:18px;
-  margin-top:28px;
-}
-@media(max-width:680px){
-  .cards-scroll-container{
-    display:flex;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    padding:8px 6px 18px;
-    gap:14px;
-    -webkit-overflow-scrolling:touch;
-  }
-  .reel-wish-card{
-    min-width:260px;
-    flex:0 0 260px;
-    scroll-snap-align:center;
-  }
-}
-.reel-wish-card{
-  perspective:1000px;
-  min-height:330px;
-  cursor:pointer;
-}
-.card-flipper{
-  position:relative;
-  width:100%;
-  height:100%;
-  min-height:330px;
-  transform-style:preserve-3d;
-  transition:transform .6s cubic-bezier(.2,.7,.3,1);
-}
-.reel-wish-card.flipped .card-flipper{
-  transform:rotateY(180deg);
-}
-.card-face{
-  position:absolute;
-  inset:0;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-  border-radius:22px;
-  padding:22px 18px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-between;
-  text-align:center;
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
-  box-sizing:border-box;
-}
-.card-front-face{
-  background:#ffffff;
-  color:#1e1a24;
-  border:1px solid rgba(255,255,255,.2);
-}
-.card-back-face{
-  background:#ffffff;
-  color:#1e1a24;
-  border:1px solid rgba(255,255,255,.2);
-  transform:rotateY(180deg);
-}
-.card-bubble-title{
-  font-weight:700;
-  font-size:1.02rem;
-  color:#1f1929;
-  margin-bottom:6px;
-  font-family:var(--font-sans);
-}
-.card-illust-wrap{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  padding:8px 0;
-}
-.card-sub-caption{
-  font-size:.82rem;
-  color:#7e7492;
-  font-weight:600;
-  margin-bottom:8px;
-}
-.card-bottom-pill{
-  background:rgba(240,126,180,.14);
-  color:#c93a82;
-  font-weight:700;
-  font-size:.82rem;
-  padding:8px 18px;
-  border-radius:99px;
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  transition:transform .15s ease, background .15s ease;
-}
-.reel-wish-card:hover .card-bottom-pill{
-  transform:scale(1.05);
-  background:rgba(240,126,180,.25);
-}
-.card-back-header{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-weight:700;
-  font-size:.85rem;
-  color:#9e94b8;
-  padding:0 4px;
-}
-.card-back-header .card-num{
-  color:#c93a82;
-  font-family:var(--font-serif);
-  font-size:1.15rem;
-}
-.card-back-body{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 6px;
-  font-size:.92rem;
-  line-height:1.65;
-  color:#2e2438;
-  font-weight:500;
-}
-.card-flip-back-btn{
-  font-size:.78rem;
-  font-weight:600;
-  color:#8b5cf6;
-  background:rgba(139,92,246,.1);
-  padding:6px 14px;
-  border-radius:99px;
-  margin-top:6px;
-}
-.wishes-tracker{
-  margin:24px auto 0;
-  max-width:320px;
-  text-align:center;
-}
-.wishes-tracker-text{
-  font-size:.82rem;
-  color:var(--ink-soft);
-  font-weight:600;
-  margin-bottom:8px;
-}
-.wishes-tracker-bar{
-  height:6px;
-  background:rgba(255,255,255,.08);
-  border-radius:99px;
-  overflow:hidden;
-}
-.wishes-tracker-fill{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,var(--pink),var(--lily));
-  border-radius:99px;
-  transition:width .4s ease;
-}
-
-
-/* ── UPGRADE 1: PHONE OF BIRTHDAY TEXTS ────────────── */
-.phone-texts-section{
-  padding: 40px 18px 20px;
-}
-.phone-mockup{
-  width: min(340px, 92vw);
-  margin: 0 auto;
-  background: #0d0c14;
-  border: 2.5px solid rgba(255, 255, 255, 0.14);
-  border-radius: 40px;
-  padding: 16px 14px 26px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(111,163,239,0.12);
-  position: relative;
-  box-sizing: border-box;
-}
-.phone-notch{
-  width: 90px;
-  height: 18px;
-  background: #000000;
-  border-radius: 99px;
-  margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.phone-cam{
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #1b1926;
-}
-.phone-chat-header{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  padding-bottom: 10px;
-}
-.phone-header-title{
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  font-weight: 600;
-}
-.phone-header-date{
-  font-size: 0.68rem;
-  color: rgba(255,255,255,0.38);
-}
-.phone-chat-messages{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: left;
-  min-height: 220px;
-}
-.chat-bubble{
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f3eef8;
-  padding: 10px 14px;
-  border-radius: 18px 18px 18px 4px;
-  font-size: 0.88rem;
-  line-height: 1.42;
-  max-width: 88%;
-  align-self: flex-start;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  box-sizing: border-box;
-  opacity: 0;
-  transform: translateY(14px) scale(0.96);
-  transition: opacity .45s ease, transform .45s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.chat-bubble.bubble-visible{
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* ── UPGRADE 2 & 5: PULL-CORD LIGHTS & ROOM THAT BUILDS ITSELF ── */
-.pull-cord-wrap{
-  margin: 12px auto 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 15;
-}
-.pull-cord-btn{
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: inherit;
-  outline: none;
-  touch-action: none;
-}
-.pull-cord-btn:focus-visible .cord-knob{
-  outline: 3px solid var(--pink);
-  outline-offset: 4px;
-}
-.cord-chain{
-  width: 2px;
-  height: 52px;
-  background: repeating-linear-gradient(180deg, rgba(255,255,255,0.45) 0, rgba(255,255,255,0.45) 3px, transparent 3px, transparent 6px);
-  margin: 0 auto;
-  transition: height 0.18s ease;
-}
-.cord-knob{
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  border: 1.5px solid var(--pink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  box-shadow: 0 4px 16px rgba(240,126,180,0.3);
-  transition: transform 0.18s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-.pull-cord-btn:hover .cord-knob{
-  box-shadow: 0 6px 22px rgba(240,126,180,0.55);
-  transform: scale(1.06);
-}
-.pull-cord-btn.pulled .cord-chain{
-  height: 74px;
-}
-.pull-cord-btn.pulled .cord-knob{
-  transform: translateY(22px);
-  box-shadow: 0 0 28px rgba(240,126,180,0.8), 0 0 50px rgba(111,163,239,0.5);
-  background: rgba(240,126,180,0.25);
-}
-.cord-tag{
-  margin-top: 8px;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--pink);
-  font-weight: 600;
-  transition: opacity 0.3s ease;
-}
-.pull-cord-wrap.is-lit .cord-tag{
-  color: var(--blue);
-}
-
-/* Staged reveals in party room */
-#balloonsStep{
-  display: none;
-  animation: fadeIn 0.5s ease;
-  margin-top: 14px;
-}
-#balloonsStep.active{
-  display: block;
-}
-#candlesZone{
-  display: none;
-  animation: fadeIn 0.5s ease;
-  margin-top: 14px;
-}
-#candlesZone.active{
-  display: block;
-}
-
-/* ── UPGRADE 4: GIFT THAT ESCALATES ────────────── */
-.gift-interactive-wrap{
-  position: relative;
-  display: inline-block;
-  margin: 30px auto 8px;
-}
-.gift-btn.shake-mild{
-  animation: wiggleMild 0.35s ease;
-}
-.gift-btn.shake-med{
-  animation: wiggleMed 0.25s ease;
-}
-.gift-btn.shake-wild{
-  animation: wiggleWild 0.18s ease infinite;
-}
-@keyframes wiggleMild{
-  0%,100%{transform:rotate(0)}
-  25%{transform:rotate(-4deg) scale(1.03)}
-  75%{transform:rotate(4deg) scale(1.03)}
-}
-@keyframes wiggleMed{
-  0%,100%{transform:rotate(0)}
-  20%{transform:rotate(-8deg) scale(1.08)}
-  40%{transform:rotate(8deg) scale(1.08)}
-  60%{transform:rotate(-6deg) scale(1.08)}
-  80%{transform:rotate(6deg) scale(1.08)}
-}
-@keyframes wiggleWild{
-  0%,100%{transform:rotate(0) translate(0,0)}
-  15%{transform:rotate(-13deg) translate(-4px,-3px) scale(1.14)}
-  35%{transform:rotate(13deg) translate(4px,3px) scale(1.16)}
-  55%{transform:rotate(-11deg) translate(-3px,2px) scale(1.14)}
-  75%{transform:rotate(11deg) translate(3px,-2px) scale(1.16)}
-}
-.gift-cracks-overlay{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-.crack-path{
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-.crack-path.crack-visible{
-  opacity: 1;
-}
-
-/* ── UPGRADE 3: NIKO WRAPPED ────────────────────── */
-.wrapped-section{
-  padding: 50px 18px;
-}
-.wrapped-container{
-  width: min(520px, 100%);
-  margin: 28px auto 0;
-  border-radius: 28px;
-  min-height: 420px;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-  cursor: pointer;
-  user-select: none;
-  background: #0e0c18;
-  display: flex;
-  flex-direction: column;
-  outline: none;
-  box-sizing: border-box;
-}
-.wrapped-container:focus-visible{
-  outline: 3px solid var(--pink);
-  outline-offset: 3px;
-}
-.wrapped-story-bars{
-  display: flex;
-  gap: 6px;
-  padding: 16px 18px 0;
-  position: relative;
-  z-index: 10;
-}
-.story-bar{
-  flex: 1;
-  height: 3.5px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 99px;
-  overflow: hidden;
-}
-.story-bar-fill{
-  height: 100%;
-  width: 0%;
-  background: #ffffff;
-  border-radius: 99px;
-  transition: width 0.25s ease;
-}
-.story-bar.active .story-bar-fill{
-  width: 100%;
-}
-.story-bar.done .story-bar-fill{
-  width: 100%;
-}
-.wrapped-cards-stack{
-  flex: 1;
-  position: relative;
-  width: 100%;
-  min-height: 350px;
-}
-.wrapped-slide{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px 24px 44px;
-  box-sizing: border-box;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.96);
-  transition: opacity .35s ease, transform .35s ease;
-}
-.wrapped-slide.active{
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
-}
-.wrapped-kicker{
-  font-size: 0.72rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-.wrapped-big-text{
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 6.5vw, 2.7rem);
-  line-height: 1.15;
-  font-weight: 700;
-  color: #ffffff;
-  max-width: 15ch;
-}
-.wrapped-badge{
-  margin-top: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.8);
-  background: rgba(255,255,255,0.08);
-  padding: 6px 18px;
-  border-radius: 99px;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.wrapped-tap-hint{
-  position: absolute;
-  bottom: 14px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 0.74rem;
-  color: rgba(255,255,255,0.42);
-  letter-spacing: 0.1em;
-  pointer-events: none;
-  z-index: 10;
-}
-
 </style>
 </head>
 <body>
 <canvas id="confetti" aria-hidden="true"></canvas>
 
-<!-- ═══════════════ STAGE 1 · GATE ═══════════════ -->
+<!-- ================= STAGE 1 · GATE ================= -->
 <section class="stage on" id="stage-gate" aria-label="Enter birthday date">
-  <div class="wrap" style="text-align:center">
+  <div class="wrap-stage">
     <div class="lily-divider">🌸 ✦ 🌸</div>
-    <p class="label" style="margin-top:20px">a little corner of the internet, for you</p>
-    <h1 class="headline" style="margin-top:8px">For Priya, aka <em>Niko</em></h1>
+    <p class="label" style="margin-top:16px">a little corner of the internet, for you</p>
+    <h1 class="headline" style="margin-top:6px">For Priya, aka <em>Niko</em></h1>
     <p class="sub">This is locked for a reason. Prove it's really you.</p>
     <div class="gate-card" id="gateCard">
       <h2>Enter your birthday</h2>
@@ -967,16 +490,17 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
       <p class="hint" id="gateHint">hint: your birthday, obviously 😏</p>
       <div class="keypad" id="keypad" role="group" aria-label="Number keypad"></div>
     </div>
-    <div class="lily-divider" style="margin-top:32px;font-size:1rem">🪷 🪷 🪷</div>
+    <div class="lily-divider" style="margin-top:24px;font-size:1rem">🪷 🪷 🪷</div>
   </div>
 </section>
 
-<!-- ═══════════════ STAGE 2 · UNWRAP ═══════════════ -->
+<!-- ================= STAGE 2 · UNWRAP ================= -->
 <section class="stage" id="stage-unwrap" aria-label="Unwrap gift">
-  <div class="wrap" style="text-align:center">
+  <div class="wrap-stage">
     <p class="label">date accepted ✓</p>
     <h1 class="headline">One gift. <em>Zero patience.</em></h1>
     <p class="sub">It doesn't open politely. Keep tapping.</p>
+    
     <div class="gift-interactive-wrap">
       <button class="gift-btn" id="giftBtn" aria-label="Tap to unwrap">🎁</button>
       <svg class="gift-cracks-overlay" id="giftCracks" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -988,249 +512,262 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
         <path class="crack-path" id="crackTier3" d="M48 68 L36 82 M48 68 L60 84 M55 52 L62 40 L72 32" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="drop-shadow(0 0 8px #ffffff)"/>
       </svg>
     </div>
+    
     <p class="tap-count" id="tapCount">tap to open · 0 / 21</p>
     <div class="tap-bar" aria-hidden="true"><i id="tapBar"></i></div>
   </div>
 </section>
 
-<!-- ═══════════════ STAGE 3 · PARTY ═══════════════ -->
+<!-- ================= CHANGE 1: FULL-PAGE PARTY STAGE (100dvh) ================= -->
 <section class="stage" id="stage-party" aria-label="Party room">
-  <div class="wrap">
-    <p class="label" style="margin-bottom:18px">welcome to your party, Niko</p>
-    <div class="room" id="room">
-      <div class="bulbs" aria-hidden="true">
-        <span class="bulb">🪔</span><span class="bulb">💙</span><span class="bulb">🪷</span>
-        <span class="bulb">✨</span><span class="bulb">🪷</span><span class="bulb">💙</span>
-        <span class="bulb">🪔</span>
-      </div>
-      <div class="banner">Happy Birthday, Niko 🎉</div>
+  <!-- Top: Bulbs & Hanging Pull Cord -->
+  <div class="stage-party-top">
+    <div class="stage-party-bulbs" aria-hidden="true">
+      <span class="bulb">🪔</span><span class="bulb">💙</span><span class="bulb">🪷</span>
+      <span class="bulb">✨</span><span class="bulb">🪷</span><span class="bulb">💙</span>
+      <span class="bulb">🪔</span>
+    </div>
+    <div class="stage-party-banner" id="partyBanner">Happy Birthday, Niko 🎉</div>
+    
+    <!-- Pull Cord for Lights -->
+    <div class="stage-pull-cord" id="pullCord" role="button" tabindex="0" aria-label="Pull cord to switch on lights">
+      <div class="cord-chain"></div>
+      <div class="cord-knob">💡</div>
+      <span class="cord-tag" id="cordTag">Pull cord for lights</span>
+    </div>
 
-      <!-- PULL-CORD FOR LIGHTS (Upgrade 2) -->
-      <div class="pull-cord-wrap" id="pullCordWrap">
-        <button class="pull-cord-btn" id="pullCord" aria-label="Pull cord to switch on lights" tabindex="0">
-          <span class="cord-chain"></span>
-          <span class="cord-knob">💡</span>
-          <span class="cord-tag" id="cordTag">Pull cord for lights</span>
-        </button>
-      </div>
+    <!-- Step 2: Balloons Button -->
+    <div id="balloonsStep">
+      <button class="btn blue" id="balloonsBtn">Release balloons 🎈</button>
+    </div>
+  </div>
 
-      <!-- BALLOONS ZONE & STEP (Revealed after lights on) -->
-      <div class="balloon-zone" id="balloonZone" aria-hidden="true"></div>
-      <div id="balloonsStep">
-        <button class="btn blue" id="balloonsBtn">Release balloons 🎈</button>
-      </div>
+  <!-- Center: Balloons Zone, Dominant Cake & Candles, Cake Time -->
+  <div class="stage-party-center">
+    <div class="balloon-zone-full" id="balloonZone" aria-hidden="true"></div>
 
-      <!-- CANDLES & CAKE ZONE (Revealed after balloons released) -->
-      <div id="candlesZone">
-        <div class="cake" id="roomCakeEmoji" aria-hidden="true">🎂</div>
-        <div class="candles" id="candles" aria-label="Blow out each candle"></div>
-        <p class="party-label" id="candleInstructions">tap each candle to blow it out — then cut the cake</p>
-      </div>
+    <!-- Step 3: Dominant Centred Cake & Big Candle Tap Targets -->
+    <div id="candlesZone">
+      <div class="cake-dominant" id="roomCakeEmoji" aria-hidden="true">🎂</div>
+      <div class="candles-large" id="candles" aria-label="Blow out each candle"></div>
+      <p class="candles-prompt" id="candleInstructions">tap each candle to blow it out — then cut the cake</p>
+    </div>
 
-      <!-- CAKE TIME INTERACTIVE CUTTING (Like Instagram Reel) -->
-      <div class="cake-time-box" id="cakeTimeBox">
-        <div class="cake-time-header">
-          <h3 class="cake-time-title">Cake Time</h3>
-          <p class="cake-time-sub">Cut the cake and make a wish</p>
+    <!-- Step 4: Cake Time Drag-to-Cut (Breathing Room) -->
+    <div id="cakeTimeBox">
+      <div id="cakeCuttingStep">
+        <h3 class="cake-time-title-full">Cake Time</h3>
+        <p class="cake-time-sub-full">Cut the cake and make a wish</p>
+        <span class="cake-drag-badge-full">DRAG HERE</span>
+        <div class="cake-drag-title-full">Drag across the cake to cut it 🔪</div>
+        <p class="cake-drag-hint-full">Swipe or drag through the dashed line to complete the cut</p>
+
+        <div class="cake-cut-arena-full" id="cakeCutArena">
+          <div class="cake-cut-line-full"></div>
+          <div class="knife-cursor-full" id="knifeCursor" title="Drag me to cut!">🔪</div>
+          <div class="knife-pulse-full" id="knifePulse"></div>
+
+          <svg viewBox='0 0 240 180' width='100%' height='100%' fill='none' xmlns='http://www.w3.org/2000/svg' style='overflow:visible;'>
+            <defs>
+              <linearGradient id='cakeGradPink' x1='0' y1='0' x2='0' y2='1'>
+                <stop offset='0%' stop-color='#ff94c2'/><stop offset='100%' stop-color='#e6518a'/>
+              </linearGradient>
+              <linearGradient id='cakeGradTop' x1='0' y1='0' x2='0' y2='1'>
+                <stop offset='0%' stop-color='#fff0f6'/><stop offset='100%' stop-color='#ffd1e4'/>
+              </linearGradient>
+              <linearGradient id='plateGrad' x1='0' y1='0' x2='0' y2='1'>
+                <stop offset='0%' stop-color='#ffffff'/><stop offset='100%' stop-color='#cbd5e1'/>
+              </linearGradient>
+              <filter id='glowFlame' x='-20%' y='-20%' width='140%' height='140%'>
+                <feGaussianBlur stdDeviation='3' result='blur'/>
+                <feComposite in='SourceGraphic' in2='blur' operator='over'/>
+              </filter>
+            </defs>
+            <g id='cakeHalves' class='cake-halves-full'>
+              <!-- Left Half -->
+              <g class='cake-half-left'>
+                <path d='M20 145 C 20 160, 120 160, 120 160 L120 145 C 120 145, 20 145, 20 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
+                <ellipse cx='70' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
+                <path d='M40 95 L40 135 C 40 152, 120 155, 120 155 L120 95 Z' fill='url(#cakeGradPink)'/>
+                <path d='M40 95 C 40 80, 120 80, 120 95 L120 95 C 120 110, 40 110, 40 95 Z' fill='url(#cakeGradTop)'/>
+                <path d='M40 96 C 45 106, 52 106, 56 98 C 60 108, 68 112, 74 100 C 80 112, 90 112, 96 99 C 102 110, 112 110, 120 100 L120 95 L40 95 Z' fill='#ffffff'/>
+                <circle cx='65' cy='88' r='6' fill='#ef4444'/><circle cx='95' cy='90' r='6' fill='#ef4444'/>
+                <rect x='116' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
+              </g>
+              <!-- Right Half -->
+              <g class='cake-half-right'>
+                <path d='M120 160 C 120 160, 220 160, 220 145 L220 145 C 220 145, 120 145, 120 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
+                <ellipse cx='170' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
+                <path d='M120 95 L120 155 C 120 155, 200 152, 200 135 L200 95 Z' fill='url(#cakeGradPink)'/>
+                <path d='M120 95 C 120 80, 200 80, 200 95 C 200 110, 120 110, 120 95 Z' fill='url(#cakeGradTop)'/>
+                <path d='M120 100 C 128 110, 138 110, 144 99 C 150 112, 160 112, 166 100 C 172 108, 180 106, 184 98 C 188 106, 195 106, 200 96 L200 95 L120 95 Z' fill='#ffffff'/>
+                <circle cx='145' cy='90' r='6' fill='#ef4444'/><circle cx='175' cy='88' r='6' fill='#ef4444'/>
+                <rect x='120' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
+                <ellipse cx='120' cy='44' rx='5' ry='9' fill='#f59e0b' filter='url(#glowFlame)'/>
+                <ellipse cx='120' cy='45' rx='3' ry='5' fill='#fef08a'/>
+              </g>
+            </g>
+          </svg>
         </div>
 
-        <div id="cakeCuttingStep">
-          <span class="cake-drag-badge">DRAG HERE</span>
-          <div class="cake-drag-title">Drag across the cake to cut it 🔪</div>
-          <p class="cake-drag-hint">Swipe or drag through the dashed line to complete the cut</p>
-
-          <div class="cake-cut-arena" id="cakeCutArena">
-            <!-- Cut guide line -->
-            <div class="cake-cut-line"></div>
-            <!-- Interactive knife cursor -->
-            <div class="knife-cursor" id="knifeCursor" title="Drag me to cut!">🔪</div>
-            <div class="knife-pulse" id="knifePulse"></div>
-
-            <!-- Visual SVG cake with splittable halves -->
-            <div class="cake-svg-wrap" id="cakeSvgWrap">
-              <svg viewBox='0 0 240 180' width='240' height='180' fill='none' xmlns='http://www.w3.org/2000/svg' style='overflow:visible;'>
-                <defs>
-                  <linearGradient id='cakeGradPink' x1='0' y1='0' x2='0' y2='1'>
-                    <stop offset='0%' stop-color='#ff94c2'/>
-                    <stop offset='100%' stop-color='#e6518a'/>
-                  </linearGradient>
-                  <linearGradient id='cakeGradTop' x1='0' y1='0' x2='0' y2='1'>
-                    <stop offset='0%' stop-color='#fff0f6'/>
-                    <stop offset='100%' stop-color='#ffd1e4'/>
-                  </linearGradient>
-                  <linearGradient id='plateGrad' x1='0' y1='0' x2='0' y2='1'>
-                    <stop offset='0%' stop-color='#ffffff'/>
-                    <stop offset='100%' stop-color='#cbd5e1'/>
-                  </linearGradient>
-                  <filter id='glowFlame' x='-20%' y='-20%' width='140%' height='140%'>
-                    <feGaussianBlur stdDeviation='3' result='blur'/>
-                    <feComposite in='SourceGraphic' in2='blur' operator='over'/>
-                  </filter>
-                </defs>
-
-                <g id='cakeHalves' class='cake-halves'>
-                  <!-- LEFT HALF -->
-                  <g class='cake-half-left'>
-                    <path d='M20 145 C 20 160, 120 160, 120 160 L120 145 C 120 145, 20 145, 20 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
-                    <ellipse cx='70' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
-                    <path d='M40 95 L40 135 C 40 152, 120 155, 120 155 L120 95 Z' fill='url(#cakeGradPink)'/>
-                    <path d='M40 95 C 40 80, 120 80, 120 95 L120 95 C 120 110, 40 110, 40 95 Z' fill='url(#cakeGradTop)'/>
-                    <path d='M40 96 C 45 106, 52 106, 56 98 C 60 108, 68 112, 74 100 C 80 112, 90 112, 96 99 C 102 110, 112 110, 120 100 L120 95 L40 95 Z' fill='#ffffff'/>
-                    <circle cx='65' cy='88' r='6' fill='#ef4444'/>
-                    <circle cx='95' cy='90' r='6' fill='#ef4444'/>
-                    <rect x='116' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
-                  </g>
-
-                  <!-- RIGHT HALF -->
-                  <g class='cake-half-right'>
-                    <path d='M120 160 C 120 160, 220 160, 220 145 L220 145 C 220 145, 120 145, 120 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
-                    <ellipse cx='170' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
-                    <path d='M120 95 L120 155 C 120 155, 200 152, 200 135 L200 95 Z' fill='url(#cakeGradPink)'/>
-                    <path d='M120 95 C 120 80, 200 80, 200 95 C 200 110, 120 110, 120 95 Z' fill='url(#cakeGradTop)'/>
-                    <path d='M120 100 C 128 110, 138 110, 144 99 C 150 112, 160 112, 166 100 C 172 108, 180 106, 184 98 C 188 106, 195 106, 200 96 L200 95 L120 95 Z' fill='#ffffff'/>
-                    <circle cx='145' cy='90' r='6' fill='#ef4444'/>
-                    <circle cx='175' cy='88' r='6' fill='#ef4444'/>
-                    <rect x='120' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
-                    <ellipse cx='120' cy='44' rx='5' ry='9' fill='#f59e0b' filter='url(#glowFlame)'/>
-                    <ellipse cx='120' cy='45' rx='3' ry='5' fill='#fef08a'/>
-                  </g>
-                </g>
-              </svg>
-            </div>
+        <div class="cut-progress-box-full">
+          <div class="cut-progress-bar-full">
+            <div class="cut-progress-fill-full" id="cutProgressFill"></div>
           </div>
-
-          <!-- Cut Progress Bar -->
-          <div class="cut-progress-box">
-            <div class="cut-progress-bar">
-              <div class="cut-progress-fill" id="cutProgressFill"></div>
-            </div>
-            <div class="cut-progress-labels">
-              <span>Cut Progress</span>
-              <span id="cutPercent">0% · Ready to cut</span>
-            </div>
+          <div class="cut-progress-labels-full">
+            <span>Cut Progress</span>
+            <span id="cutPercent">0% · Ready to cut</span>
           </div>
         </div>
-
-        <!-- MAKE A WISH STEP (Like Instagram Reel Frame 10) -->
-        <div class="make-wish-modal" id="makeWishModal">
-          <div class="wish-mascot">🐱🎂</div>
-          <span class="cake-drag-badge" style="background:rgba(255,105,180,.18);color:var(--pink)">MAKE A WISH</span>
-          <h3 style="font-family:var(--font-serif);font-size:1.45rem;margin:8px 0 4px;color:var(--ink)">Close your eyes and make a wish</h3>
-          <p style="font-size:.85rem;color:var(--ink-soft);margin-bottom:16px">When you're ready, tap the button below.</p>
-          <button class="btn blue" id="madeWishBtn" style="padding:12px 28px;font-size:1rem;box-shadow:0 8px 24px rgba(111,163,239,.35)">I Made My Wish 💖</button>
-        </div>
       </div>
 
-<button id="cutBtn" style="display:none"></button>
-      <p class="wish-line" id="wishLine"></p>
-      <div class="party-actions">
-        <button class="btn" id="enterBtn" disabled>Your actual surprise ↓</button>
+      <!-- Step 5: Make a Wish Modal -->
+      <div class="make-wish-modal-full" id="makeWishModal">
+        <div class="wish-mascot-full">🐱🎂</div>
+        <span class="cake-drag-badge-full" style="background:rgba(255,105,180,.18);color:var(--pink)">MAKE A WISH</span>
+        <h3 style="font-family:var(--font-serif);font-size:clamp(1.5rem,5vmin,2rem);margin:8px 0 4px;color:var(--ink)">Close your eyes and make a wish</h3>
+        <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:16px">When you're ready, tap the button below.</p>
+        <button class="btn blue" id="madeWishBtn" style="padding:14px 32px;font-size:1.02rem">I Made My Wish 💖</button>
       </div>
     </div>
   </div>
+
+  <!-- Bottom: Wish Line & Enter -->
+  <div class="stage-party-bottom">
+    <p class="wish-line-full" id="wishLine"></p>
+    <button class="btn blue" id="enterBtn" disabled style="padding:14px 36px;font-size:1.05rem">Your actual surprise ↓</button>
+  </div>
 </section>
 
-<!-- ═══════════════ MAIN ═══════════════ -->
-<main id="main">
+<!-- ================= CHANGE 2: MAIN CARD DECK (NO SCROLL, 100dvh) ================= -->
+<main id="main" class="deck-mode" aria-label="Birthday Story Deck">
+  <!-- Top Navigation & Segments Progress -->
+  <div class="deck-top-bar">
+    <div class="deck-segments-bar" id="deckSegments" aria-hidden="true">
+      <!-- 13 Segments for 13 Cards -->
+      <div class="deck-seg active"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
+    </div>
+    <div class="deck-nav-header">
+      <button class="deck-nav-btn" id="deckPrevBtn" aria-label="Previous card">← Back</button>
+      <span class="deck-step-counter" id="deckCounter">1 / 13</span>
+      <button class="deck-nav-btn primary" id="deckNextBtn" aria-label="Next card">Next →</button>
+    </div>
+  </div>
 
-  <!-- ═══════════════ 1. PHONE OF BIRTHDAY TEXTS ═══════════════ -->
-  <section class="phone-texts-section" id="phoneSection" aria-label="Birthday text messages">
-    <div class="wrap" style="text-align:center">
-      <div class="phone-mockup" id="phoneMockup">
-        <div class="phone-notch"><span class="phone-cam"></span></div>
-        <div class="phone-chat-header">
-          <span class="phone-header-title">Messages</span>
-          <span class="phone-header-date">Today</span>
+  <!-- Viewport hosting the 13 Story Cards -->
+  <div class="deck-viewport" id="deckViewport">
+
+    <!-- ── CARD 1: HERO ─────────────────────────────────── -->
+    <div class="deck-card active" data-deck-idx="0" aria-label="Card 1: Happy Birthday Hero">
+      <div class="deck-card-content">
+        <div class="lily-divider">🪷 ✦ 🪷 ✦ 🪷</div>
+        <p class="label" style="margin-top:16px">it's official</p>
+        <h1 class="hero-name">Happy Birthday,<br><em>Priya “Niko” Tomar</em> 🎉</h1>
+        <div style="text-align:center;margin:12px 0 8px">
+          <span class="hero-tag">🗓️ 30 October &nbsp;·&nbsp; Lucknow &nbsp;·&nbsp; Your day</span>
         </div>
-        <div class="phone-chat-messages" id="chatMessages">
-          <div class="chat-bubble" data-msg-idx="0">HAPPY BIRTHDAY, NIKO 🎉</div>
-          <div class="chat-bubble" data-msg-idx="1">30 October. Officially your day.</div>
-          <div class="chat-bubble" data-msg-idx="2">lilies &gt; roses. always. ✿</div>
-          <div class="chat-bubble" data-msg-idx="3">Billie on repeat today. No skips.</div>
-          <div class="chat-bubble" data-msg-idx="4">Lucknow's favourite — happy birthday.</div>
-        </div>
+        <div><span class="hero-badge">certified birthday legend · one day only, non-refundable</span></div>
+        <p class="hero-date">today belongs to you</p>
       </div>
     </div>
-  </section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="lily-divider">🪷 ✦ 🪷 ✦ 🪷</div>
-    <h1 class="hero-name" style="margin-top:24px">Happy Birthday,<br><em>Niko</em> 🎉</h1>
-    <div style="text-align:center;margin:14px 0 10px">
-      <span class="hero-tag">🗓️ 30 October &nbsp;·&nbsp; Lucknow &nbsp;·&nbsp; Your day</span>
-    </div>
-    <p class="hero-date">today belongs to you</p>
-  </section>
-
-  <!-- PHOTOS & VIDEO -->
-  <section aria-label="Photos and video">
-    <div class="wrap">
-      <p class="label">moments 📸</p>
-      <h2 class="sec-head">The Niko <span>gallery</span></h2>
-
-      <!--
-        ╔══════════════════════════════════════════════════════════╗
-        ║  HOW TO ADD YOUR PHOTOS & VIDEO                         ║
-        ║  Drop your files into the /niko folder next to          ║
-        ║  index.html, then swap the placeholder comments below   ║
-        ║  with real <img> or <video> tags. Examples:             ║
-        ║                                                         ║
-        ║  Image:  <img src="photo1.jpg" alt="caption">           ║
-        ║  Video:  <video src="clip.mp4" autoplay muted loop      ║
-        ║           playsinline></video>                           ║
-        ╚══════════════════════════════════════════════════════════╝
-      -->
-      <div class="photo-grid">
-
-        <!-- SLOT 1 — tall left card, 2 rows -->
-        <div class="p-slot tall" id="slot1">
-          <img src="photos/photo-05-green-saree-outdoor.jpg" alt="Priya in a green and red saree outdoors" loading="lazy">
-        </div>
-
-        <!-- SLOT 2 — top right -->
-        <div class="p-slot" id="slot2">
-          <img src="photos/photo-02-orange-saree.jpg" alt="Priya in an orange and blue saree" loading="lazy">
-        </div>
-
-        <!-- SLOT 3 — bottom right -->
-        <div class="p-slot" id="slot3">
-          <img src="photos/photo-03-mirror-white-top.jpg" alt="Mirror selfie in a white top" loading="lazy">
-        </div>
-
-        <!-- SLOT 4 — full-width panoramic -->
-        <div class="p-slot wide" id="slot4">
-          <img src="photos/photo-01-brown-tee.jpg" alt="Priya in a brown airplane t-shirt" loading="lazy">
-        </div>
-
-        <!-- SLOT 5 & 6 — side by side -->
-        <div class="p-slot" id="slot5">
-          <img src="photos/photo-07-black-kurta.jpg" alt="Priya in a black printed kurta" loading="lazy">
-        </div>
-
-        <div class="p-slot" id="slot6">
-          <img src="photos/photo-04-pink-dupatta-close.jpg" alt="Priya in a pink dupatta, close-up" loading="lazy">
-        </div>
-
-      </div>
-
-        <!-- CHILDHOOD POLAROID -->
-        <figure style="margin:26px auto 0;max-width:300px;text-align:center">
-          <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);aspect-ratio:3/4">
-            <img src="photos/photo-06-childhood-tiger.jpg" alt="Priya as a small child in an orange tiger sweater" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+    <!-- ── CARD 2: PHONE MESSAGES ───────────────────────── -->
+    <div class="deck-card" data-deck-idx="1" aria-label="Card 2: Birthday Texts">
+      <div class="deck-card-content">
+        <p class="label">incoming messages 💬</p>
+        <div class="phone-mockup" id="phoneMockup">
+          <div class="phone-notch"><span class="phone-cam"></span></div>
+          <div class="phone-chat-header">
+            <span class="phone-header-title">Messages</span>
+            <span class="phone-header-date">Today</span>
           </div>
-          <figcaption style="margin-top:10px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600">where it all started</figcaption>
-        </figure>
-
-      <!-- VIDEO SLOT -->
-      <div style="margin-top:28px;text-align:center">
-          <video src="videos/birthday-reel.mp4" poster="videos/birthday-reel.jpg" autoplay muted loop playsinline controls style="width:100%;max-width:360px;aspect-ratio:9/16;object-fit:cover;border-radius:20px;border:1px solid rgba(255,255,255,.12)"></video>
-          <p style="margin-top:10px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600">the birthday reel — made for you</p>
+          <div class="phone-chat-messages" id="chatMessages">
+            <div class="chat-bubble" data-msg-idx="0">HAPPY BIRTHDAY, NIKO 🎉</div>
+            <div class="chat-bubble" data-msg-idx="1">30 October. Officially your day.</div>
+            <div class="chat-bubble" data-msg-idx="2">lilies &gt; roses. always. ✿</div>
+            <div class="chat-bubble" data-msg-idx="3">Billie on repeat today. No skips.</div>
+            <div class="chat-bubble" data-msg-idx="4">Lucknow's favourite — happy birthday.</div>
+          </div>
         </div>
-        <style>
-          .niko-clips{display:flex;gap:10px;overflow-x:auto;padding:18px 2px 6px;scroll-snap-type:x mandatory}
-          .niko-clips video{width:150px;flex:0 0 auto;aspect-ratio:9/16;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.12);scroll-snap-align:start;background:#000}
-        </style>
+      </div>
+    </div>
+
+    <!-- ── CARD 3: PHOTO GALLERY 1 ──────────────────────── -->
+    <div class="deck-card" data-deck-idx="2" aria-label="Card 3: Photo Gallery Part 1">
+      <div class="deck-card-content">
+        <p class="label">moments 📸</p>
+        <h2 class="sec-head">The Niko <span>gallery</span></h2>
+        <p class="sub" style="margin-bottom:4px">A few snapshots of you.</p>
+
+        <div class="gallery-grid-deck">
+          <div class="p-slot tall" id="slot1">
+            <img src="photos/photo-05-green-saree-outdoor.jpg" alt="Priya in a green and red saree outdoors" loading="lazy">
+          </div>
+          <div class="p-slot" id="slot2">
+            <img src="photos/photo-02-orange-saree.jpg" alt="Priya in an orange and blue saree" loading="lazy" style="object-position:center 12% !important;">
+          </div>
+          <div class="p-slot" id="slot3">
+            <img src="photos/photo-03-mirror-white-top.jpg" alt="Mirror selfie in a white top" loading="lazy">
+          </div>
+          <div class="p-slot wide" id="slot4">
+            <img src="photos/photo-01-brown-tee.jpg" alt="Priya in a brown airplane t-shirt" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CARD 4: PHOTO GALLERY 2 & CHILDHOOD POLAROID ─── -->
+    <div class="deck-card" data-deck-idx="3" aria-label="Card 4: Gallery Part 2 & Childhood Polaroid">
+      <div class="deck-card-content">
+        <p class="label">memories ✨</p>
+        <h2 class="sec-head">More <span>favourites</span></h2>
+
+        <div class="gallery-grid-deck" style="margin-top:12px;">
+          <div class="p-slot" id="slot5">
+            <img src="photos/photo-07-black-kurta.jpg" alt="Priya in a black printed kurta" loading="lazy">
+          </div>
+          <div class="p-slot" id="slot6">
+            <img src="photos/photo-04-pink-dupatta-close.jpg" alt="Priya in a pink dupatta, close-up" loading="lazy">
+          </div>
+        </div>
+
+        <figure class="childhood-polaroid-deck">
+          <div class="polar-frame">
+            <img src="photos/photo-06-childhood-tiger.jpg" alt="Priya as a small child in an orange tiger sweater" loading="lazy">
+          </div>
+          <figcaption>where it all started</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ── CARD 5: BIRTHDAY REEL ────────────────────────── -->
+    <div class="deck-card" data-deck-idx="4" aria-label="Card 5: Birthday Reel Video">
+      <div class="deck-card-content">
+        <p class="label">watch 🎬</p>
+        <h2 class="sec-head">The Birthday <span>Reel</span></h2>
+        <p class="sub" style="margin-bottom:12px">made for you — with sound</p>
+        <video id="birthdayReelVideo" src="videos/birthday-reel.mp4" poster="videos/birthday-reel.jpg" controls playsinline preload="metadata" class="reel-video-deck"></video>
+      </div>
+    </div>
+
+    <!-- ── CARD 6: HER CLIPS STRIP ──────────────────────── -->
+    <div class="deck-card" data-deck-idx="5" aria-label="Card 6: Video Clips Strip">
+      <div class="deck-card-content">
+        <p class="label">clips 🎞️</p>
+        <h2 class="sec-head">Her <span>clips</span></h2>
+        <p class="sub" style="margin-bottom:10px">swipe across — tap one for sound</p>
         <div class="niko-clips" aria-label="Video clips">
           <video src="videos/video-07-pink-dupatta-a.mp4" poster="videos/video-07-pink-dupatta-a.jpg" controls playsinline preload="metadata"></video>
           <video src="videos/video-01-pink-dupatta-b.mp4" poster="videos/video-01-pink-dupatta-b.jpg" controls playsinline preload="metadata"></video>
@@ -1240,374 +777,341 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
           <video src="videos/video-02-white-floral.mp4" poster="videos/video-02-white-floral.jpg" controls playsinline preload="metadata"></video>
           <video src="videos/video-04-brown-tee.mp4" poster="videos/video-04-brown-tee.jpg" controls playsinline preload="metadata"></video>
         </div>
-        <p style="font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600;text-align:center">her clips — tap one for sound</p>
       </div>
-
-  </section>
-
-
-
-  <!-- MEMORY REEL -->
-  <section aria-label="Memory reel">
-    <div class="wrap">
-      <p class="label">🎞️ us</p>
-      <h2 class="sec-head">A few <span>things about you</span></h2>
-      <div class="reel" id="reel"></div>
-      <div class="reel-dots" id="reelDots" aria-hidden="true"></div>
     </div>
-  </section>
 
-  <div class="lily-divider">🌸 ✦ 🌸 ✦ 🌸</div>
-
-  <!-- GIFT BOXES + SCRATCH -->
-  <section aria-label="Gift boxes">
-    <div class="wrap">
-      <p class="label">🎁 surprises</p>
-      <h2 class="sec-head">Three <span>boxes</span></h2>
-      <p class="sub">tap each one.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:28px" id="boxGrid">
-
-        <div class="p-slot" style="aspect-ratio:unset;padding:26px 20px;cursor:pointer;flex-direction:column;gap:12px;border-style:solid" id="box1">
-          <span style="font-size:2.5rem">🎁</span>
-          <span style="font-weight:600;font-size:.95rem">The honest one</span>
-          <button class="btn" style="font-size:.82rem;padding:9px 18px" onclick="openBox('box1','You make every normal day more interesting just by being in it. That's a skill nobody teaches — you were just born with it.')">Open</button>
-          <p style="display:none;color:var(--ink-soft);font-size:.9rem;line-height:1.6;text-align:center"></p>
-        </div>
-
-        <div class="p-slot" style="aspect-ratio:unset;padding:26px 20px;cursor:pointer;flex-direction:column;gap:12px;border-style:solid" id="box2">
-          <span style="font-size:2.5rem">🪷</span>
-          <span style="font-weight:600;font-size:.95rem">The lily one</span>
-          <button class="btn" style="font-size:.82rem;padding:9px 18px" onclick="openBox('box2','Lily flowers — your kind of beautiful. Quiet, soft, but the one everyone notices first.')">Open</button>
-          <p style="display:none;color:var(--ink-soft);font-size:.9rem;line-height:1.6;text-align:center"></p>
-        </div>
-
-        <div class="p-slot" style="aspect-ratio:unset;padding:26px 20px;cursor:pointer;flex-direction:column;gap:12px;border-style:solid" id="box3">
-          <span style="font-size:2.5rem">✉️</span>
-          <span style="font-weight:600;font-size:.95rem">The scratchy one</span>
-          <button class="btn" style="font-size:.82rem;padding:9px 18px" onclick="openBox('box3','Scroll down — there\'s a scratch card with something hidden. Go on.')">Open</button>
-          <p style="display:none;color:var(--ink-soft);font-size:.9rem;line-height:1.6;text-align:center"></p>
-        </div>
-
-      </div>
-
-      <!-- SCRATCH CARD -->
-      <div class="scratch-wrap" id="scratchWrap" style="margin-top:32px">
-        <div class="scratch-under">
-          <div class="script">you're stuck with me —</div>
-          <p>not sorry. happy birthday, Niko. here's to every plan, every rant, every laugh and every 2 a.m. conversation still to come. this is permanent.</p>
-        </div>
-        <canvas id="scratchCanvas" aria-label="Scratch card"></canvas>
-      </div>
-      <p class="scratch-note">scratch the silver away 👆</p>
-    </div>
-  </section>
-
-  <!-- REVEAL YOUR BIRTHDAY WISHES (LIKE INSTAGRAM REEL) -->
-  <section class="wish-cards-section" aria-label="Birthday wishes">
-    <div class="wrap">
-      <p class="label">🌸 birthday wishes</p>
-      <h2 class="sec-head">Reveal your <span>birthday wishes</span></h2>
-      <p class="sub">Every card holds a little surprise. Tap each card to flip.</p>
-
-      <div class="cards-scroll-container" id="reelCardsContainer">
-
-        <!-- CARD 1: MEME STICKMAN GIVING FLOWERS -->
-        <div class="reel-wish-card" data-card-idx="0" role="button" tabindex="0" aria-label="Wish 1: Jaldi lelo Koi Dekhle">
-          <div class="card-flipper">
-            <!-- Front -->
-            <div class="card-face card-front-face">
-              <div class="card-bubble-title">Jaldi lelo Koi Dekhle g 🎁</div>
-              <div class="card-illust-wrap">
-                <svg viewBox='0 0 200 200' width='140' height='140' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                  <circle cx='70' cy='65' r='30' stroke='#222' stroke-width='4' fill='#fff'/>
-                  <circle cx='62' cy='65' r='3.5' fill='#222'/>
-                  <circle cx='78' cy='65' r='3.5' fill='#222'/>
-                  <ellipse cx='54' cy='73' rx='5' ry='3' fill='#ff9eb5' opacity='0.7'/>
-                  <ellipse cx='86' cy='73' rx='5' ry='3' fill='#ff9eb5' opacity='0.7'/>
-                  <path d='M70 95 C 70 120, 85 140, 95 155' stroke='#222' stroke-width='4' stroke-linecap='round'/>
-                  <path d='M95 155 L80 185' stroke='#222' stroke-width='4' stroke-linecap='round'/>
-                  <path d='M95 155 L110 185' stroke='#222' stroke-width='4' stroke-linecap='round'/>
-                  <path d='M75 115 C 95 115, 115 105, 125 105' stroke='#222' stroke-width='4' stroke-linecap='round'/>
-                  <path d='M125 105 L155 75 L175 95 L145 125 Z' fill='#f1f5f9' stroke='#cbd5e1' stroke-width='2'/>
-                  <circle cx='158' cy='82' r='10' fill='#f472b6'/>
-                  <circle cx='170' cy='90' r='9' fill='#c084fc'/>
-                  <circle cx='150' cy='95' r='9' fill='#fb7185'/>
-                  <circle cx='165' cy='78' r='7' fill='#fbbf24'/>
-                  <path d='M132 112 Q125 125 120 135 M132 112 Q138 125 142 135' stroke='#f43f5e' stroke-width='3' stroke-linecap='round'/>
-                </svg>
-              </div>
-              <div class="card-sub-caption">Pakdo Na 🌸</div>
-              <div class="card-bottom-pill">Tap me →</div>
-            </div>
-            <!-- Back -->
-            <div class="card-face card-back-face">
-              <div class="card-back-header">
-                <span class="card-num">01</span>
-                <span>❤️</span>
-              </div>
-              <div class="card-back-body">
-                Jaldi pakdo! 💐 May this year bring you the quietest peace, the loudest laughs, zero overthinking, and days filled with your favourite people and songs.
-              </div>
-              <div class="card-flip-back-btn">Tap to flip back ↺</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 2: CUTE BLUSHING BUNNY -->
-        <div class="reel-wish-card" data-card-idx="1" role="button" tabindex="0" aria-label="Wish 2: Calm for your soul">
-          <div class="card-flipper">
-            <!-- Front -->
-            <div class="card-face card-front-face">
-              <div class="card-bubble-title">A little calm for you 🐰</div>
-              <div class="card-illust-wrap">
-                <svg viewBox="0 0 200 200" width="140" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="78" cy="48" rx="14" ry="38" fill="#ffffff" stroke="#222" stroke-width="4" transform="rotate(-6 78 48)"/>
-                  <ellipse cx="78" cy="50" rx="7" ry="24" fill="#ffb6c1" transform="rotate(-6 78 50)"/>
-                  <ellipse cx="122" cy="48" rx="14" ry="38" fill="#ffffff" stroke="#222" stroke-width="4" transform="rotate(6 122 48)"/>
-                  <ellipse cx="122" cy="50" rx="7" ry="24" fill="#ffb6c1" transform="rotate(6 122 50)"/>
-                  <circle cx="100" cy="118" r="48" fill="#ffffff" stroke="#222" stroke-width="4"/>
-                  <circle cx="82" cy="115" r="4.5" fill="#222"/>
-                  <circle cx="118" cy="115" r="4.5" fill="#222"/>
-                  <ellipse cx="74" cy="125" rx="9" ry="5.5" fill="#ff9eb5" opacity="0.6"/>
-                  <ellipse cx="126" cy="125" rx="9" ry="5.5" fill="#ff9eb5" opacity="0.6"/>
-                  <path d="M94 125 Q100 131 100 126 Q100 131 106 125" stroke="#222" stroke-width="3" stroke-linecap="round" fill="none"/>
-                  <ellipse cx="85" cy="165" rx="10" ry="7" fill="#fff" stroke="#222" stroke-width="3"/>
-                  <ellipse cx="115" cy="165" rx="10" ry="7" fill="#fff" stroke="#222" stroke-width="3"/>
-                </svg>
-              </div>
-              <div class="card-sub-caption">Soft days ahead ✨</div>
-              <div class="card-bottom-pill">Tap me →</div>
-            </div>
-            <!-- Back -->
-            <div class="card-face card-back-face">
-              <div class="card-back-header">
-                <span class="card-num">02</span>
-                <span>❤️</span>
-              </div>
-              <div class="card-back-body">
-                May this year fill your heart with calm, your mind with confidence, and your days with unexpected moments of pure happiness.
-              </div>
-              <div class="card-flip-back-btn">Tap to flip back ↺</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 3: CUTE KITTY / FAVORITE CRAZY -->
-        <div class="reel-wish-card" data-card-idx="2" role="button" tabindex="0" aria-label="Wish 3: For our favorite crazy">
-          <div class="card-flipper">
-            <!-- Front -->
-            <div class="card-face card-front-face">
-              <div class="card-bubble-title">For our favorite crazy 💖</div>
-              <div class="card-illust-wrap">
-                <svg viewBox="0 0 200 200" width="140" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="100" cy="115" rx="55" ry="42" fill="#ffffff" stroke="#222" stroke-width="4"/>
-                  <path d="M54 90 L48 65 L76 76" fill="#fff" stroke="#222" stroke-width="4" stroke-linejoin="round"/>
-                  <path d="M146 90 L152 65 L124 76" fill="#fff" stroke="#222" stroke-width="4" stroke-linejoin="round"/>
-                  <circle cx="68" cy="68" r="7" fill="#ef4444"/>
-                  <path d="M68 68 L50 56 Q44 68 52 76 Z" fill="#ef4444" stroke="#222" stroke-width="2.5"/>
-                  <path d="M68 68 L86 56 Q92 68 84 76 Z" fill="#ef4444" stroke="#222" stroke-width="2.5"/>
-                  <ellipse cx="78" cy="116" rx="4" ry="5" fill="#222"/>
-                  <ellipse cx="122" cy="116" rx="4" ry="5" fill="#222"/>
-                  <ellipse cx="100" cy="124" rx="4.5" ry="3.5" fill="#facc15" stroke="#222" stroke-width="1.5"/>
-                  <line x1="50" y1="112" x2="32" y2="108" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-                  <line x1="50" y1="120" x2="30" y2="120" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-                  <line x1="150" y1="112" x2="168" y2="108" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-                  <line x1="150" y1="120" x2="170" y2="120" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="card-sub-caption">Certified birthday legend 🎉</div>
-              <div class="card-bottom-pill">Tap me →</div>
-            </div>
-            <!-- Back -->
-            <div class="card-face card-back-face">
-              <div class="card-back-header">
-                <span class="card-num">03</span>
-                <span>❤️</span>
-              </div>
-              <div class="card-back-body">
-                Never lose your okay-vala crazy. That's the part of you that makes ordinary moments unforgettable and brings so much life to everyone around you.
-              </div>
-              <div class="card-flip-back-btn">Tap to flip back ↺</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 4: BLOOMING LILIES -->
-        <div class="reel-wish-card" data-card-idx="3" role="button" tabindex="0" aria-label="Wish 4: Lily flower vibes">
-          <div class="card-flipper">
-            <!-- Front -->
-            <div class="card-face card-front-face">
-              <div class="card-bubble-title">Lily flower vibes 🪷</div>
-              <div class="card-illust-wrap">
-                <svg viewBox="0 0 200 200" width="140" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M85 140 Q60 150 45 140 Q65 130 85 140" fill="#4ade80" stroke="#16a34a" stroke-width="2"/>
-                  <path d="M115 140 Q140 150 155 140 Q135 130 115 140" fill="#4ade80" stroke="#16a34a" stroke-width="2"/>
-                  <path d="M100 115 L100 170" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M100 110 Q70 65 100 40 Q130 65 100 110" fill="#fce7f3" stroke="#f472b6" stroke-width="3"/>
-                  <path d="M100 110 Q50 95 40 70 Q75 75 100 110" fill="#fdf2f8" stroke="#f472b6" stroke-width="3"/>
-                  <path d="M100 110 Q150 95 160 70 Q125 75 100 110" fill="#fdf2f8" stroke="#f472b6" stroke-width="3"/>
-                  <path d="M100 110 Q65 125 50 120 Q80 110 100 110" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
-                  <path d="M100 110 Q135 125 150 120 Q120 110 100 110" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
-                  <circle cx="100" cy="85" r="4" fill="#fbbf24"/>
-                  <circle cx="92" cy="78" r="3" fill="#fbbf24"/>
-                  <circle cx="108" cy="78" r="3" fill="#fbbf24"/>
-                </svg>
-              </div>
-              <div class="card-sub-caption">Soft, calm & beautiful 💐</div>
-              <div class="card-bottom-pill">Tap me →</div>
-            </div>
-            <!-- Back -->
-            <div class="card-face card-back-face">
-              <div class="card-back-header">
-                <span class="card-num">04</span>
-                <span>❤️</span>
-              </div>
-              <div class="card-back-body">
-                You deserve love that feels effortless, memories that never fade, and a year that is gentle with your soul — soft and beautiful like lily flowers.
-              </div>
-              <div class="card-flip-back-btn">Tap to flip back ↺</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- DISCOVERED PROGRESS TRACKER -->
-      <div class="wishes-tracker">
-        <div class="wishes-tracker-text">
-          <span id="wishesDiscovered">0</span> of 4 wishes discovered
-        </div>
-        <div class="wishes-tracker-bar">
-          <div class="wishes-tracker-fill" id="wishesTrackerFill"></div>
+    <!-- ── CARD 7: A FEW THINGS ABOUT YOU (SCALED TRAITS) ─ -->
+    <div class="deck-card deck-card-traits" data-deck-idx="6" aria-label="Card 7: Traits Showcase">
+      <div class="deck-card-content">
+        <p class="label">🎞️ us</p>
+        <h2 class="sec-head">A few <span>things about you</span></h2>
+        <div class="deck-traits-wrap">
+          <div class="reel-scaled" id="reel"></div>
+          <div class="reel-dots-scaled" id="reelDots" aria-hidden="true"></div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ═══════════════ 3. NIKO WRAPPED ═══════════════ -->
-  <section class="wrapped-section" id="wrappedSection" aria-label="Niko Wrapped">
-    <div class="wrap">
-      <p class="label">✨ your 2026 recap</p>
-      <h2 class="sec-head">Niko <span>Wrapped</span></h2>
-      <p class="sub">Tap the card to flip through your year's highlights.</p>
+    <!-- ── CARD 8: THREE BOXES ──────────────────────────── -->
+    <div class="deck-card" data-deck-idx="7" aria-label="Card 8: Three Gift Boxes">
+      <div class="deck-card-content">
+        <p class="label">🎁 surprises</p>
+        <h2 class="sec-head">Three <span>boxes</span></h2>
+        <p class="sub">tap each one to open.</p>
 
-      <div class="wrapped-container" id="wrappedCard" role="region" aria-label="Niko Wrapped Story Card" tabindex="0">
-        <!-- Story Progress Bars (7 cards) -->
-        <div class="wrapped-story-bars" id="wrappedBars" aria-hidden="true">
-          <div class="story-bar active"><div class="story-bar-fill"></div></div>
-          <div class="story-bar"><div class="story-bar-fill"></div></div>
-          <div class="story-bar"><div class="story-bar-fill"></div></div>
-          <div class="story-bar"><div class="story-bar-fill"></div></div>
-          <div class="story-bar"><div class="story-bar-fill"></div></div>
-          <div class="story-bar"><div class="story-bar-fill"></div></div>
-          <div class="story-bar"><div class="story-bar-fill"></div></div>
+        <div class="box-grid-deck" id="boxGrid">
+          <div class="box-card-deck" id="box1">
+            <div class="box-header-row">
+              <span class="box-icon">🎁</span>
+              <span class="box-title">The honest one</span>
+            </div>
+            <button class="btn box-open-btn" onclick="openBox('box1','You make every normal day more interesting just by being in it. That\'s a skill nobody teaches — you were just born with it.')">Open</button>
+            <p class="box-reveal-p"></p>
+          </div>
+
+          <div class="box-card-deck" id="box2">
+            <div class="box-header-row">
+              <span class="box-icon">🪷</span>
+              <span class="box-title">The lily one</span>
+            </div>
+            <button class="btn box-open-btn" onclick="openBox('box2','Lily flowers — your kind of beautiful. Quiet, soft, but the one everyone notices first.')">Open</button>
+            <p class="box-reveal-p"></p>
+          </div>
+
+          <div class="box-card-deck" id="box3">
+            <div class="box-header-row">
+              <span class="box-icon">✉️</span>
+              <span class="box-title">The scratchy one</span>
+            </div>
+            <button class="btn box-open-btn" onclick="openBox('box3','The very next card is your silver scratch card. Advance when you\'re ready! 👇')">Open</button>
+            <p class="box-reveal-p"></p>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- 7 Wrapped Cards (her palette, big type) -->
-        <div class="wrapped-cards-stack">
+    <!-- ── CARD 9: SCRATCH CARD ─────────────────────────── -->
+    <div class="deck-card" data-deck-idx="8" aria-label="Card 9: Scratch Card">
+      <div class="deck-card-content">
+        <p class="label">secret message 🎁</p>
+        <h2 class="sec-head">Scratch <span>for a surprise</span></h2>
+        <div class="scratch-wrap-deck" id="scratchWrap">
+          <div class="scratch-under-deck">
+            <div class="script">you're stuck with me —</div>
+            <p>not sorry. happy birthday, Niko. here's to every plan, every rant, every laugh and every 2 a.m. conversation still to come. this is permanent.</p>
+          </div>
+          <canvas id="scratchCanvas" aria-label="Scratch card"></canvas>
+        </div>
+        <p class="scratch-note-deck">scratch the silver away 👆</p>
+      </div>
+    </div>
+
+    <!-- ── CARD 10: FLIP WISHES ─────────────────────────── -->
+    <div class="deck-card" data-deck-idx="9" aria-label="Card 10: Flip Wishes">
+      <div class="deck-card-content">
+        <p class="label">🌸 birthday wishes</p>
+        <h2 class="sec-head">Reveal your <span>birthday wishes</span></h2>
+        <p class="sub">Every card holds a little surprise. Tap each card to flip.</p>
+
+        <div class="flip-grid-deck" id="reelCardsContainer">
           <!-- CARD 1 -->
-          <div class="wrapped-slide active" data-slide="0" style="background: linear-gradient(145deg, #0a0a14, #18142a);">
-            <div class="wrapped-kicker">2026 EDITION</div>
-            <div class="wrapped-big-text">NIKO, WRAPPED</div>
-            <div class="wrapped-badge">tap to begin →</div>
+          <div class="deck-flip-card" data-card-idx="0" role="button" tabindex="0" aria-label="Wish 1: Jaldi lelo">
+            <div class="deck-flip-inner">
+              <div class="deck-flip-face deck-flip-front">
+                <div class="deck-flip-title">Jaldi lelo Koi Dekhle g 🎁</div>
+                <div class="deck-flip-svg-wrap">
+                  <svg viewBox='0 0 200 200' width='100' height='100' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <circle cx='70' cy='65' r='30' stroke='#222' stroke-width='4' fill='#fff'/>
+                    <circle cx='62' cy='65' r='3.5' fill='#222'/><circle cx='78' cy='65' r='3.5' fill='#222'/>
+                    <ellipse cx='54' cy='73' rx='5' ry='3' fill='#ff9eb5' opacity='0.7'/>
+                    <ellipse cx='86' cy='73' rx='5' ry='3' fill='#ff9eb5' opacity='0.7'/>
+                    <path d='M70 95 C 70 120, 85 140, 95 155' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                    <path d='M95 155 L80 185' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                    <path d='M95 155 L110 185' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                    <path d='M75 115 C 95 115, 115 105, 125 105' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                    <path d='M125 105 L155 75 L175 95 L145 125 Z' fill='#f1f5f9' stroke='#cbd5e1' stroke-width='2'/>
+                    <circle cx='158' cy='82' r='10' fill='#f472b6'/><circle cx='170' cy='90' r='9' fill='#c084fc'/>
+                    <circle cx='150' cy='95' r='9' fill='#fb7185'/><circle cx='165' cy='78' r='7' fill='#fbbf24'/>
+                    <path d='M132 112 Q125 125 120 135 M132 112 Q138 125 142 135' stroke='#f43f5e' stroke-width='3' stroke-linecap='round'/>
+                  </svg>
+                </div>
+                <div class="deck-flip-pill">Tap me →</div>
+              </div>
+              <div class="deck-flip-face deck-flip-back">
+                <div style="display:flex;justify-content:space-between;width:100%;font-weight:700;font-size:.8rem;color:#c93a82">
+                  <span>01</span><span>❤️</span>
+                </div>
+                <div class="deck-flip-back-body">
+                  Jaldi pakdo! 💐 May this year bring you the quietest peace, the loudest laughs, zero overthinking, and days filled with your favourite people and songs.
+                </div>
+                <span style="font-size:.72rem;color:#8b5cf6">Tap to flip ↺</span>
+              </div>
+            </div>
           </div>
 
           <!-- CARD 2 -->
-          <div class="wrapped-slide" data-slide="1" style="background: linear-gradient(145deg, #101630, #1b264f);">
-            <div class="wrapped-kicker">TOP LISTENS</div>
-            <div class="wrapped-big-text">#1 artist: <span style="color:var(--blue)">Billie Eilish</span></div>
-            <div class="wrapped-badge">🎵 Ocean Eyes on repeat</div>
+          <div class="deck-flip-card" data-card-idx="1" role="button" tabindex="0" aria-label="Wish 2: Calm">
+            <div class="deck-flip-inner">
+              <div class="deck-flip-face deck-flip-front">
+                <div class="deck-flip-title">A little calm for you 🐰</div>
+                <div class="deck-flip-svg-wrap">
+                  <svg viewBox="0 0 200 200" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="78" cy="48" rx="14" ry="38" fill="#ffffff" stroke="#222" stroke-width="4" transform="rotate(-6 78 48)"/>
+                    <ellipse cx="78" cy="50" rx="7" ry="24" fill="#ffb6c1" transform="rotate(-6 78 50)"/>
+                    <ellipse cx="122" cy="48" rx="14" ry="38" fill="#ffffff" stroke="#222" stroke-width="4" transform="rotate(6 122 48)"/>
+                    <ellipse cx="122" cy="50" rx="7" ry="24" fill="#ffb6c1" transform="rotate(6 122 50)"/>
+                    <circle cx="100" cy="118" r="48" fill="#ffffff" stroke="#222" stroke-width="4"/>
+                    <circle cx="82" cy="115" r="4.5" fill="#222"/><circle cx="118" cy="115" r="4.5" fill="#222"/>
+                    <ellipse cx="74" cy="125" rx="9" ry="5.5" fill="#ff9eb5" opacity="0.6"/>
+                    <ellipse cx="126" cy="125" rx="9" ry="5.5" fill="#ff9eb5" opacity="0.6"/>
+                    <path d="M94 125 Q100 131 100 126 Q100 131 106 125" stroke="#222" stroke-width="3" stroke-linecap="round" fill="none"/>
+                  </svg>
+                </div>
+                <div class="deck-flip-pill">Tap me →</div>
+              </div>
+              <div class="deck-flip-face deck-flip-back">
+                <div style="display:flex;justify-content:space-between;width:100%;font-weight:700;font-size:.8rem;color:#c93a82">
+                  <span>02</span><span>❤️</span>
+                </div>
+                <div class="deck-flip-back-body">
+                  May this year fill your heart with calm, your mind with confidence, and your days with unexpected moments of pure happiness.
+                </div>
+                <span style="font-size:.72rem;color:#8b5cf6">Tap to flip ↺</span>
+              </div>
+            </div>
           </div>
 
           <!-- CARD 3 -->
-          <div class="wrapped-slide" data-slide="2" style="background: linear-gradient(145deg, #1a0f26, #2d1645);">
-            <div class="wrapped-kicker">HOMETOWN PRIDE</div>
-            <div class="wrapped-big-text">home city: <span style="color:var(--lily)">Lucknow</span></div>
-            <div class="wrapped-badge">🌆 City of Nawabs</div>
+          <div class="deck-flip-card" data-card-idx="2" role="button" tabindex="0" aria-label="Wish 3: Favorite Crazy">
+            <div class="deck-flip-inner">
+              <div class="deck-flip-face deck-flip-front">
+                <div class="deck-flip-title">For our favorite crazy 💖</div>
+                <div class="deck-flip-svg-wrap">
+                  <svg viewBox="0 0 200 200" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="100" cy="115" rx="55" ry="42" fill="#ffffff" stroke="#222" stroke-width="4"/>
+                    <path d="M54 90 L48 65 L76 76" fill="#fff" stroke="#222" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M146 90 L152 65 L124 76" fill="#fff" stroke="#222" stroke-width="4" stroke-linejoin="round"/>
+                    <circle cx="68" cy="68" r="7" fill="#ef4444"/>
+                    <path d="M68 68 L50 56 Q44 68 52 76 Z" fill="#ef4444" stroke="#222" stroke-width="2.5"/>
+                    <path d="M68 68 L86 56 Q92 68 84 76 Z" fill="#ef4444" stroke="#222" stroke-width="2.5"/>
+                    <ellipse cx="78" cy="116" rx="4" ry="5" fill="#222"/><ellipse cx="122" cy="116" rx="4" ry="5" fill="#222"/>
+                    <ellipse cx="100" cy="124" rx="4.5" ry="3.5" fill="#facc15" stroke="#222" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div class="deck-flip-pill">Tap me →</div>
+              </div>
+              <div class="deck-flip-face deck-flip-back">
+                <div style="display:flex;justify-content:space-between;width:100%;font-weight:700;font-size:.8rem;color:#c93a82">
+                  <span>03</span><span>❤️</span>
+                </div>
+                <div class="deck-flip-back-body">
+                  Never lose your okay-vala crazy. That's the part of you that makes ordinary moments unforgettable and brings so much life to everyone around you.
+                </div>
+                <span style="font-size:.72rem;color:#8b5cf6">Tap to flip ↺</span>
+              </div>
+            </div>
           </div>
 
           <!-- CARD 4 -->
-          <div class="wrapped-slide" data-slide="3" style="background: linear-gradient(145deg, #240c1e, #3d1433);">
-            <div class="wrapped-kicker">FAVOURITE BLOOM</div>
-            <div class="wrapped-big-text">flower of the year: <span style="color:var(--pink)">lilies</span></div>
-            <div class="wrapped-badge">🪷 quiet &amp; unmatched</div>
-          </div>
-
-          <!-- CARD 5 -->
-          <div class="wrapped-slide" data-slide="4" style="background: linear-gradient(145deg, #0b1528, #2a1532);">
-            <div class="wrapped-kicker">AESTHETIC VIBE</div>
-            <div class="wrapped-big-text">palette: <span style="color:var(--blue)">blue</span> · <span style="color:#d1c4e9">black</span> · <span style="color:var(--pink)">pink</span></div>
-            <div class="wrapped-badge">🎨 her signature colors</div>
-          </div>
-
-          <!-- CARD 6 -->
-          <div class="wrapped-slide" data-slide="5" style="background: linear-gradient(145deg, #1d0f20, #381b38);">
-            <div class="wrapped-kicker">VIBE CHECK</div>
-            <div class="wrapped-big-text">energy: <span style="color:var(--pink-bright)">okay-vala crazy</span></div>
-            <div class="wrapped-badge">⚡ the best kind</div>
-          </div>
-
-          <!-- CARD 7 (FINAL CARD - STOPS HERE) -->
-          <div class="wrapped-slide" data-slide="6" style="background: linear-gradient(145deg, #1f0d2c, #4a154b);">
-            <div class="wrapped-kicker">OCTOBER 30 · TODAY</div>
-            <div class="wrapped-big-text">status: <span style="color:var(--gold,#f5b942)">birthday girl 🎂</span></div>
-            <div class="wrapped-badge">👑 certified legend</div>
+          <div class="deck-flip-card" data-card-idx="3" role="button" tabindex="0" aria-label="Wish 4: Lilies">
+            <div class="deck-flip-inner">
+              <div class="deck-flip-face deck-flip-front">
+                <div class="deck-flip-title">Lily flower vibes 🪷</div>
+                <div class="deck-flip-svg-wrap">
+                  <svg viewBox="0 0 200 200" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M85 140 Q60 150 45 140 Q65 130 85 140" fill="#4ade80" stroke="#16a34a" stroke-width="2"/>
+                    <path d="M115 140 Q140 150 155 140 Q135 130 115 140" fill="#4ade80" stroke="#16a34a" stroke-width="2"/>
+                    <path d="M100 115 L100 170" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M100 110 Q70 65 100 40 Q130 65 100 110" fill="#fce7f3" stroke="#f472b6" stroke-width="3"/>
+                    <path d="M100 110 Q50 95 40 70 Q75 75 100 110" fill="#fdf2f8" stroke="#f472b6" stroke-width="3"/>
+                    <path d="M100 110 Q150 95 160 70 Q125 75 100 110" fill="#fdf2f8" stroke="#f472b6" stroke-width="3"/>
+                  </svg>
+                </div>
+                <div class="deck-flip-pill">Tap me →</div>
+              </div>
+              <div class="deck-flip-face deck-flip-back">
+                <div style="display:flex;justify-content:space-between;width:100%;font-weight:700;font-size:.8rem;color:#c93a82">
+                  <span>04</span><span>❤️</span>
+                </div>
+                <div class="deck-flip-back-body">
+                  You deserve love that feels effortless, memories that never fade, and a year that is gentle with your soul — soft and beautiful like lily flowers.
+                </div>
+                <span style="font-size:.72rem;color:#8b5cf6">Tap to flip ↺</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="wrapped-tap-hint" id="wrappedTapHint">tap to advance (1 / 7)</div>
+        <div class="wishes-tracker-deck">
+          <div class="wishes-tracker-text-deck">
+            <span id="wishesDiscovered">0</span> of 4 wishes discovered
+          </div>
+          <div class="wishes-tracker-bar-deck">
+            <div class="wishes-tracker-fill-deck" id="wishesTrackerFill"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- BILLIE EILISH SONG -->
-  <section aria-label="Song for Niko">
-    <div class="wrap">
-      <p class="label">🎵 your song corner</p>
-      <h2 class="sec-head">Ocean Eyes &nbsp;—&nbsp; <span>Billie Eilish</span></h2>
-      <p class="sub" style="margin-bottom:0">press play.</p>
-      <div class="song-wrap">
-        <!-- Ocean Eyes by Billie Eilish -->
-        <iframe id="songFrame"
-          src="https://www.youtube-nocookie.com/embed/viimfQi_pUw?rel=0&modestbranding=1"
-          title="Ocean Eyes — Billie Eilish"
-          loading="lazy"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-          referrerpolicy="strict-origin-when-cross-origin">
-        </iframe>
+    <!-- ── CARD 11: NIKO WRAPPED ────────────────────────── -->
+    <div class="deck-card" data-deck-idx="10" aria-label="Card 11: Niko Wrapped Recap">
+      <div class="deck-card-content">
+        <p class="label">✨ your 2026 recap</p>
+        <h2 class="sec-head">Niko <span>Wrapped</span></h2>
+        <p class="sub">Tap the card to advance through your year's recap.</p>
+
+        <div class="wrapped-container-deck" id="wrappedCard" role="region" aria-label="Niko Wrapped" tabindex="0">
+          <div class="wrapped-story-bars-deck" id="wrappedBars" aria-hidden="true">
+            <div class="wrapped-bar-deck active"><div class="wrapped-bar-deck-fill"></div></div>
+            <div class="wrapped-bar-deck"><div class="wrapped-bar-deck-fill"></div></div>
+            <div class="wrapped-bar-deck"><div class="wrapped-bar-deck-fill"></div></div>
+            <div class="wrapped-bar-deck"><div class="wrapped-bar-deck-fill"></div></div>
+            <div class="wrapped-bar-deck"><div class="wrapped-bar-deck-fill"></div></div>
+            <div class="wrapped-bar-deck"><div class="wrapped-bar-deck-fill"></div></div>
+            <div class="wrapped-bar-deck"><div class="wrapped-bar-deck-fill"></div></div>
+          </div>
+
+          <div class="wrapped-cards-stack-deck">
+            <div class="wrapped-slide-deck active" data-slide="0" style="background:linear-gradient(145deg, #0a0a14, #18142a);">
+              <div class="wrapped-kicker-deck">2026 EDITION</div>
+              <div class="wrapped-big-text-deck">NIKO, WRAPPED</div>
+              <div class="wrapped-badge-deck">tap to begin →</div>
+            </div>
+
+            <div class="wrapped-slide-deck" data-slide="1" style="background:linear-gradient(145deg, #101630, #1b264f);">
+              <div class="wrapped-kicker-deck">TOP LISTENS</div>
+              <div class="wrapped-big-text-deck">#1 artist: <span style="color:var(--blue)">Billie Eilish</span></div>
+              <div class="wrapped-badge-deck">🎵 Ocean Eyes on repeat</div>
+            </div>
+
+            <div class="wrapped-slide-deck" data-slide="2" style="background:linear-gradient(145deg, #1a0f26, #2d1645);">
+              <div class="wrapped-kicker-deck">HOMETOWN PRIDE</div>
+              <div class="wrapped-big-text-deck">home city: <span style="color:var(--lily)">Lucknow</span></div>
+              <div class="wrapped-badge-deck">🌆 City of Nawabs</div>
+            </div>
+
+            <div class="wrapped-slide-deck" data-slide="3" style="background:linear-gradient(145deg, #240c1e, #3d1433);">
+              <div class="wrapped-kicker-deck">FAVOURITE BLOOM</div>
+              <div class="wrapped-big-text-deck">flower of the year: <span style="color:var(--pink)">lilies</span></div>
+              <div class="wrapped-badge-deck">🪷 quiet &amp; unmatched</div>
+            </div>
+
+            <div class="wrapped-slide-deck" data-slide="4" style="background:linear-gradient(145deg, #0b1528, #2a1532);">
+              <div class="wrapped-kicker-deck">AESTHETIC VIBE</div>
+              <div class="wrapped-big-text-deck">palette: <span style="color:var(--blue)">blue</span> · <span style="color:#d1c4e9">black</span> · <span style="color:var(--pink)">pink</span></div>
+              <div class="wrapped-badge-deck">🎨 her signature colors</div>
+            </div>
+
+            <div class="wrapped-slide-deck" data-slide="5" style="background:linear-gradient(145deg, #1d0f20, #381b38);">
+              <div class="wrapped-kicker-deck">VIBE CHECK</div>
+              <div class="wrapped-big-text-deck">energy: <span style="color:var(--pink-bright)">okay-vala crazy</span></div>
+              <div class="wrapped-badge-deck">⚡ the best kind</div>
+            </div>
+
+            <div class="wrapped-slide-deck" data-slide="6" style="background:linear-gradient(145deg, #1f0d2c, #4a154b);">
+              <div class="wrapped-kicker-deck">OCTOBER 30 · TODAY</div>
+              <div class="wrapped-big-text-deck">status: <span style="color:var(--gold,#f5b942)">birthday girl 🎂</span></div>
+              <div class="wrapped-badge-deck">👑 certified legend</div>
+              <button class="btn blue" id="wrappedContinueBtn" style="margin-top:20px;padding:10px 24px;font-size:.9rem">continue →</button>
+            </div>
+          </div>
+
+          <div class="wrapped-tap-hint-deck" id="wrappedTapHint">tap to advance (1 / 7)</div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- LETTER -->
-  <section aria-label="A letter">
-    <div class="wrap">
-      <p class="label">💌 last thing</p>
-      <h2 class="sec-head">A <span>letter</span></h2>
-      <div class="letter">
-        <div class="salutation">Dear Niko,</div>
-        <p>Happy birthday. I could've just texted, but you deserve a whole corner of the internet — so here we are. Somewhere between the date gate and the cake, I hope at least one thing made you smile. That was the whole point.</p>
-        <p>You're the kind of person who accepts people as they are — the okay-vala crazy, the weird parts, all of it. That's rare. You don't always hear it enough, so it's going in writing where you can't interrupt me: you're genuinely appreciated.</p>
-        <p>This year — loud happiness. Good days, big wins, lily flowers everywhere, and whatever song you're obsessed with on repeat. You've got me in your corner. That's not a birthday offer. That's permanent.</p>
-        <p>Now go enjoy your day like you actually own it.</p>
-        <div class="sign">— your friend, Kushagra 🩵</div>
+    <!-- ── CARD 12: SONG — OCEAN EYES, BILLIE EILISH ────── -->
+    <div class="deck-card" data-deck-idx="11" aria-label="Card 12: Billie Eilish Song">
+      <div class="deck-card-content">
+        <p class="label">🎵 your song corner</p>
+        <h2 class="sec-head">Ocean Eyes &nbsp;—&nbsp; <span>Billie Eilish</span></h2>
+        <p class="sub" style="margin-bottom:0">press play.</p>
+        <div class="song-wrap-deck">
+          <iframe id="songFrame"
+            src="https://www.youtube-nocookie.com/embed/viimfQi_pUw?rel=0&modestbranding=1"
+            title="Ocean Eyes — Billie Eilish"
+            loading="lazy"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+        </div>
       </div>
     </div>
-  </section>
 
-  <div class="lily-divider" style="padding:20px 0 0">🪷 ✦ 🪷 ✦ 🪷</div>
-  <footer>
-    <span class="script">made for Niko, with way too much effort and zero regrets</span>
-    Priya "Niko" · 30 October · Lucknow · Happy Birthday 🎂
-  </footer>
+    <!-- ── CARD 13: LETTER + FOOTER END CARD ────────────── -->
+    <div class="deck-card" data-deck-idx="12" aria-label="Card 13: A Letter for Niko">
+      <div class="deck-card-content">
+        <p class="label">💌 last thing</p>
+        <h2 class="sec-head">A <span>letter</span></h2>
+        <div class="letter-deck">
+          <div class="salutation">Dear Niko,</div>
+          <p>Happy birthday. I could've just texted, but you deserve a whole corner of the internet — so here we are. Somewhere between the date gate and the cake, I hope at least one thing made you smile. That was the whole point.</p>
+          <p>You're the kind of person who accepts people as they are — the okay-vala crazy, the weird parts, all of it. That's rare. You don't always hear it enough, so it's going in writing where you can't interrupt me: you're genuinely appreciated.</p>
+          <p>This year — loud happiness. Good days, big wins, lily flowers everywhere, and whatever song you're obsessed with on repeat. You've got me in your corner. That's not a birthday offer. That's permanent.</p>
+          <p>Now go enjoy your day like you actually own it.</p>
+          <div class="sign">— your friend, Kushagra 🩵</div>
+        </div>
 
+        <div class="lily-divider" style="padding:14px 0 0">🪷 ✦ 🪷 ✦ 🪷</div>
+        <div class="footer-deck">
+          <span class="script">made for Niko, with way too much effort and zero regrets</span>
+          Priya "Niko" · 30 October · Lucknow · Happy Birthday 🎂
+        </div>
+      </div>
+    </div>
+
+  </div>
 </main>
 
 <script>
 /* ── CONFIG ───────────────────────────────────── */
 const C = {
-  name:"Niko", birthDay:30, birthMonth:10, birthYear:2007,
+  name:"Niko",
+  birthDay:30,
+  birthMonth:10,
+  birthYear:2007,
   taps:21,
 };
 
@@ -1626,8 +1130,8 @@ function burst(n=80){
   if(rm) return;
   for(let i=0;i<n;i++){
     parts.push({
-      x:innerWidth/2+(Math.random()-.5)*innerWidth*.5,
-      y:innerHeight*.3,
+      x:innerWidth/2+(Math.random()-.5)*innerWidth*.6,
+      y:innerHeight*.35,
       vx:(Math.random()-.5)*9, vy:-(Math.random()*9+4),
       s:Math.random()*8+3, r:Math.random()*Math.PI,
       vr:(Math.random()-.5)*.24,
@@ -1648,15 +1152,23 @@ function tickConf(){
   raf = parts.length ? requestAnimationFrame(tickConf) : (ctx.clearRect(0,0,cvs.width,cvs.height),null);
 }
 
-/* ── STAGE SWITCH ─────────────────────────────── */
+/* ── STAGE SWITCHING ──────────────────────────── */
 function goStage(id){
   $$(".stage").forEach(s=>s.classList.remove("on"));
-  $("#main").classList.remove("on");
-  if(id==="main"){ $("#main").classList.add("on"); scrollTo({top:0,behavior:rm?"auto":"smooth"}); return; }
-  $("#"+id).classList.add("on"); scrollTo({top:0});
+  const main = $("#main");
+  if(id === "main"){
+    main.classList.add("deck-mode","on");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    initDeck();
+    burst(100);
+    return;
+  }
+  main.classList.remove("on");
+  $("#"+id).classList.add("on");
 }
 
-/* ── GATE ─────────────────────────────────────── */
+/* ── 1. DATE GATE ─────────────────────────────── */
 const slotsEl=$("#slots"), keypadEl=$("#keypad"), hintEl=$("#gateHint"), gc=$("#gateCard");
 let entered="";
 const GAPS={2:true,4:true};
@@ -1716,44 +1228,65 @@ addEventListener("keydown",e=>{
 });
 renderSlots(); renderKeypad();
 
-/* ── UNWRAP ───────────────────────────────────── */
+/* ── 2. ESCALATING GIFT UNWRAP (BUG FIX: CLEAN LINE COUNTER) ── */
 let taps=0;
 const giftBtn=$("#giftBtn"), tapCount=$("#tapCount"), tapBar=$("#tapBar");
+const crack1=$("#crackTier1"), crack2=$("#crackTier2"), crack3=$("#crackTier3");
+
 giftBtn.addEventListener("click",()=>{
   if(taps>=C.taps) return;
   taps++;
-  giftBtn.classList.remove("wiggle"); void giftBtn.offsetWidth; giftBtn.classList.add("wiggle");
-  giftBtn.style.transform=`scale(${1+taps*.009})`;
+
+  giftBtn.classList.remove("shake-mild","shake-med","shake-wild");
+  void giftBtn.offsetWidth;
+
+  if(!rm){
+    if(taps < 8){
+      giftBtn.classList.add("shake-mild");
+    } else if(taps < 15){
+      giftBtn.classList.add("shake-med");
+    } else {
+      giftBtn.classList.add("shake-wild");
+    }
+  }
+
+  giftBtn.style.transform=`scale(${1+taps*.008})`;
+  // Clean single line counter
   tapCount.textContent=`tap to open · ${taps} / ${C.taps}`;
   tapBar.style.width=(taps/C.taps*100)+"%";
+
+  // Cracks appear in final third
+  if(taps >= 14 && crack1) crack1.classList.add("crack-visible");
+  if(taps >= 17 && crack2) crack2.classList.add("crack-visible");
+  if(taps >= 19 && crack3) crack3.classList.add("crack-visible");
+
   if(taps===C.taps){
+    giftBtn.classList.remove("shake-wild");
     giftBtn.textContent="🎉";
     tapCount.textContent="it's open — happy birthday, Niko!!";
+    if($("#giftCracks")) $("#giftCracks").style.display="none";
     burst(160);
     setTimeout(()=>goStage("stage-party"),rm?60:1100);
   }
 });
 
-/* ── PARTY ROOM (UPGRADES 2 & 5: PULL-CORD & ROOM THAT BUILDS ITSELF) ── */
+/* ── CHANGE 1: FULL-PAGE PARTY STAGE (PULL-CORD, BALLOONS, CANDLES, CAKE) ── */
 let lit=false, balloonsDone=false, cutDone=false, wishMade=false;
 const candlesEl=$("#candles"), wishLine=$("#wishLine");
 const CANDLE_N=5; let candlesOut=0;
 
-// Pull-cord lights interaction
-const pullCord=$("#pullCord"), cordWrap=$("#pullCordWrap"), cordTag=$("#cordTag");
+const pullCord=$("#pullCord"), cordTag=$("#cordTag"), partyStage=$("#stage-party");
 
 function activateLights(){
   if(lit) return;
   lit = true;
   pullCord.classList.add("pulled");
   pullCord.setAttribute("aria-disabled","true");
-  $("#room").classList.add("lit");
+  partyStage.classList.add("lit");
   if(cordTag) cordTag.textContent = "Lights: ON ✨";
-  if(cordWrap) cordWrap.classList.add("is-lit");
 
   burst(75);
 
-  // Reveal Step 2: Balloons button reveals
   setTimeout(()=>{
     $("#balloonsStep").classList.add("active");
   }, 450);
@@ -1763,8 +1296,10 @@ function activateLights(){
 
 if(pullCord){
   pullCord.addEventListener("click", activateLights);
+  pullCord.addEventListener("keydown", e => {
+    if(e.key === "Enter" || e.key === " ") { e.preventDefault(); activateLights(); }
+  });
 
-  // Drag down interaction for touch/mouse
   let startY = 0, isPulling = false;
   pullCord.addEventListener("pointerdown", e => {
     if(lit) return;
@@ -1781,7 +1316,6 @@ if(pullCord){
   window.addEventListener("pointerup", () => { isPulling = false; });
 }
 
-// Balloons release
 $("#balloonsBtn").addEventListener("click",e=>{
   if(balloonsDone) return;
   balloonsDone=true;
@@ -1790,12 +1324,12 @@ $("#balloonsBtn").addEventListener("click",e=>{
 
   const z=$("#balloonZone");
   const emojis=["🎈","💙","🪷","🎈","💙","🪷"];
-  z.innerHTML=emojis.map((b,i)=>`<span class="balloon" style="animation-delay:${i*0.3}s">${b}</span>`).join("");
+  z.innerHTML=emojis.map((b,i)=>`<span class="balloon" style="left:${15+i*14}%;animation-delay:${i*0.28}s">${b}</span>`).join("");
   setTimeout(()=>z.innerHTML="",5500);
 
-  burst(50);
+  burst(60);
 
-  // Reveal Step 3: Cake and Candles zone reveals after balloons are released
+  // Reveal Step 3: Dominant Centred Cake & Big Candle Tap Targets
   setTimeout(()=>{
     $("#candlesZone").classList.add("active");
     renderCandles();
@@ -1829,10 +1363,9 @@ function showCakeTimeBox(){
   const box=$("#cakeTimeBox");
   box.classList.add("active");
   $("#candlesZone").style.display="none";
-  box.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
-/* ── CAKE CUTTING DRAG INTERACTION ── */
+/* ── DRAG TO CUT CAKE INTERACTION ── */
 const cutArena = $("#cakeCutArena");
 const knifeCursor = $("#knifeCursor");
 const knifePulse = $("#knifePulse");
@@ -1857,7 +1390,7 @@ function handleKnifeMove(clientX){
   if(!cutArena || cutDone) return;
   const rect = cutArena.getBoundingClientRect();
   const minX = 20;
-  const maxX = rect.width - 45;
+  const maxX = rect.width - 50;
   const currentX = clientX - rect.left;
   const clampedX = Math.min(maxX, Math.max(minX, currentX));
   
@@ -1897,21 +1430,20 @@ function completeCakeSlice(){
   setTimeout(() => {
     $("#cakeCuttingStep").style.display = "none";
     $("#makeWishModal").classList.add("active");
-  }, 750);
+  }, 700);
 }
 
 $("#madeWishBtn").addEventListener("click", () => {
   wishMade = true;
   burst(120);
   $("#makeWishModal").innerHTML = `
-    <div style="font-size:3rem;margin-bottom:6px">🌠✨</div>
-    <div class="cake-drag-badge" style="background:rgba(111,163,239,.18);color:var(--blue)">WISH LOCKED IN</div>
-    <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:8px 0 4px;color:var(--ink)">First slice is yours, Niko 🍰</h3>
-    <p style="font-size:.85rem;color:var(--ink-soft);margin-bottom:8px">Your special birthday surprise is unlocked below ↓</p>
+    <div style="font-size:3.2rem;margin-bottom:6px">🌠✨</div>
+    <span class="cake-drag-badge-full" style="background:rgba(111,163,239,.18);color:var(--blue)">WISH LOCKED IN</span>
+    <h3 style="font-family:var(--font-serif);font-size:1.45rem;margin:8px 0 4px;color:var(--ink)">First slice is yours, Niko 🍰</h3>
+    <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:12px">Your special birthday deck is unlocked below ↓</p>
   `;
   wishLine.textContent = "Wish locked in! The sweetest year is waiting for you 🌸";
   $("#enterBtn").disabled = false;
-  $("#enterBtn").scrollIntoView({behavior:"smooth",block:"center"});
   checkParty();
 });
 
@@ -1921,93 +1453,158 @@ function checkParty(){
   }
 }
 
-$("#enterBtn").addEventListener("click",()=>{ goStage("main"); burst(110); initMain(); });
+$("#enterBtn").addEventListener("click",()=>{
+  goStage("main");
+});
 
-/* ── MAIN INIT ────────────────────────────────── */
-let mainInit=false;
-function initMain(){
-  if(mainInit) return; mainInit=true;
+/* ── CHANGE 2: CARD DECK CONTROLLER (13 CARDS, 100dvh, NO SCROLL) ── */
+let deckCur = 0;
+const deckCards = $$(".deck-card");
+const deckTotal = deckCards.length || 13;
+const deckSegments = $$(".deck-seg");
+const deckCounter = $("#deckCounter");
+const deckPrevBtn = $("#deckPrevBtn");
+const deckNextBtn = $("#deckNextBtn");
+let deckInitDone = false;
+
+function initDeck(){
+  if(deckInitDone) return;
+  deckInitDone = true;
+
+  goToDeckCard(0);
+
+  // Card interactions init
   initPhoneTexts();
   initReel();
+  initScratch();
   initWishes();
   initWrapped();
-  initScratch();
-}
 
-/* ── UPGRADE 1: PHONE OF BIRTHDAY TEXTS (ON SCROLL) ── */
-function initPhoneTexts(){
-  const phoneSec = $("#phoneSection");
-  const bubbles = $$("#chatMessages .chat-bubble");
-  if(!phoneSec || !bubbles.length) return;
+  // Navigation button listeners
+  deckPrevBtn.addEventListener("click", () => {
+    if(deckCur > 0) goToDeckCard(deckCur - 1);
+  });
+  deckNextBtn.addEventListener("click", () => {
+    if(deckCur < deckTotal - 1) goToDeckCard(deckCur + 1);
+  });
 
-  if(rm){
-    bubbles.forEach(b => b.classList.add("bubble-visible"));
-    return;
-  }
+  // Desktop Arrow keys
+  window.addEventListener("keydown", e => {
+    if(!$("#main").classList.contains("on")) return;
+    if(e.key === "ArrowRight"){
+      // If on Wrapped card and not at final slide, let Wrapped handle it
+      if(deckCur === 10 && wrappedCur < 6) return;
+      if(deckCur < deckTotal - 1) goToDeckCard(deckCur + 1);
+    } else if(e.key === "ArrowLeft"){
+      if(deckCur > 0) goToDeckCard(deckCur - 1);
+    }
+  });
 
-  let triggered = false;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting && !triggered){
-        triggered = true;
-        bubbles.forEach((b, idx) => {
-          setTimeout(() => {
-            b.classList.add("bubble-visible");
-            if(idx === bubbles.length - 1) burst(25);
-          }, 350 + idx * 700);
-        });
-        observer.unobserve(phoneSec);
+  // Touch Swipe on viewport (excluding interactive widgets)
+  let touchStartX = 0, touchStartY = 0;
+  const viewport = $("#deckViewport");
+
+  viewport.addEventListener("touchstart", e => {
+    // If touching inside interactive components, don't trigger deck swipe
+    if(e.target.closest('#scratchCanvas, #wrappedCard, #boxGrid, .niko-clips, iframe, video, .deck-flip-inner, .deck-flip-card')){
+      return;
+    }
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, {passive:true});
+
+  viewport.addEventListener("touchend", e => {
+    if(e.target.closest('#scratchCanvas, #wrappedCard, #boxGrid, .niko-clips, iframe, video, .deck-flip-inner, .deck-flip-card')){
+      return;
+    }
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+    if(Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5){
+      if(deltaX < 0){
+        // Swipe Left -> Next
+        if(deckCur === 10 && wrappedCur < 6) return;
+        if(deckCur < deckTotal - 1) goToDeckCard(deckCur + 1);
+      } else {
+        // Swipe Right -> Prev
+        if(deckCur > 0) goToDeckCard(deckCur - 1);
       }
-    });
-  }, { threshold: 0.25 });
-
-  observer.observe(phoneSec);
+    }
+  }, {passive:true});
 }
 
-/* ── UPGRADE 3: NIKO WRAPPED (STORY CARDS) ──────────── */
-function initWrapped(){
-  const card = $("#wrappedCard");
-  const slides = $$(".wrapped-slide");
-  const bars = $$(".story-bar");
-  const hint = $("#wrappedTapHint");
-  if(!card || !slides.length) return;
+function goToDeckCard(idx){
+  const prevIdx = deckCur;
+  deckCur = Math.min(deckTotal - 1, Math.max(0, idx));
 
-  let cur = 0;
-  const total = slides.length;
+  // Pause media on leaving cards
+  pauseMediaOnLeave(prevIdx);
 
-  function updateSlide(n){
-    cur = Math.min(total - 1, Math.max(0, n));
-    slides.forEach((s, i) => {
-      s.classList.toggle("active", i === cur);
-    });
-    bars.forEach((b, i) => {
-      b.classList.toggle("done", i < cur);
-      b.classList.toggle("active", i === cur);
-    });
+  // Update card visibility
+  deckCards.forEach((c, i) => {
+    c.classList.toggle("active", i === deckCur);
+  });
 
-    if(cur === total - 1){
-      hint.textContent = "final card · happy birthday, Niko 🎂";
-      burst(40);
-    } else {
-      hint.textContent = `tap to advance (${cur + 1} / ${total})`;
-    }
+  // Update segments progress bar
+  deckSegments.forEach((seg, i) => {
+    seg.classList.toggle("done", i < deckCur);
+    seg.classList.toggle("active", i === deckCur);
+  });
+
+  // Update counter
+  deckCounter.textContent = `${deckCur + 1} / ${deckTotal}`;
+
+  // Update nav buttons
+  deckPrevBtn.disabled = (deckCur === 0);
+  if(deckCur === deckTotal - 1){
+    deckNextBtn.textContent = "Finish 🎉";
+    deckNextBtn.disabled = true;
+  } else {
+    deckNextBtn.textContent = "Next →";
+    deckNextBtn.disabled = false;
   }
 
-  card.addEventListener("click", () => {
-    if(cur < total - 1){
-      updateSlide(cur + 1);
-    }
-  });
+  // Trigger special card effects
+  if(deckCur === 1){ // Phone messages
+    triggerPhoneTexts();
+  }
+}
 
-  card.addEventListener("keydown", e => {
-    if(e.key === "Enter" || e.key === " " || e.key === "ArrowRight"){
-      e.preventDefault();
-      if(cur < total - 1) updateSlide(cur + 1);
+function pauseMediaOnLeave(idx){
+  if(idx === 4){ // Birthday Reel
+    const v = $("#birthdayReelVideo");
+    if(v) v.pause();
+  }
+  if(idx === 5){ // Clips Strip
+    $$(".niko-clips video").forEach(v => v.pause());
+  }
+  if(idx === 11){ // Song
+    const f = $("#songFrame");
+    if(f && f.src){
+      const s = f.src;
+      f.src = "";
+      f.src = s;
     }
+  }
+}
+
+/* ── CARD 2: PHONE MESSAGES ───────────────────────── */
+let phoneTriggered = false;
+function initPhoneTexts(){
+  if(rm) $$("#chatMessages .chat-bubble").forEach(b => b.classList.add("bubble-visible"));
+}
+function triggerPhoneTexts(){
+  if(phoneTriggered || rm) return;
+  phoneTriggered = true;
+  const bubbles = $$("#chatMessages .chat-bubble");
+  bubbles.forEach((b, idx) => {
+    setTimeout(() => {
+      b.classList.add("bubble-visible");
+      if(idx === bubbles.length - 1) burst(25);
+    }, 280 + idx * 620);
   });
 }
 
-/* REEL */
+/* ── CARD 7: A FEW THINGS ABOUT YOU (TRAITS REEL) ─── */
 function initReel(){
   const FRAMES=[
     {emo:"🪷",cap:"Lily lover",small:"quietly your favourite, loudly beautiful"},
@@ -2018,14 +1615,16 @@ function initReel(){
     {emo:"🎂",cap:"Birthday legend",small:"today's headline — every year, same star"},
   ];
   const BG=[
-    "radial-gradient(ellipse at 30% 50%, rgba(240,126,180,.12), rgba(111,163,239,.08))",
-    "radial-gradient(ellipse at 70% 30%, rgba(192,132,252,.12), rgba(111,163,239,.08))",
-    "radial-gradient(ellipse at 50% 60%, rgba(111,163,239,.12), rgba(192,132,252,.08))",
-    "radial-gradient(ellipse at 40% 40%, rgba(240,126,180,.14), rgba(192,132,252,.08))",
-    "radial-gradient(ellipse at 60% 50%, rgba(94,234,212,.1), rgba(111,163,239,.1))",
-    "radial-gradient(ellipse at 50% 40%, rgba(245,185,66,.08), rgba(240,126,180,.12))",
+    "radial-gradient(ellipse at 30% 50%, rgba(240,126,180,.18), rgba(111,163,239,.12))",
+    "radial-gradient(ellipse at 70% 30%, rgba(192,132,252,.18), rgba(111,163,239,.12))",
+    "radial-gradient(ellipse at 50% 60%, rgba(111,163,239,.18), rgba(192,132,252,.12))",
+    "radial-gradient(ellipse at 40% 40%, rgba(240,126,180,.20), rgba(192,132,252,.12))",
+    "radial-gradient(ellipse at 60% 50%, rgba(94,234,212,.14), rgba(111,163,239,.14))",
+    "radial-gradient(ellipse at 50% 40%, rgba(245,185,66,.12), rgba(240,126,180,.16))",
   ];
   const reel=$("#reel"), dots=$("#reelDots");
+  if(!reel) return;
+  reel.innerHTML = "";
   FRAMES.forEach((f,i)=>{
     const d=document.createElement("div");
     d.className="frame"+(i===0?" act":"");
@@ -2041,68 +1640,50 @@ function initReel(){
   };
   renderDots();
   if(!rm) setInterval(()=>{
-    const frames=$$(".frame");
+    const frames=$$("#reel .frame");
+    if(!frames.length) return;
     frames[cur].classList.remove("act");
     cur=(cur+1)%frames.length;
     frames[cur].classList.add("act");
     renderDots();
-  },2000);
+  },2400);
 }
 
-/* BOX OPEN */
+/* ── CARD 8: THREE BOXES (BUG FIX: NO OVERLAP, CLEAN EXPANSION) ── */
 function openBox(id,msg){
   const box=$("#"+id);
-  const btn=box.querySelector("button");
-  const txt=box.querySelector("p");
-  btn.style.display="none";
-  txt.style.display="block";
-  txt.textContent=msg;
+  if(!box) return;
+  const btn=box.querySelector(".box-open-btn");
+  const txt=box.querySelector(".box-reveal-p");
+  if(btn) btn.style.display="none";
+  if(txt){
+    txt.style.display="block";
+    txt.textContent=msg;
+  }
   burst(40);
 }
 
-/* ── REEL WISH CARDS (LIKE INSTAGRAM REEL) ────────── */
-function initWishes(){
-  const cards = $$(".reel-wish-card");
-  const trackerFill = $("#wishesTrackerFill");
-  const trackerText = $("#wishesDiscovered");
-  const discovered = new Set();
-  const total = cards.length || 4;
-
-  cards.forEach(card => {
-    const idx = card.getAttribute("data-card-idx");
-    const flip = () => {
-      card.classList.toggle("flipped");
-      if(!discovered.has(idx)){
-        discovered.add(idx);
-        burst(35);
-        if(trackerText) trackerText.textContent = discovered.size;
-        if(trackerFill) trackerFill.style.width = (discovered.size / total * 100) + "%";
-        if(discovered.size === total){
-          burst(90);
-          const tText = $(".wishes-tracker-text");
-          if(tText) tText.innerHTML = "All 4 wishes discovered! May every single one come true 💖";
-        }
-      }
-    };
-    card.addEventListener("click", flip);
-    card.addEventListener("keydown", e => {
-      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); }
-    });
-  });
-}
-
-/* SCRATCH */
+/* ── CARD 9: SCRATCH CARD ─────────────────────────── */
+let scratchInitDone = false;
 function initScratch(){
+  if(scratchInitDone) return;
   const canvas=$("#scratchCanvas"), wrap=$("#scratchWrap");
+  if(!canvas || !wrap) return;
+  scratchInitDone = true;
+
   const rect=wrap.getBoundingClientRect();
-  canvas.width=Math.max(300,rect.width); canvas.height=Math.max(180,rect.height);
+  canvas.width=Math.max(300, rect.width || 360);
+  canvas.height=Math.max(180, rect.height || 200);
+
   const c=canvas.getContext("2d");
   const g=c.createLinearGradient(0,0,canvas.width,canvas.height);
-  g.addColorStop(0,"#1a1830"); g.addColorStop(.5,"#252040"); g.addColorStop(1,"#1a1830");
+  g.addColorStop(0,"#1c1a32"); g.addColorStop(.5,"#282246"); g.addColorStop(1,"#1c1a32");
   c.fillStyle=g; c.fillRect(0,0,canvas.width,canvas.height);
-  c.fillStyle="rgba(255,255,255,.45)"; c.font=`600 18px 'DM Sans', sans-serif`;
+
+  c.fillStyle="rgba(255,255,255,.5)"; c.font=`600 18px 'DM Sans', sans-serif`;
   c.textAlign="center"; c.fillText("scratch to reveal 🪷", canvas.width/2, canvas.height/2+6);
   c.globalCompositeOperation="destination-out";
+
   let drawing=false, cleared=false;
   function pos(e){
     const r=canvas.getBoundingClientRect(), t=e.touches?e.touches[0]:e;
@@ -2122,6 +1703,85 @@ function initScratch(){
   canvas.addEventListener("pointerdown",e=>{drawing=true;scratch(e);});
   canvas.addEventListener("pointermove",scratch);
   addEventListener("pointerup",()=>drawing=false);
+}
+
+/* ── CARD 10: FLIP WISHES (EQUAL HEIGHTS, ZERO CLIPPING) ── */
+function initWishes(){
+  const cards = $$(".deck-flip-card");
+  const trackerFill = $("#wishesTrackerFill");
+  const trackerText = $("#wishesDiscovered");
+  const discovered = new Set();
+  const total = cards.length || 4;
+
+  cards.forEach(card => {
+    const idx = card.getAttribute("data-card-idx");
+    const flip = () => {
+      card.classList.toggle("flipped");
+      if(!discovered.has(idx)){
+        discovered.add(idx);
+        burst(35);
+        if(trackerText) trackerText.textContent = discovered.size;
+        if(trackerFill) trackerFill.style.width = (discovered.size / total * 100) + "%";
+        if(discovered.size === total){
+          burst(90);
+          const tText = $(".wishes-tracker-text-deck");
+          if(tText) tText.innerHTML = "All 4 wishes discovered! May every single one come true 💖";
+        }
+      }
+    };
+    card.addEventListener("click", flip);
+    card.addEventListener("keydown", e => {
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); }
+    });
+  });
+}
+
+/* ── CARD 11: NIKO WRAPPED (BUG FIX: ZERO GHOSTING & CONTINUE BUTTON) ── */
+let wrappedCur = 0;
+function initWrapped(){
+  const card = $("#wrappedCard");
+  const slides = $$(".wrapped-slide-deck");
+  const bars = $$(".wrapped-bar-deck");
+  const hint = $("#wrappedTapHint");
+  const continueBtn = $("#wrappedContinueBtn");
+  if(!card || !slides.length) return;
+
+  const total = slides.length;
+
+  function updateWrapped(n){
+    wrappedCur = Math.min(total - 1, Math.max(0, n));
+    slides.forEach((s, i) => {
+      s.classList.toggle("active", i === wrappedCur);
+    });
+    bars.forEach((b, i) => {
+      b.classList.toggle("done", i < wrappedCur);
+      b.classList.toggle("active", i === wrappedCur);
+    });
+
+    if(wrappedCur === total - 1){
+      hint.textContent = "final card · happy birthday, Niko 🎂";
+      burst(45);
+    } else {
+      hint.textContent = `tap to advance (${wrappedCur + 1} / ${total})`;
+    }
+  }
+
+  // Tapping inside Wrapped card advances internally
+  card.addEventListener("click", e => {
+    // If continue button was clicked, let its handler handle it
+    if(e.target.closest("#wrappedContinueBtn")) return;
+    if(wrappedCur < total - 1){
+      updateWrapped(wrappedCur + 1);
+    }
+  });
+
+  // Explicit continue button on final card moves to next card (Song)
+  if(continueBtn){
+    continueBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      goToDeckCard(deckCur + 1);
+    });
+  }
 }
 </script>
 </body>
