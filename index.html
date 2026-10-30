@@ -278,6 +278,342 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{animation-duration:.001s!important;transition-duration:.001s!important;scroll-behavior:auto!important}
 }
+
+/* ── CAKE TIME (LIKE INSTAGRAM REEL) ────────── */
+.cake-time-box{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:22px 16px 24px;
+  margin:18px auto 14px;
+  max-width:440px;
+  text-align:center;
+  backdrop-filter:blur(14px);
+  position:relative;
+  box-shadow:0 14px 40px rgba(0,0,0,.35);
+  display:none;
+}
+.cake-time-box.active{
+  display:block;
+  animation:fadeIn .5s ease;
+}
+.cake-time-title{
+  font-family:var(--font-serif);
+  font-size:1.6rem;
+  color:var(--ink);
+  margin-bottom:2px;
+}
+.cake-time-sub{
+  font-size:.82rem;
+  color:var(--ink-soft);
+  margin-bottom:12px;
+}
+.cake-drag-badge{
+  display:inline-block;
+  font-size:.65rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--pink);
+  background:rgba(240,126,180,.14);
+  padding:4px 12px;
+  border-radius:99px;
+  margin-bottom:6px;
+}
+.cake-drag-title{
+  font-weight:600;
+  font-size:.95rem;
+  color:var(--ink);
+  margin-bottom:2px;
+}
+.cake-drag-hint{
+  font-size:.76rem;
+  color:var(--ink-soft);
+  margin-bottom:14px;
+}
+.cake-cut-arena{
+  position:relative;
+  width:260px;
+  height:180px;
+  margin:0 auto 14px;
+  user-select:none;
+  touch-action:none;
+  cursor:crosshair;
+}
+.cake-svg-wrap{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+.cake-cut-line{
+  position:absolute;
+  top:85px;
+  left:35px;
+  width:190px;
+  height:10px;
+  border-bottom:2.5px dashed rgba(240,126,180,.7);
+  pointer-events:none;
+  filter:drop-shadow(0 0 6px rgba(240,126,180,.7));
+  z-index:5;
+}
+.knife-cursor{
+  position:absolute;
+  top:58px;
+  left:18px;
+  font-size:2.2rem;
+  transform:rotate(-35deg);
+  cursor:grab;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));
+  transition:transform .1s ease;
+  z-index:10;
+  touch-action:none;
+  user-select:none;
+}
+.knife-cursor:active{
+  cursor:grabbing;
+  transform:rotate(-45deg) scale(1.15);
+}
+.knife-pulse{
+  position:absolute;
+  top:58px;
+  left:16px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:2px solid var(--pink);
+  animation:knifePulse 1.6s infinite ease-out;
+  pointer-events:none;
+  z-index:6;
+}
+@keyframes knifePulse{
+  0%{transform:scale(.6);opacity:1}
+  100%{transform:scale(1.8);opacity:0}
+}
+.cut-progress-box{
+  width:min(300px,90%);
+  margin:0 auto;
+}
+.cut-progress-bar{
+  height:8px;
+  background:rgba(255,255,255,.08);
+  border-radius:99px;
+  overflow:hidden;
+  position:relative;
+}
+.cut-progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--blue),var(--pink),#ff4d8d);
+  border-radius:99px;
+  transition:width .1s ease;
+}
+.cut-progress-labels{
+  display:flex;
+  justify-content:space-between;
+  font-size:.76rem;
+  color:var(--ink-soft);
+  margin-top:6px;
+  font-weight:500;
+}
+.cake-halves{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  height:100%;
+}
+.cake-half-left, .cake-half-right{
+  transform-origin:120px 130px;
+  transition:transform .65s cubic-bezier(.34,1.56,.64,1);
+}
+.cake-halves.split .cake-half-left{
+  transform:translateX(-16px) rotate(-3.5deg);
+}
+.cake-halves.split .cake-half-right{
+  transform:translateX(16px) rotate(3.5deg);
+}
+.make-wish-modal{
+  display:none;
+  animation:fadeIn .5s ease;
+  padding:10px 4px 6px;
+}
+.make-wish-modal.active{
+  display:block;
+}
+.wish-mascot{
+  font-size:3.5rem;
+  margin-bottom:8px;
+  animation:mascotBounce 2s infinite ease-in-out;
+}
+@keyframes mascotBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+/* ── REEL WISH CARDS (LIKE INSTAGRAM REEL) ────────── */
+.wish-cards-section{
+  padding:50px 20px;
+}
+.cards-scroll-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+  margin-top:28px;
+}
+@media(max-width:680px){
+  .cards-scroll-container{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding:8px 6px 18px;
+    gap:14px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .reel-wish-card{
+    min-width:260px;
+    flex:0 0 260px;
+    scroll-snap-align:center;
+  }
+}
+.reel-wish-card{
+  perspective:1000px;
+  min-height:330px;
+  cursor:pointer;
+}
+.card-flipper{
+  position:relative;
+  width:100%;
+  height:100%;
+  min-height:330px;
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1);
+}
+.reel-wish-card.flipped .card-flipper{
+  transform:rotateY(180deg);
+}
+.card-face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:22px;
+  padding:22px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+  box-sizing:border-box;
+}
+.card-front-face{
+  background:#ffffff;
+  color:#1e1a24;
+  border:1px solid rgba(255,255,255,.2);
+}
+.card-back-face{
+  background:#ffffff;
+  color:#1e1a24;
+  border:1px solid rgba(255,255,255,.2);
+  transform:rotateY(180deg);
+}
+.card-bubble-title{
+  font-weight:700;
+  font-size:1.02rem;
+  color:#1f1929;
+  margin-bottom:6px;
+  font-family:var(--font-sans);
+}
+.card-illust-wrap{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  padding:8px 0;
+}
+.card-sub-caption{
+  font-size:.82rem;
+  color:#7e7492;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.card-bottom-pill{
+  background:rgba(240,126,180,.14);
+  color:#c93a82;
+  font-weight:700;
+  font-size:.82rem;
+  padding:8px 18px;
+  border-radius:99px;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  transition:transform .15s ease, background .15s ease;
+}
+.reel-wish-card:hover .card-bottom-pill{
+  transform:scale(1.05);
+  background:rgba(240,126,180,.25);
+}
+.card-back-header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:700;
+  font-size:.85rem;
+  color:#9e94b8;
+  padding:0 4px;
+}
+.card-back-header .card-num{
+  color:#c93a82;
+  font-family:var(--font-serif);
+  font-size:1.15rem;
+}
+.card-back-body{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 6px;
+  font-size:.92rem;
+  line-height:1.65;
+  color:#2e2438;
+  font-weight:500;
+}
+.card-flip-back-btn{
+  font-size:.78rem;
+  font-weight:600;
+  color:#8b5cf6;
+  background:rgba(139,92,246,.1);
+  padding:6px 14px;
+  border-radius:99px;
+  margin-top:6px;
+}
+.wishes-tracker{
+  margin:24px auto 0;
+  max-width:320px;
+  text-align:center;
+}
+.wishes-tracker-text{
+  font-size:.82rem;
+  color:var(--ink-soft);
+  font-weight:600;
+  margin-bottom:8px;
+}
+.wishes-tracker-bar{
+  height:6px;
+  background:rgba(255,255,255,.08);
+  border-radius:99px;
+  overflow:hidden;
+}
+.wishes-tracker-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--pink),var(--lily));
+  border-radius:99px;
+  transition:width .4s ease;
+}
+
 </style>
 </head>
 <body>
@@ -325,10 +661,109 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
       </div>
       <div class="banner">Happy Birthday, Niko 🎉</div>
       <div class="balloon-zone" id="balloonZone" aria-hidden="true"></div>
-      <div class="cake" aria-hidden="true">🎂</div>
-      <div class="candles" id="candles" aria-label="Blow out each candle"></div>
-      <p class="party-label">tap each candle to blow it out — then cut the cake</p>
-      <div class="party-actions">
+
+      <!-- CANDLES ZONE -->
+      <div id="candlesZone">
+        <div class="cake" id="roomCakeEmoji" aria-hidden="true">🎂</div>
+        <div class="candles" id="candles" aria-label="Blow out each candle"></div>
+        <p class="party-label" id="candleInstructions">tap each candle to blow it out — then cut the cake</p>
+      </div>
+
+      <!-- CAKE TIME INTERACTIVE CUTTING (Like Instagram Reel) -->
+      <div class="cake-time-box" id="cakeTimeBox">
+        <div class="cake-time-header">
+          <h3 class="cake-time-title">Cake Time</h3>
+          <p class="cake-time-sub">Cut the cake and make a wish</p>
+        </div>
+
+        <div id="cakeCuttingStep">
+          <span class="cake-drag-badge">DRAG HERE</span>
+          <div class="cake-drag-title">Drag across the cake to cut it 🔪</div>
+          <p class="cake-drag-hint">Swipe or drag through the dashed line to complete the cut</p>
+
+          <div class="cake-cut-arena" id="cakeCutArena">
+            <!-- Cut guide line -->
+            <div class="cake-cut-line"></div>
+            <!-- Interactive knife cursor -->
+            <div class="knife-cursor" id="knifeCursor" title="Drag me to cut!">🔪</div>
+            <div class="knife-pulse" id="knifePulse"></div>
+
+            <!-- Visual SVG cake with splittable halves -->
+            <div class="cake-svg-wrap" id="cakeSvgWrap">
+              <svg viewBox='0 0 240 180' width='240' height='180' fill='none' xmlns='http://www.w3.org/2000/svg' style='overflow:visible;'>
+                <defs>
+                  <linearGradient id='cakeGradPink' x1='0' y1='0' x2='0' y2='1'>
+                    <stop offset='0%' stop-color='#ff94c2'/>
+                    <stop offset='100%' stop-color='#e6518a'/>
+                  </linearGradient>
+                  <linearGradient id='cakeGradTop' x1='0' y1='0' x2='0' y2='1'>
+                    <stop offset='0%' stop-color='#fff0f6'/>
+                    <stop offset='100%' stop-color='#ffd1e4'/>
+                  </linearGradient>
+                  <linearGradient id='plateGrad' x1='0' y1='0' x2='0' y2='1'>
+                    <stop offset='0%' stop-color='#ffffff'/>
+                    <stop offset='100%' stop-color='#cbd5e1'/>
+                  </linearGradient>
+                  <filter id='glowFlame' x='-20%' y='-20%' width='140%' height='140%'>
+                    <feGaussianBlur stdDeviation='3' result='blur'/>
+                    <feComposite in='SourceGraphic' in2='blur' operator='over'/>
+                  </filter>
+                </defs>
+
+                <g id='cakeHalves' class='cake-halves'>
+                  <!-- LEFT HALF -->
+                  <g class='cake-half-left'>
+                    <path d='M20 145 C 20 160, 120 160, 120 160 L120 145 C 120 145, 20 145, 20 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
+                    <ellipse cx='70' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
+                    <path d='M40 95 L40 135 C 40 152, 120 155, 120 155 L120 95 Z' fill='url(#cakeGradPink)'/>
+                    <path d='M40 95 C 40 80, 120 80, 120 95 L120 95 C 120 110, 40 110, 40 95 Z' fill='url(#cakeGradTop)'/>
+                    <path d='M40 96 C 45 106, 52 106, 56 98 C 60 108, 68 112, 74 100 C 80 112, 90 112, 96 99 C 102 110, 112 110, 120 100 L120 95 L40 95 Z' fill='#ffffff'/>
+                    <circle cx='65' cy='88' r='6' fill='#ef4444'/>
+                    <circle cx='95' cy='90' r='6' fill='#ef4444'/>
+                    <rect x='116' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
+                  </g>
+
+                  <!-- RIGHT HALF -->
+                  <g class='cake-half-right'>
+                    <path d='M120 160 C 120 160, 220 160, 220 145 L220 145 C 220 145, 120 145, 120 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
+                    <ellipse cx='170' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
+                    <path d='M120 95 L120 155 C 120 155, 200 152, 200 135 L200 95 Z' fill='url(#cakeGradPink)'/>
+                    <path d='M120 95 C 120 80, 200 80, 200 95 C 200 110, 120 110, 120 95 Z' fill='url(#cakeGradTop)'/>
+                    <path d='M120 100 C 128 110, 138 110, 144 99 C 150 112, 160 112, 166 100 C 172 108, 180 106, 184 98 C 188 106, 195 106, 200 96 L200 95 L120 95 Z' fill='#ffffff'/>
+                    <circle cx='145' cy='90' r='6' fill='#ef4444'/>
+                    <circle cx='175' cy='88' r='6' fill='#ef4444'/>
+                    <rect x='120' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
+                    <ellipse cx='120' cy='44' rx='5' ry='9' fill='#f59e0b' filter='url(#glowFlame)'/>
+                    <ellipse cx='120' cy='45' rx='3' ry='5' fill='#fef08a'/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Cut Progress Bar -->
+          <div class="cut-progress-box">
+            <div class="cut-progress-bar">
+              <div class="cut-progress-fill" id="cutProgressFill"></div>
+            </div>
+            <div class="cut-progress-labels">
+              <span>Cut Progress</span>
+              <span id="cutPercent">0% · Ready to cut</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAKE A WISH STEP (Like Instagram Reel Frame 10) -->
+        <div class="make-wish-modal" id="makeWishModal">
+          <div class="wish-mascot">🐱🎂</div>
+          <span class="cake-drag-badge" style="background:rgba(255,105,180,.18);color:var(--pink)">MAKE A WISH</span>
+          <h3 style="font-family:var(--font-serif);font-size:1.45rem;margin:8px 0 4px;color:var(--ink)">Close your eyes and make a wish</h3>
+          <p style="font-size:.85rem;color:var(--ink-soft);margin-bottom:16px">When you're ready, tap the button below.</p>
+          <button class="btn blue" id="madeWishBtn" style="padding:12px 28px;font-size:1rem;box-shadow:0 8px 24px rgba(111,163,239,.35)">I Made My Wish 💖</button>
+        </div>
+      </div>
+
+      <div class="party-actions" id="partyButtonsBar">
         <button class="btn blue" id="lightsBtn">Turn the lights on ✨</button>
         <button class="btn outline" id="balloonsBtn" disabled>Release balloons 🎈</button>
         <button class="btn outline" id="cutBtn" disabled>Cut the cake 🔪</button>
@@ -511,12 +946,185 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
     </div>
   </section>
 
-  <!-- WISH CARDS -->
-  <section aria-label="Flip wishes">
+  <!-- REVEAL YOUR BIRTHDAY WISHES (LIKE INSTAGRAM REEL) -->
+  <section class="wish-cards-section" aria-label="Birthday wishes">
     <div class="wrap">
-      <p class="label">🃏 wishes</p>
-      <h2 class="sec-head">Flip a <span>wish</span></h2>
-      <div class="flips" id="flips"></div>
+      <p class="label">🌸 birthday wishes</p>
+      <h2 class="sec-head">Reveal your <span>birthday wishes</span></h2>
+      <p class="sub">Every card holds a little surprise. Tap each card to flip.</p>
+
+      <div class="cards-scroll-container" id="reelCardsContainer">
+
+        <!-- CARD 1: MEME STICKMAN GIVING FLOWERS -->
+        <div class="reel-wish-card" data-card-idx="0" role="button" tabindex="0" aria-label="Wish 1: Jaldi lelo Koi Dekhle">
+          <div class="card-flipper">
+            <!-- Front -->
+            <div class="card-face card-front-face">
+              <div class="card-bubble-title">Jaldi lelo Koi Dekhle g 🎁</div>
+              <div class="card-illust-wrap">
+                <svg viewBox='0 0 200 200' width='140' height='140' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                  <circle cx='70' cy='65' r='30' stroke='#222' stroke-width='4' fill='#fff'/>
+                  <circle cx='62' cy='65' r='3.5' fill='#222'/>
+                  <circle cx='78' cy='65' r='3.5' fill='#222'/>
+                  <ellipse cx='54' cy='73' rx='5' ry='3' fill='#ff9eb5' opacity='0.7'/>
+                  <ellipse cx='86' cy='73' rx='5' ry='3' fill='#ff9eb5' opacity='0.7'/>
+                  <path d='M70 95 C 70 120, 85 140, 95 155' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                  <path d='M95 155 L80 185' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                  <path d='M95 155 L110 185' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                  <path d='M75 115 C 95 115, 115 105, 125 105' stroke='#222' stroke-width='4' stroke-linecap='round'/>
+                  <path d='M125 105 L155 75 L175 95 L145 125 Z' fill='#f1f5f9' stroke='#cbd5e1' stroke-width='2'/>
+                  <circle cx='158' cy='82' r='10' fill='#f472b6'/>
+                  <circle cx='170' cy='90' r='9' fill='#c084fc'/>
+                  <circle cx='150' cy='95' r='9' fill='#fb7185'/>
+                  <circle cx='165' cy='78' r='7' fill='#fbbf24'/>
+                  <path d='M132 112 Q125 125 120 135 M132 112 Q138 125 142 135' stroke='#f43f5e' stroke-width='3' stroke-linecap='round'/>
+                </svg>
+              </div>
+              <div class="card-sub-caption">Pakdo Na 🌸</div>
+              <div class="card-bottom-pill">Tap me →</div>
+            </div>
+            <!-- Back -->
+            <div class="card-face card-back-face">
+              <div class="card-back-header">
+                <span class="card-num">01</span>
+                <span>❤️</span>
+              </div>
+              <div class="card-back-body">
+                Jaldi pakdo! 💐 May this year bring you the quietest peace, the loudest laughs, zero overthinking, and days filled with your favourite people and songs.
+              </div>
+              <div class="card-flip-back-btn">Tap to flip back ↺</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: CUTE BLUSHING BUNNY -->
+        <div class="reel-wish-card" data-card-idx="1" role="button" tabindex="0" aria-label="Wish 2: Calm for your soul">
+          <div class="card-flipper">
+            <!-- Front -->
+            <div class="card-face card-front-face">
+              <div class="card-bubble-title">A little calm for you 🐰</div>
+              <div class="card-illust-wrap">
+                <svg viewBox="0 0 200 200" width="140" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="78" cy="48" rx="14" ry="38" fill="#ffffff" stroke="#222" stroke-width="4" transform="rotate(-6 78 48)"/>
+                  <ellipse cx="78" cy="50" rx="7" ry="24" fill="#ffb6c1" transform="rotate(-6 78 50)"/>
+                  <ellipse cx="122" cy="48" rx="14" ry="38" fill="#ffffff" stroke="#222" stroke-width="4" transform="rotate(6 122 48)"/>
+                  <ellipse cx="122" cy="50" rx="7" ry="24" fill="#ffb6c1" transform="rotate(6 122 50)"/>
+                  <circle cx="100" cy="118" r="48" fill="#ffffff" stroke="#222" stroke-width="4"/>
+                  <circle cx="82" cy="115" r="4.5" fill="#222"/>
+                  <circle cx="118" cy="115" r="4.5" fill="#222"/>
+                  <ellipse cx="74" cy="125" rx="9" ry="5.5" fill="#ff9eb5" opacity="0.6"/>
+                  <ellipse cx="126" cy="125" rx="9" ry="5.5" fill="#ff9eb5" opacity="0.6"/>
+                  <path d="M94 125 Q100 131 100 126 Q100 131 106 125" stroke="#222" stroke-width="3" stroke-linecap="round" fill="none"/>
+                  <ellipse cx="85" cy="165" rx="10" ry="7" fill="#fff" stroke="#222" stroke-width="3"/>
+                  <ellipse cx="115" cy="165" rx="10" ry="7" fill="#fff" stroke="#222" stroke-width="3"/>
+                </svg>
+              </div>
+              <div class="card-sub-caption">Soft days ahead ✨</div>
+              <div class="card-bottom-pill">Tap me →</div>
+            </div>
+            <!-- Back -->
+            <div class="card-face card-back-face">
+              <div class="card-back-header">
+                <span class="card-num">02</span>
+                <span>❤️</span>
+              </div>
+              <div class="card-back-body">
+                May this year fill your heart with calm, your mind with confidence, and your days with unexpected moments of pure happiness.
+              </div>
+              <div class="card-flip-back-btn">Tap to flip back ↺</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: CUTE KITTY / FAVORITE CRAZY -->
+        <div class="reel-wish-card" data-card-idx="2" role="button" tabindex="0" aria-label="Wish 3: For our favorite crazy">
+          <div class="card-flipper">
+            <!-- Front -->
+            <div class="card-face card-front-face">
+              <div class="card-bubble-title">For our favorite crazy 💖</div>
+              <div class="card-illust-wrap">
+                <svg viewBox="0 0 200 200" width="140" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="100" cy="115" rx="55" ry="42" fill="#ffffff" stroke="#222" stroke-width="4"/>
+                  <path d="M54 90 L48 65 L76 76" fill="#fff" stroke="#222" stroke-width="4" stroke-linejoin="round"/>
+                  <path d="M146 90 L152 65 L124 76" fill="#fff" stroke="#222" stroke-width="4" stroke-linejoin="round"/>
+                  <circle cx="68" cy="68" r="7" fill="#ef4444"/>
+                  <path d="M68 68 L50 56 Q44 68 52 76 Z" fill="#ef4444" stroke="#222" stroke-width="2.5"/>
+                  <path d="M68 68 L86 56 Q92 68 84 76 Z" fill="#ef4444" stroke="#222" stroke-width="2.5"/>
+                  <ellipse cx="78" cy="116" rx="4" ry="5" fill="#222"/>
+                  <ellipse cx="122" cy="116" rx="4" ry="5" fill="#222"/>
+                  <ellipse cx="100" cy="124" rx="4.5" ry="3.5" fill="#facc15" stroke="#222" stroke-width="1.5"/>
+                  <line x1="50" y1="112" x2="32" y2="108" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="50" y1="120" x2="30" y2="120" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="150" y1="112" x2="168" y2="108" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="150" y1="120" x2="170" y2="120" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="card-sub-caption">Certified birthday legend 🎉</div>
+              <div class="card-bottom-pill">Tap me →</div>
+            </div>
+            <!-- Back -->
+            <div class="card-face card-back-face">
+              <div class="card-back-header">
+                <span class="card-num">03</span>
+                <span>❤️</span>
+              </div>
+              <div class="card-back-body">
+                Never lose your okay-vala crazy. That's the part of you that makes ordinary moments unforgettable and brings so much life to everyone around you.
+              </div>
+              <div class="card-flip-back-btn">Tap to flip back ↺</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: BLOOMING LILIES -->
+        <div class="reel-wish-card" data-card-idx="3" role="button" tabindex="0" aria-label="Wish 4: Lily flower vibes">
+          <div class="card-flipper">
+            <!-- Front -->
+            <div class="card-face card-front-face">
+              <div class="card-bubble-title">Lily flower vibes 🪷</div>
+              <div class="card-illust-wrap">
+                <svg viewBox="0 0 200 200" width="140" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M85 140 Q60 150 45 140 Q65 130 85 140" fill="#4ade80" stroke="#16a34a" stroke-width="2"/>
+                  <path d="M115 140 Q140 150 155 140 Q135 130 115 140" fill="#4ade80" stroke="#16a34a" stroke-width="2"/>
+                  <path d="M100 115 L100 170" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M100 110 Q70 65 100 40 Q130 65 100 110" fill="#fce7f3" stroke="#f472b6" stroke-width="3"/>
+                  <path d="M100 110 Q50 95 40 70 Q75 75 100 110" fill="#fdf2f8" stroke="#f472b6" stroke-width="3"/>
+                  <path d="M100 110 Q150 95 160 70 Q125 75 100 110" fill="#fdf2f8" stroke="#f472b6" stroke-width="3"/>
+                  <path d="M100 110 Q65 125 50 120 Q80 110 100 110" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
+                  <path d="M100 110 Q135 125 150 120 Q120 110 100 110" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
+                  <circle cx="100" cy="85" r="4" fill="#fbbf24"/>
+                  <circle cx="92" cy="78" r="3" fill="#fbbf24"/>
+                  <circle cx="108" cy="78" r="3" fill="#fbbf24"/>
+                </svg>
+              </div>
+              <div class="card-sub-caption">Soft, calm & beautiful 💐</div>
+              <div class="card-bottom-pill">Tap me →</div>
+            </div>
+            <!-- Back -->
+            <div class="card-face card-back-face">
+              <div class="card-back-header">
+                <span class="card-num">04</span>
+                <span>❤️</span>
+              </div>
+              <div class="card-back-body">
+                You deserve love that feels effortless, memories that never fade, and a year that is gentle with your soul — soft and beautiful like lily flowers.
+              </div>
+              <div class="card-flip-back-btn">Tap to flip back ↺</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DISCOVERED PROGRESS TRACKER -->
+      <div class="wishes-tracker">
+        <div class="wishes-tracker-text">
+          <span id="wishesDiscovered">0</span> of 4 wishes discovered
+        </div>
+        <div class="wishes-tracker-bar">
+          <div class="wishes-tracker-fill" id="wishesTrackerFill"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -674,10 +1282,11 @@ giftBtn.addEventListener("click",()=>{
   }
 });
 
-/* ── PARTY ROOM ───────────────────────────────── */
-let lit=false, balloonsDone=false, cutDone=false;
+/* ── PARTY ROOM (CAKE TIME & CUTTING) ────────────────── */
+let lit=false, balloonsDone=false, cutDone=false, wishMade=false;
 const candlesEl=$("#candles"), wishLine=$("#wishLine");
 const CANDLE_N=5; let candlesOut=0;
+
 function renderCandles(){
   candlesEl.innerHTML="";
   for(let i=0;i<CANDLE_N;i++){
@@ -686,20 +1295,26 @@ function renderCandles(){
     b.addEventListener("click",()=>{
       if(b.classList.contains("out")) return;
       b.classList.add("out"); candlesOut++;
-      wishLine.textContent = candlesOut===CANDLE_N
-        ? "all blown out. wish locked. 🌠"
-        : `${CANDLE_N-candlesOut} still burning…`;
+      if(candlesOut===CANDLE_N){
+        wishLine.textContent="All candles out! Now cut the cake 🍰";
+        $("#cutBtn").disabled=false;
+        showCakeTimeBox();
+      } else {
+        wishLine.textContent=`${CANDLE_N-candlesOut} candle${CANDLE_N-candlesOut>1?'s':''} still burning…`;
+      }
       checkParty();
     });
     candlesEl.appendChild(b);
   }
 }
 renderCandles();
+
 $("#lightsBtn").addEventListener("click",e=>{
   lit=true; $("#room").classList.add("lit");
   e.target.disabled=true; e.target.textContent="Lights on ✨";
   $("#balloonsBtn").disabled=false; burst(70); checkParty();
 });
+
 $("#balloonsBtn").addEventListener("click",e=>{
   balloonsDone=true; e.target.disabled=true;
   const z=$("#balloonZone");
@@ -708,15 +1323,116 @@ $("#balloonsBtn").addEventListener("click",e=>{
   setTimeout(()=>z.innerHTML="",5500);
   checkParty();
 });
-$("#cutBtn").addEventListener("click",e=>{
-  cutDone=true; e.target.disabled=true; e.target.textContent="Cake cut 🍰";
-  wishLine.textContent="first slice is yours. obviously.";
-  burst(80); checkParty();
+
+$("#cutBtn").addEventListener("click",()=>{
+  showCakeTimeBox();
 });
-function checkParty(){
-  if(candlesOut===CANDLE_N) $("#cutBtn").disabled=false;
-  if(lit&&balloonsDone&&cutDone&&candlesOut===CANDLE_N) $("#enterBtn").disabled=false;
+
+function showCakeTimeBox(){
+  const box=$("#cakeTimeBox");
+  box.classList.add("active");
+  $("#candlesZone").style.display="none";
+  $("#roomCakeEmoji") && ($("#roomCakeEmoji").style.display="none");
+  box.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
+
+/* ── CAKE CUTTING DRAG INTERACTION (Like Instagram Reel) ── */
+const cutArena = $("#cakeCutArena");
+const knifeCursor = $("#knifeCursor");
+const knifePulse = $("#knifePulse");
+const cutProgressFill = $("#cutProgressFill");
+const cutPercent = $("#cutPercent");
+let isDraggingKnife = false;
+let cutProgress = 0;
+
+function updateCutProgress(progress){
+  cutProgress = Math.min(100, Math.max(0, progress));
+  cutProgressFill.style.width = cutProgress + "%";
+  
+  if(cutProgress < 100){
+    cutPercent.textContent = Math.round(cutProgress) + "% · Almost there";
+  } else {
+    cutPercent.textContent = "100% · Cake Sliced! 🍰";
+    completeCakeSlice();
+  }
+}
+
+function handleKnifeMove(clientX){
+  if(!cutArena || cutDone) return;
+  const rect = cutArena.getBoundingClientRect();
+  const minX = 20;
+  const maxX = rect.width - 45;
+  const currentX = clientX - rect.left;
+  const clampedX = Math.min(maxX, Math.max(minX, currentX));
+  
+  knifeCursor.style.left = clampedX + "px";
+  if(knifePulse) knifePulse.style.left = clampedX + "px";
+  
+  const pct = ((clampedX - minX) / (maxX - minX)) * 100;
+  if(pct > cutProgress){
+    updateCutProgress(pct);
+  }
+}
+
+cutArena.addEventListener("pointerdown", e => {
+  if(cutDone) return;
+  isDraggingKnife = true;
+  if(knifePulse) knifePulse.style.display="none";
+  handleKnifeMove(e.clientX);
+});
+
+window.addEventListener("pointermove", e => {
+  if(!isDraggingKnife || cutDone) return;
+  handleKnifeMove(e.clientX);
+});
+
+window.addEventListener("pointerup", () => {
+  isDraggingKnife = false;
+});
+
+cutArena.addEventListener("click", e => {
+  if(cutDone) return;
+  handleKnifeMove(e.clientX);
+});
+
+function completeCakeSlice(){
+  if(cutDone) return;
+  cutDone = true;
+  $("#cutBtn").disabled = true;
+  $("#cutBtn").textContent = "Cake cut 🍰";
+  
+  const cakeHalves = $("#cakeHalves");
+  if(cakeHalves) cakeHalves.classList.add("split");
+  
+  burst(110);
+  
+  setTimeout(() => {
+    $("#cakeCuttingStep").style.display = "none";
+    $("#makeWishModal").classList.add("active");
+  }, 750);
+}
+
+$("#madeWishBtn").addEventListener("click", () => {
+  wishMade = true;
+  burst(120);
+  $("#makeWishModal").innerHTML = `
+    <div style="font-size:3rem;margin-bottom:6px">🌠✨</div>
+    <div class="cake-drag-badge" style="background:rgba(111,163,239,.18);color:var(--blue)">WISH LOCKED IN</div>
+    <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:8px 0 4px;color:var(--ink)">First slice is yours, Niko 🍰</h3>
+    <p style="font-size:.85rem;color:var(--ink-soft);margin-bottom:8px">Your special birthday surprise is unlocked below ↓</p>
+  `;
+  wishLine.textContent = "Wish locked in! The sweetest year is waiting for you 🌸";
+  $("#enterBtn").disabled = false;
+  $("#enterBtn").scrollIntoView({behavior:"smooth",block:"center"});
+  checkParty();
+});
+
+function checkParty(){
+  if(lit && balloonsDone && cutDone && wishMade){
+    $("#enterBtn").disabled = false;
+  }
+}
+
 $("#enterBtn").addEventListener("click",()=>{ goStage("main"); burst(110); initMain(); });
 
 /* ── MAIN INIT ────────────────────────────────── */
@@ -781,28 +1497,34 @@ function openBox(id,msg){
   burst(40);
 }
 
-/* WISHES */
+/* ── REEL WISH CARDS (LIKE INSTAGRAM REEL) ────────── */
 function initWishes(){
-  const WISHES=[
-    {emo:"🪷",front:"Wish no. 1",back:"May your year be as beautiful as lily flowers — and twice as wild."},
-    {emo:"💙",front:"Wish no. 2",back:"Blue skies, pink sunsets, black outfits. All yours, all year."},
-    {emo:"🎵",front:"Wish no. 3",back:"May you find a song that perfectly explains your whole vibe. (You probably already have one.)"},
-    {emo:"😴",front:"Wish no. 4",back:"Unlimited naps. Zero alarms. Full permission, at least today."},
-    {emo:"📚",front:"Wish no. 5",back:"Jo chaahe wo mile — bina last-minute panic ke. Manifesting.",small:"hinglish, with feeling"},
-    {emo:"🫂",front:"Wish no. 6",back:"You accept people as they are. Today, everyone shows up for you.",small:"starting with this website"},
-  ];
-  const flips=$("#flips");
-  WISHES.forEach(w=>{
-    const d=document.createElement("div");
-    d.className="flip"; d.setAttribute("role","button"); d.setAttribute("tabindex","0");
-    d.innerHTML=`<div class="flip-inner">
-      <div class="face front"><span class="emo">${w.emo}</span>${w.front}<small style="opacity:.65;font-weight:400">tap to flip</small></div>
-      <div class="face back">${w.back}<small>${w.small||""}</small></div>
-    </div>`;
-    const flip=()=>d.classList.toggle("flipped");
-    d.addEventListener("click",flip);
-    d.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();}});
-    flips.appendChild(d);
+  const cards = $$(".reel-wish-card");
+  const trackerFill = $("#wishesTrackerFill");
+  const trackerText = $("#wishesDiscovered");
+  const discovered = new Set();
+  const total = cards.length || 4;
+
+  cards.forEach(card => {
+    const idx = card.getAttribute("data-card-idx");
+    const flip = () => {
+      card.classList.toggle("flipped");
+      if(!discovered.has(idx)){
+        discovered.add(idx);
+        burst(35);
+        if(trackerText) trackerText.textContent = discovered.size;
+        if(trackerFill) trackerFill.style.width = (discovered.size / total * 100) + "%";
+        if(discovered.size === total){
+          burst(90);
+          const tText = $(".wishes-tracker-text");
+          if(tText) tText.innerHTML = "All 4 wishes discovered! May every single one come true 💖";
+        }
+      }
+    };
+    card.addEventListener("click", flip);
+    card.addEventListener("keydown", e => {
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); }
+    });
   });
 }
 
