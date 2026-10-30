@@ -376,69 +376,64 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
 
         <!-- SLOT 1 — tall left card, 2 rows -->
         <div class="p-slot tall" id="slot1">
-          <!-- YOUR PHOTO HERE — replace the two lines below with:
-               <img src="YOUR_FILE.jpg" alt=""> -->
-          <span class="slot-icon">🪷</span>
-          <span class="slot-label">photo 1</span>
+          <img src="photos/photo-05-green-saree-outdoor.jpg" alt="Priya in a green and red saree outdoors" loading="lazy">
         </div>
 
         <!-- SLOT 2 — top right -->
         <div class="p-slot" id="slot2">
-          <!-- YOUR PHOTO HERE -->
-          <span class="slot-icon">📸</span>
-          <span class="slot-label">photo 2</span>
+          <img src="photos/photo-02-orange-saree.jpg" alt="Priya in an orange and blue saree" loading="lazy">
         </div>
 
         <!-- SLOT 3 — bottom right -->
         <div class="p-slot" id="slot3">
-          <!-- YOUR PHOTO HERE -->
-          <span class="slot-icon">✨</span>
-          <span class="slot-label">photo 3</span>
+          <img src="photos/photo-03-mirror-white-top.jpg" alt="Mirror selfie in a white top" loading="lazy">
         </div>
 
         <!-- SLOT 4 — full-width panoramic -->
         <div class="p-slot wide" id="slot4">
-          <!-- YOUR PHOTO HERE -->
-          <span class="slot-icon">🎞️</span>
-          <span class="slot-label">photo 4 — wide</span>
+          <img src="photos/photo-01-brown-tee.jpg" alt="Priya in a brown airplane t-shirt" loading="lazy">
         </div>
 
         <!-- SLOT 5 & 6 — side by side -->
         <div class="p-slot" id="slot5">
-          <!-- YOUR PHOTO HERE -->
-          <span class="slot-icon">💙</span>
-          <span class="slot-label">photo 5</span>
+          <img src="photos/photo-07-black-kurta.jpg" alt="Priya in a black printed kurta" loading="lazy">
         </div>
 
         <div class="p-slot" id="slot6">
-          <!-- YOUR PHOTO HERE -->
-          <span class="slot-icon">🌸</span>
-          <span class="slot-label">photo 6</span>
+          <img src="photos/photo-04-pink-dupatta-close.jpg" alt="Priya in a pink dupatta, close-up" loading="lazy">
         </div>
 
       </div>
+
+        <!-- CHILDHOOD POLAROID -->
+        <figure style="margin:26px auto 0;max-width:300px;text-align:center">
+          <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);aspect-ratio:3/4">
+            <img src="photos/photo-06-childhood-tiger.jpg" alt="Priya as a small child in an orange tiger sweater" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <figcaption style="margin-top:10px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600">where it all started</figcaption>
+        </figure>
 
       <!-- VIDEO SLOT -->
-      <div class="vid-wrap" id="videoSlot" style="margin-top:14px">
-        <!--
-          YOUR VIDEO HERE — remove the placeholder block below
-          and paste ONE of these:
-
-          Option A – local file:
-          <video src="birthday.mp4" controls playsinline
-                 style="width:100%;height:100%;object-fit:cover;border-radius:20px"></video>
-
-          Option B – YouTube:
-          <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
-                  allowfullscreen title="Birthday video"></iframe>
-        -->
-        <div class="vid-placeholder">
-          <span>🎬</span>
-          <p>video</p>
+      <div style="margin-top:28px;text-align:center">
+          <video src="videos/birthday-reel.mp4" poster="videos/birthday-reel.jpg" autoplay muted loop playsinline controls style="width:100%;max-width:360px;aspect-ratio:9/16;object-fit:cover;border-radius:20px;border:1px solid rgba(255,255,255,.12)"></video>
+          <p style="margin-top:10px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600">the birthday reel — made for you</p>
         </div>
+        <style>
+          .niko-clips{display:flex;gap:10px;overflow-x:auto;padding:18px 2px 6px;scroll-snap-type:x mandatory}
+          .niko-clips video{width:150px;flex:0 0 auto;aspect-ratio:9/16;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.12);scroll-snap-align:start;background:#000}
+        </style>
+        <div class="niko-clips" aria-label="Video clips">
+          <video src="videos/video-07-pink-dupatta-a.mp4" poster="videos/video-07-pink-dupatta-a.jpg" controls playsinline preload="metadata"></video>
+          <video src="videos/video-01-pink-dupatta-b.mp4" poster="videos/video-01-pink-dupatta-b.jpg" controls playsinline preload="metadata"></video>
+          <video src="videos/video-03-white-top.mp4" poster="videos/video-03-white-top.jpg" controls playsinline preload="metadata"></video>
+          <video src="videos/video-05-black-closeup.mp4" poster="videos/video-05-black-closeup.jpg" controls playsinline preload="metadata"></video>
+          <video src="videos/video-06-black-tee.mp4" poster="videos/video-06-black-tee.jpg" controls playsinline preload="metadata"></video>
+          <video src="videos/video-02-white-floral.mp4" poster="videos/video-02-white-floral.jpg" controls playsinline preload="metadata"></video>
+          <video src="videos/video-04-brown-tee.mp4" poster="videos/video-04-brown-tee.jpg" controls playsinline preload="metadata"></video>
+        </div>
+        <p style="font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600;text-align:center">her clips — tap one for sound</p>
       </div>
 
-    </div>
   </section>
 
   <!-- BILLIE EILISH SONG -->
