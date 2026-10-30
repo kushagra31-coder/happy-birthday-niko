@@ -127,10 +127,10 @@ main.on{display:block}
 .room .banner{font-family:var(--font-script);font-size:clamp(1.6rem,5.5vw,2.5rem);opacity:0;transform:translateY(10px);transition:all .7s ease .15s;margin:8px 0}
 .room.lit .banner{opacity:1;transform:none;color:var(--pink)}
 .balloon-zone{min-height:56px;font-size:2rem;letter-spacing:.3em}
-.balloon{display:inline-block;animation:floatUp 3s ease-in forwards}
-@keyframes floatUp{from{transform:translateY(20px);opacity:0}15%{opacity:1}to{transform:translateY(-50px);opacity:0}}
+.balloon{display:inline-block;animation:floatUp 2.8s ease-in forwards}
+@keyframes floatUp{0%{transform:translateY(0);opacity:0}10%{opacity:1}80%{opacity:1}100%{transform:translateY(-120px);opacity:0}}
 .cake{font-size:clamp(4rem,18vw,6.5rem);line-height:1.2;margin:8px 0 2px}
-.candles{font-size:1.7rem;letter-spacing:.4em;min-height:1.3em}
+.candles{font-size:2.6rem;letter-spacing:.4em;min-height:1.3em}
 .candles button{transition:opacity .2s,filter .2s}
 .candles button.out{opacity:.18;filter:grayscale(1)}
 .party-label{font-size:.9rem;color:var(--ink-soft);font-weight:400;margin:4px 0 14px}
@@ -547,7 +547,7 @@ footer .script{font-family:var(--font-script);font-size:1.4rem;color:var(--pink)
 <script>
 /* ── CONFIG ───────────────────────────────────── */
 const C = {
-  name:"Niko", birthDay:30, birthMonth:10,
+  name:"Niko", birthDay:30, birthMonth:10, birthYear:2007,
   taps:21,
 };
 
@@ -636,7 +636,7 @@ function pressKey(k){
 }
 function checkDate(){
   const dd=+entered.slice(0,2),mm=+entered.slice(2,4),yyyy=+entered.slice(4,8);
-  const yrOk = yyyy>=1990&&yyyy<=2015;
+  const yrOk = C.birthYear ? (yyyy === C.birthYear) : (yyyy>=1990&&yyyy<=2015);
   if(dd===C.birthDay&&mm===C.birthMonth&&yrOk){
     hintEl.textContent="that's the one. welcome in, birthday girl 🎉";
     hintEl.style.color="var(--lily)";
@@ -703,8 +703,9 @@ $("#lightsBtn").addEventListener("click",e=>{
 $("#balloonsBtn").addEventListener("click",e=>{
   balloonsDone=true; e.target.disabled=true;
   const z=$("#balloonZone");
-  z.innerHTML=["🎈","💙","🪷","🎈","💙","🪷"].map(b=>`<span class="balloon">${b}</span>`).join("");
-  setTimeout(()=>z.innerHTML="",3500);
+  const emojis=["🎈","💙","🪷","🎈","💙","🪷"];
+  z.innerHTML=emojis.map((b,i)=>`<span class="balloon" style="animation-delay:${i*0.3}s">${b}</span>`).join("");
+  setTimeout(()=>z.innerHTML="",5500);
   checkParty();
 });
 $("#cutBtn").addEventListener("click",e=>{
