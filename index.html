@@ -766,6 +766,262 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .music-btn-icon.play-btn{background:var(--pink);color:#fff;border-color:transparent}
 .music-btn-icon.play-btn:hover{background:var(--pink-bright);box-shadow:0 0 14px rgba(240,126,180,.6)}
 
+
+/* ── HYPER-REALISTIC PARTY ROOM STYLES (NO EMOJIS, NO SCROLLBAR) ── */
+#stage-party{
+  width:100vw;height:100dvh;max-height:100dvh;padding:0;margin:0;
+  overflow:hidden !important;
+  background:radial-gradient(circle at 50% 25%, #18122c 0%, #08060e 100%);
+  transition:background .8s ease;display:none;flex-direction:column;justify-content:space-between;align-items:center;
+  box-sizing:border-box;
+}
+#stage-party.on{display:flex}
+#stage-party.lit{
+  background:radial-gradient(circle at 50% 20%, #2f1740 0%, #0e091b 100%);
+  box-shadow:inset 0 0 120px rgba(240,126,180,.15);
+}
+
+.stage-party-top{
+  width:100%;padding:0 14px 4px;display:flex;flex-direction:column;align-items:center;
+  position:relative;z-index:20;flex-shrink:0;
+}
+
+.edison-garland-wrap{
+  width:100%;max-width:960px;height:72px;position:relative;margin:0 auto;overflow:visible;
+}
+.edison-garland-svg{
+  width:100%;height:100%;overflow:visible;
+}
+.edison-bulbs-container{
+  position:absolute;inset:0;pointer-events:none;
+}
+.edison-bulb{
+  position:absolute;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;
+  transform-origin:50% -10px;
+  animation:bulbSway 4.5s ease-in-out infinite alternate;
+}
+@keyframes bulbSway{
+  0%{transform:translateX(-50%) rotate(-3.5deg)}
+  100%{transform:translateX(-50%) rotate(3.5deg)}
+}
+.bulb-socket{
+  width:11px;height:9px;border-radius:2px 2px 0 0;
+  background:linear-gradient(180deg, #ffd56b 0%, #a87920 100%);
+  border:1px solid #755010;box-shadow:0 1px 3px rgba(0,0,0,.5);
+}
+.bulb-glass{
+  width:20px;height:30px;border-radius:10px 10px 14px 14px;
+  background:radial-gradient(circle at 40% 30%, rgba(255,255,255,.35) 0%, rgba(210,180,240,.08) 55%, rgba(20,15,30,.45) 100%);
+  border:1px solid rgba(255,255,255,.2);
+  position:relative;box-shadow:inset 0 2px 4px rgba(255,255,255,.25);
+  transition:all .6s ease;
+}
+.bulb-filament{
+  position:absolute;top:7px;left:50%;transform:translateX(-50%);
+  width:7px;height:12px;border:1.5px solid #ff9922;border-bottom:none;
+  border-radius:4px 4px 0 0;opacity:.25;transition:all .5s ease;
+}
+.bulb-reflection{
+  position:absolute;top:4px;left:3px;width:4px;height:10px;border-radius:3px;
+  background:rgba(255,255,255,.5);transform:rotate(-15deg);
+}
+.bulb-glow-halo{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:70px;height:70px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,183,3,.4) 0%, rgba(255,111,170,.15) 45%, transparent 75%);
+  opacity:0;transition:opacity .6s ease;pointer-events:none;
+}
+
+#stage-party.lit .bulb-glass{
+  background:radial-gradient(circle at 50% 40%, #ffffff 0%, #fff2a8 25%, #ffb703 60%, rgba(255,123,0,.6) 100%);
+  border-color:#ffe885;
+  box-shadow:0 0 18px rgba(255,183,3,.9), 0 0 32px rgba(255,111,170,.5);
+}
+#stage-party.lit .bulb-filament{
+  opacity:1;border-color:#fff;box-shadow:0 0 8px #fff;
+}
+#stage-party.lit .bulb-glow-halo{
+  opacity:1;
+}
+
+.realistic-pull-cord{
+  display:flex;flex-direction:column;align-items:center;
+  cursor:pointer;outline:none;user-select:none;margin-top:2px;
+}
+.chain-mount{
+  width:16px;height:5px;border-radius:3px 3px 0 0;
+  background:linear-gradient(90deg, #b88628 0%, #ffd56b 50%, #8c6014 100%);
+}
+.brass-chain{
+  width:3px;height:clamp(38px,6vh,52px);
+  background:repeating-linear-gradient(180deg, #ffd56b 0, #ffd56b 3px, #8c6014 3px, #8c6014 6px);
+  box-shadow:0 2px 4px rgba(0,0,0,.4);transition:height .15s ease;
+}
+.crystal-pendant{
+  display:flex;flex-direction:column;align-items:center;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1);
+}
+.pendant-cap{
+  width:14px;height:5px;border-radius:2px;
+  background:linear-gradient(90deg, #ffd56b 0%, #a87920 100%);
+}
+.crystal-glass{
+  width:18px;height:24px;border-radius:2px 2px 9px 9px;
+  background:linear-gradient(135deg, rgba(255,255,255,.9) 0%, rgba(240,126,180,.6) 50%, rgba(111,163,239,.8) 100%);
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 4px 14px rgba(240,126,180,.5), inset 0 2px 4px #fff;
+}
+.realistic-pull-cord:hover .crystal-pendant{
+  transform:scale(1.14);
+}
+.realistic-pull-cord.pulled .brass-chain{
+  height:clamp(56px,9vh,72px);
+}
+.realistic-pull-cord.pulled .crystal-glass{
+  box-shadow:0 0 24px rgba(255,255,255,.95), 0 0 40px rgba(240,126,180,.8);
+  background:#fff;
+}
+.cord-tag{margin-top:4px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);font-weight:700}
+
+.stage-party-center{
+  flex:1;width:100%;max-width:680px;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:0 14px;position:relative;z-index:10;overflow:hidden !important;min-height:0;
+}
+.cake-interactive-stage{
+  width:100%;display:flex;flex-direction:column;align-items:center;
+  position:relative;animation:fadeIn .5s ease;
+}
+
+.bakery-cake-wrapper{
+  position:relative;width:clamp(300px, 46vmin, 420px);
+  aspect-ratio:420 / 340;margin:0 auto;user-select:none;
+}
+.bakery-cake-svg{
+  width:100%;height:100%;display:block;overflow:visible;
+}
+
+.candles-on-cake{
+  position:absolute;top:13%;left:18%;width:64%;height:30%;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  pointer-events:auto;z-index:15;
+}
+.candle-on-cake-item{
+  position:relative;width:22px;height:58px;
+  background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:0;outline:none;user-select:none;
+  transition:transform .15s ease;
+}
+.candle-on-cake-item:hover{
+  transform:scale(1.15) translateY(-3px);
+}
+.candle-on-cake-item .candle-smoke-puff{
+  position:absolute;top:-28px;left:50%;width:18px;height:34px;
+  pointer-events:none;opacity:0;transform:translateX(-50%);
+}
+.candle-on-cake-item.out .candle-smoke-puff{
+  animation:smokeCurl 1.8s ease-out forwards;
+}
+.candle-on-cake-item .candle-flame-wrap{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:14px;height:22px;transition:opacity .25s ease,transform .25s ease;
+}
+.candle-on-cake-item .candle-flame-glow{
+  position:absolute;inset:-6px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,183,3,.75) 0%, rgba(255,111,170,.25) 50%, transparent 75%);
+  animation:flameGlow 1.5s ease-in-out infinite alternate;pointer-events:none;
+}
+.candle-on-cake-item .candle-flame-core{
+  position:absolute;inset:0;border-radius:50% 50% 35% 35% / 60% 60% 40% 40%;
+  background:linear-gradient(180deg, #ffffff 0%, #ffea79 28%, #ff9800 70%, #2196f3 100%);
+  box-shadow:0 0 14px #ffb703, 0 0 24px rgba(255,111,170,.6);
+  animation:flameFlicker .18s infinite alternate ease-in-out;
+  transform-origin:50% 90%;
+}
+.candle-on-cake-item .candle-wick{
+  width:2px;height:9px;background:#241d24;border-radius:1px;position:relative;z-index:2;margin-bottom:-1px;
+}
+.candle-on-cake-item.out .candle-wick{
+  background:#443c44;box-shadow:0 -1px 3px #ff5722;
+}
+.candle-on-cake-item .candle-stick-body{
+  width:15px;height:34px;border-radius:3px 3px 4px 4px;
+  position:relative;box-shadow:0 4px 8px rgba(0,0,0,.35), inset -1.5px 0 3px rgba(0,0,0,.25), inset 1.5px 0 3px rgba(255,255,255,.4);
+  overflow:hidden;
+}
+.candle-on-cake-item .candle-stripes{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,.25) 4px, rgba(255,255,255,.25) 8px);
+}
+.candle-on-cake-item:nth-child(1) .candle-stick-body{background:linear-gradient(180deg, #ffb3d9, #f07eb4)}
+.candle-on-cake-item:nth-child(2) .candle-stick-body{background:linear-gradient(180deg, #b3d1ff, #6fa3ef)}
+.candle-on-cake-item:nth-child(3) .candle-stick-body{background:linear-gradient(180deg, #e5b3ff, #c084fc)}
+.candle-on-cake-item:nth-child(4) .candle-stick-body{background:linear-gradient(180deg, #ffe0b3, #f5b942)}
+.candle-on-cake-item:nth-child(5) .candle-stick-body{background:linear-gradient(180deg, #b3ffe6, #5eead4)}
+.candle-on-cake-item.out .candle-flame-wrap{
+  opacity:0;transform:translateX(-50%) scale(.2);pointer-events:none;
+}
+
+.cake-cutting-overlay{
+  position:absolute;inset:0;pointer-events:auto;z-index:25;cursor:crosshair;touch-action:none;
+}
+.cake-cut-track-line{
+  position:absolute;top:48%;left:22%;width:56%;height:6px;
+  border-bottom:3px dashed rgba(255,255,255,.8);
+  filter:drop-shadow(0 0 8px rgba(240,126,180,.9));pointer-events:none;
+}
+.knife-draggable{
+  position:absolute;top:32%;left:18%;width:70px;height:48px;
+  transform:rotate(-30deg);cursor:grab;touch-action:none;user-select:none;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.7));z-index:30;
+  transition:transform .1s ease;
+}
+.knife-draggable:active{cursor:grabbing;transform:rotate(-42deg) scale(1.12)}
+.knife-blade{
+  position:absolute;top:10px;left:0;width:44px;height:12px;
+  background:linear-gradient(180deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  border-radius:1px 8px 2px 1px;box-shadow:0 0 10px rgba(255,255,255,.6);
+}
+.knife-handle{
+  position:absolute;top:8px;left:44px;width:26px;height:14px;
+  background:linear-gradient(180deg, #ffd56b 0%, #8c6014 100%);
+  border-radius:2px 5px 5px 2px;
+}
+.knife-hint-pill{
+  position:absolute;bottom:8%;left:50%;transform:translateX(-50%);
+  background:rgba(15,13,26,.85);backdrop-filter:blur(10px);
+  border:1px solid rgba(240,126,180,.4);color:var(--pink);
+  font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:999px;
+  box-shadow:0 4px 15px rgba(0,0,0,.5);white-space:nowrap;
+  animation:hintPulse 2s infinite ease-in-out;
+}
+
+.cut-progress-box-full{
+  width:min(320px, 86%);margin:10px auto 0;
+}
+
+.cake-halves-full{transition:transform .75s cubic-bezier(.34,1.3,.64,1)}
+.cake-halves-full.split .cake-half-left{
+  transform:translateX(-34px) rotate(-5deg);
+  filter:drop-shadow(-8px 12px 20px rgba(0,0,0,.6));
+}
+.cake-halves-full.split .cake-half-right{
+  transform:translateX(34px) rotate(5deg);
+  filter:drop-shadow(8px 12px 20px rgba(0,0,0,.6));
+}
+.cake-halves-full.split .inside-layers-left,
+.cake-halves-full.split .inside-layers-right{
+  opacity:1 !important;
+}
+
+.stage-party-bottom{
+  width:100%;padding:4px 14px 18px;display:flex;flex-direction:column;
+  align-items:center;z-index:20;flex-shrink:0;
+}
+.wish-line-full{min-height:1.5em;font-weight:600;color:var(--lily);font-size:.92rem;margin-bottom:6px;text-align:center}
+
 </style>
 </head>
 <body>
@@ -843,124 +1099,296 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 <!-- ================= CHANGE 1: FULL-PAGE PARTY STAGE (100dvh) ================= -->
 <section class="stage" id="stage-party" aria-label="Party room">
-  <!-- Top: Bulbs & Hanging Pull Cord -->
+  <!-- Top: Realistic Edison Garland & Brass Crystal Pull Cord -->
   <div class="stage-party-top">
-    <div class="stage-party-bulbs" aria-hidden="true">
-      <span class="bulb">🪔</span><span class="bulb">💙</span><span class="bulb">🪷</span>
-      <span class="bulb">✨</span><span class="bulb">🪷</span><span class="bulb">💙</span>
-      <span class="bulb">🪔</span>
+    <!-- Realistic Edison String Lights Garland (SVG) -->
+    <div class="edison-garland-wrap" aria-hidden="true">
+      <svg class="edison-garland-svg" viewBox="0 0 1000 90" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="wireGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#181524"/>
+            <stop offset="50%" stop-color="#342d48"/>
+            <stop offset="100%" stop-color="#181524"/>
+          </linearGradient>
+          <linearGradient id="brassGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffd56b"/>
+            <stop offset="50%" stop-color="#c99738"/>
+            <stop offset="100%" stop-color="#6e4f16"/>
+          </linearGradient>
+          <radialGradient id="litBulbGrad" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="25%" stop-color="#fff2a8"/>
+            <stop offset="60%" stop-color="#ffb703"/>
+            <stop offset="90%" stop-color="#ff7b00"/>
+            <stop offset="100%" stop-color="rgba(255,123,0,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Hanging Wire Curve -->
+        <path d="M0 10 Q250 42 500 22 T1000 12" stroke="url(#wireGrad)" stroke-width="3" fill="none"/>
+      </svg>
+
+      <!-- 7 Realistic Edison Glass Bulbs -->
+      <div class="edison-bulbs-container">
+        <!-- Bulb 1 -->
+        <div class="edison-bulb" style="left:7%;top:18px;animation-delay:0s">
+          <div class="bulb-socket"></div>
+          <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-reflection"></div>
+          </div>
+          <div class="bulb-glow-halo"></div>
+        </div>
+        <!-- Bulb 2 -->
+        <div class="edison-bulb" style="left:21%;top:30px;animation-delay:.35s">
+          <div class="bulb-socket"></div>
+          <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-reflection"></div>
+          </div>
+          <div class="bulb-glow-halo"></div>
+        </div>
+        <!-- Bulb 3 -->
+        <div class="edison-bulb" style="left:35%;top:28px;animation-delay:.7s">
+          <div class="bulb-socket"></div>
+          <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-reflection"></div>
+          </div>
+          <div class="bulb-glow-halo"></div>
+        </div>
+        <!-- Bulb 4 (Center) -->
+        <div class="edison-bulb center-bulb" style="left:50%;top:22px;animation-delay:.15s">
+          <div class="bulb-socket"></div>
+          <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-reflection"></div>
+          </div>
+          <div class="bulb-glow-halo"></div>
+        </div>
+        <!-- Bulb 5 -->
+        <div class="edison-bulb" style="left:65%;top:26px;animation-delay:.5s">
+          <div class="bulb-socket"></div>
+          <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-reflection"></div>
+          </div>
+          <div class="bulb-glow-halo"></div>
+        </div>
+        <!-- Bulb 6 -->
+        <div class="edison-bulb" style="left:79%;top:30px;animation-delay:.85s">
+          <div class="bulb-socket"></div>
+          <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-reflection"></div>
+          </div>
+          <div class="bulb-glow-halo"></div>
+        </div>
+        <!-- Bulb 7 -->
+        <div class="edison-bulb" style="left:93%;top:18px;animation-delay:.25s">
+          <div class="bulb-socket"></div>
+          <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-reflection"></div>
+          </div>
+          <div class="bulb-glow-halo"></div>
+        </div>
+      </div>
     </div>
+
     <div class="stage-party-banner" id="partyBanner">Happy Birthday, Niko 🎉</div>
-    
-    <!-- Pull Cord for Lights -->
-    <div class="stage-pull-cord" id="pullCord" role="button" tabindex="0" aria-label="Pull cord to switch on lights">
-      <div class="cord-chain"></div>
-      <div class="cord-knob">💡</div>
+
+    <!-- Realistic Brass Ball-Chain & Faceted Crystal Pull Cord -->
+    <div class="realistic-pull-cord" id="pullCord" role="button" tabindex="0" aria-label="Pull cord to switch on lights">
+      <div class="chain-mount"></div>
+      <div class="brass-chain"></div>
+      <div class="crystal-pendant">
+        <div class="pendant-cap"></div>
+        <div class="crystal-glass"></div>
+      </div>
       <span class="cord-tag" id="cordTag">Pull cord for lights</span>
     </div>
 
     <!-- Step 2: Balloons Button -->
     <div id="balloonsStep">
-      <button class="btn blue" id="balloonsBtn">Release balloons 🎈</button>
+      <button class="btn blue" id="balloonsBtn" style="padding:10px 24px;font-size:.9rem">Release balloons 🎈</button>
     </div>
   </div>
 
-  <!-- Center: Balloons Zone, Dominant Cake & Candles, Cake Time -->
+  <!-- Center: Realistic Bakery Cake with Candles ON TOP & Drag-to-Cut -->
   <div class="stage-party-center">
     <div class="balloon-zone-full" id="balloonZone" aria-hidden="true"></div>
 
-    <!-- Step 3: Dominant Centred Cake & Big Candle Tap Targets -->
-    <div id="candlesZone">
-      <div class="cake-dominant" id="roomCakeEmoji" aria-hidden="true">🎂</div>
-      <div class="candles-large" id="candles" aria-label="Blow out each candle"></div>
-      <p class="candles-prompt" id="candleInstructions">tap each candle to blow it out — then cut the cake</p>
-    </div>
+    <!-- Unified Gourmet Bakery Cake Stage -->
+    <div class="cake-interactive-stage" id="cakeStageWrap">
+      
+      <!-- Realistic Gourmet Cake SVG on Stand with 5 Candles ON TOP -->
+      <div class="bakery-cake-wrapper" id="bakeryCakeWrapper">
+        <svg class="bakery-cake-svg" viewBox="0 0 420 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="standMarble" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#e2e8f0"/>
+              <stop offset="40%" stop-color="#ffffff"/>
+              <stop offset="70%" stop-color="#cbd5e1"/>
+              <stop offset="100%" stop-color="#94a3b8"/>
+            </linearGradient>
+            <linearGradient id="goldTrim" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#c6922e"/>
+              <stop offset="50%" stop-color="#ffe885"/>
+              <stop offset="100%" stop-color="#9e7019"/>
+            </linearGradient>
+            <linearGradient id="frostingPink" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffb8d9"/>
+              <stop offset="45%" stop-color="#f07eb4"/>
+              <stop offset="100%" stop-color="#cf4f88"/>
+            </linearGradient>
+            <linearGradient id="cakeTopGlaze" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#fff5f9"/>
+              <stop offset="50%" stop-color="#ffd5e7"/>
+              <stop offset="100%" stop-color="#ffb3d2"/>
+            </linearGradient>
+            <linearGradient id="spongeInside" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#fae3c6"/>
+              <stop offset="100%" stop-color="#ecc491"/>
+            </linearGradient>
+            <linearGradient id="jamLayer" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#e11d48"/>
+              <stop offset="100%" stop-color="#be123c"/>
+            </linearGradient>
+          </defs>
 
-    <!-- Step 4: Cake Time Drag-to-Cut (Breathing Room) -->
-    <div id="cakeTimeBox">
-      <div id="cakeCuttingStep">
-        <h3 class="cake-time-title-full">Cake Time</h3>
-        <p class="cake-time-sub-full">Cut the cake and make a wish</p>
-        <span class="cake-drag-badge-full">DRAG HERE</span>
-        <div class="cake-drag-title-full">Drag across the cake to cut it 🔪</div>
-        <p class="cake-drag-hint-full">Swipe or drag through the dashed line to complete the cut</p>
+          <!-- ── 1. MARBLE & GOLD CAKE STAND ── -->
+          <g class="stand-group">
+            <ellipse cx="210" cy="330" rx="145" ry="16" fill="rgba(0,0,0,0.55)" filter="blur(8px)"/>
+            <ellipse cx="210" cy="318" rx="60" ry="12" fill="url(#standMarble)"/>
+            <ellipse cx="210" cy="318" rx="60" ry="12" stroke="url(#goldTrim)" stroke-width="2"/>
+            <path d="M185 316 L198 250 L222 250 L235 316 Z" fill="url(#standMarble)"/>
+            <ellipse cx="210" cy="254" rx="160" ry="26" fill="url(#goldTrim)"/>
+            <ellipse cx="210" cy="250" rx="156" ry="24" fill="url(#standMarble)"/>
+            <ellipse cx="210" cy="248" rx="146" ry="20" fill="#f8fafc" opacity="0.8"/>
+          </g>
 
-        <div class="cake-cut-arena-full" id="cakeCutArena">
-          <div class="cake-cut-line-full"></div>
-          <div class="knife-cursor-full" id="knifeCursor" title="Drag me to cut!">🔪</div>
-          <div class="knife-pulse-full" id="knifePulse"></div>
+          <!-- ── 2. TWO-TIER GOURMET CAKE (SPLITTABLE) ── -->
+          <g id="cakeHalves" class="cake-halves-full">
+            <!-- LEFT CAKE HALF -->
+            <g class="cake-half-left">
+              <path d="M60 170 C60 170 210 178 210 178 L210 242 C210 242 60 236 60 236 Z" fill="url(#frostingPink)"/>
+              <path d="M60 170 C60 156 210 156 210 170 L210 178 C210 178 60 170 60 170 Z" fill="url(#cakeTopGlaze)"/>
 
-          <svg viewBox='0 0 240 180' width='100%' height='100%' fill='none' xmlns='http://www.w3.org/2000/svg' style='overflow:visible;'>
-            <defs>
-              <linearGradient id='cakeGradPink' x1='0' y1='0' x2='0' y2='1'>
-                <stop offset='0%' stop-color='#ff94c2'/><stop offset='100%' stop-color='#e6518a'/>
-              </linearGradient>
-              <linearGradient id='cakeGradTop' x1='0' y1='0' x2='0' y2='1'>
-                <stop offset='0%' stop-color='#fff0f6'/><stop offset='100%' stop-color='#ffd1e4'/>
-              </linearGradient>
-              <linearGradient id='plateGrad' x1='0' y1='0' x2='0' y2='1'>
-                <stop offset='0%' stop-color='#ffffff'/><stop offset='100%' stop-color='#cbd5e1'/>
-              </linearGradient>
-              <filter id='glowFlame' x='-20%' y='-20%' width='140%' height='140%'>
-                <feGaussianBlur stdDeviation='3' result='blur'/>
-                <feComposite in='SourceGraphic' in2='blur' operator='over'/>
-              </filter>
-            </defs>
-            <g id='cakeHalves' class='cake-halves-full'>
-              <!-- Left Half -->
-              <g class='cake-half-left'>
-                <path d='M20 145 C 20 160, 120 160, 120 160 L120 145 C 120 145, 20 145, 20 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
-                <ellipse cx='70' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
-                <path d='M40 95 L40 135 C 40 152, 120 155, 120 155 L120 95 Z' fill='url(#cakeGradPink)'/>
-                <path d='M40 95 C 40 80, 120 80, 120 95 L120 95 C 120 110, 40 110, 40 95 Z' fill='url(#cakeGradTop)'/>
-                <path d='M40 96 C 45 106, 52 106, 56 98 C 60 108, 68 112, 74 100 C 80 112, 90 112, 96 99 C 102 110, 112 110, 120 100 L120 95 L40 95 Z' fill='#ffffff'/>
-                <circle cx='65' cy='88' r='6' fill='#ef4444'/><circle cx='95' cy='90' r='6' fill='#ef4444'/>
-                <rect x='116' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
+              <!-- Dripping Ganache Glaze (Left) -->
+              <path d="M60 170 C75 196 90 172 105 198 C120 174 135 204 150 176 C165 200 180 174 195 196 C202 184 210 178 210 178 L210 170 C210 156 60 156 60 170 Z" fill="#ffffff" opacity="0.92"/>
+              <ellipse cx="105" cy="200" rx="4" ry="5" fill="#ffffff" opacity="0.9"/>
+              <ellipse cx="150" cy="206" rx="3.5" ry="5" fill="#ffffff" opacity="0.9"/>
+
+              <!-- Top Tier 2 (Left) -->
+              <path d="M100 120 C100 120 210 126 210 126 L210 170 C210 170 100 166 100 166 Z" fill="url(#frostingPink)"/>
+              <path d="M100 120 C100 108 210 108 210 120 L210 126 C210 126 100 120 100 120 Z" fill="url(#cakeTopGlaze)"/>
+              <path d="M100 120 C112 138 125 122 138 140 C150 124 165 142 178 126 C192 140 205 124 210 126 L210 120 C210 108 100 108 100 120 Z" fill="#ffffff" opacity="0.95"/>
+
+              <!-- Interior Sponge Layers (Left face) -->
+              <g class="inside-layers-left" opacity="0">
+                <path d="M210 108 L210 242 L205 242 L205 108 Z" fill="url(#spongeInside)"/>
+                <path d="M210 150 L210 156 L205 156 L205 150 Z" fill="url(#jamLayer)"/>
+                <path d="M210 196 L210 202 L205 202 L205 196 Z" fill="url(#jamLayer)"/>
               </g>
-              <!-- Right Half -->
-              <g class='cake-half-right'>
-                <path d='M120 160 C 120 160, 220 160, 220 145 L220 145 C 220 145, 120 145, 120 145 Z' fill='url(#plateGrad)' opacity='0.9'/>
-                <ellipse cx='170' cy='145' rx='50' ry='12' fill='#e2e8f0'/>
-                <path d='M120 95 L120 155 C 120 155, 200 152, 200 135 L200 95 Z' fill='url(#cakeGradPink)'/>
-                <path d='M120 95 C 120 80, 200 80, 200 95 C 200 110, 120 110, 120 95 Z' fill='url(#cakeGradTop)'/>
-                <path d='M120 100 C 128 110, 138 110, 144 99 C 150 112, 160 112, 166 100 C 172 108, 180 106, 184 98 C 188 106, 195 106, 200 96 L200 95 L120 95 Z' fill='#ffffff'/>
-                <circle cx='145' cy='90' r='6' fill='#ef4444'/><circle cx='175' cy='88' r='6' fill='#ef4444'/>
-                <rect x='120' y='52' width='4' height='30' rx='2' fill='#60a5fa'/>
-                <ellipse cx='120' cy='44' rx='5' ry='9' fill='#f59e0b' filter='url(#glowFlame)'/>
-                <ellipse cx='120' cy='45' rx='3' ry='5' fill='#fef08a'/>
-              </g>
+
+              <!-- Fresh Strawberries (Left) -->
+              <circle cx="120" cy="116" r="8" fill="#e11d48"/>
+              <circle cx="122" cy="114" r="2" fill="#ffd56b"/>
+              <path d="M116 110 Q120 104 124 110" stroke="#22c55e" stroke-width="2.5" fill="none"/>
+              <circle cx="160" cy="112" r="9" fill="#e11d48"/>
+              <circle cx="162" cy="110" r="2" fill="#ffd56b"/>
+              <path d="M156 106 Q160 100 164 106" stroke="#22c55e" stroke-width="2.5" fill="none"/>
+
+              <!-- Buttercream Piping Swirls -->
+              <ellipse cx="98" cy="168" rx="8" ry="6" fill="#fff" opacity="0.95"/>
+              <ellipse cx="140" cy="172" rx="9" ry="6" fill="#fff" opacity="0.95"/>
+              <ellipse cx="180" cy="174" rx="9" ry="6" fill="#fff" opacity="0.95"/>
             </g>
-          </svg>
+
+            <!-- RIGHT CAKE HALF -->
+            <g class="cake-half-right">
+              <path d="M210 178 C210 178 360 170 360 170 L360 236 C360 236 210 242 210 242 Z" fill="url(#frostingPink)"/>
+              <path d="M210 170 C210 156 360 156 360 170 L360 170 C360 170 210 178 210 178 Z" fill="url(#cakeTopGlaze)"/>
+
+              <!-- Dripping Ganache Glaze (Right) -->
+              <path d="M210 178 C218 184 225 196 240 174 C255 200 270 176 285 204 C300 174 315 198 330 172 C345 196 360 170 360 170 L360 170 C360 156 210 156 210 170 Z" fill="#ffffff" opacity="0.92"/>
+              <ellipse cx="270" cy="206" rx="3.5" ry="5" fill="#ffffff" opacity="0.9"/>
+              <ellipse cx="315" cy="200" rx="4" ry="5" fill="#ffffff" opacity="0.9"/>
+
+              <!-- Top Tier 2 (Right) -->
+              <path d="M210 126 C210 126 320 120 320 120 L320 166 C320 166 210 170 210 170 Z" fill="url(#frostingPink)"/>
+              <path d="M210 120 C210 108 320 108 320 120 L320 120 C320 120 210 126 210 126 Z" fill="url(#cakeTopGlaze)"/>
+              <path d="M210 126 C215 124 228 140 242 126 C255 142 270 124 282 140 C295 122 308 138 320 120 L320 120 C320 108 210 108 210 120 Z" fill="#ffffff" opacity="0.95"/>
+
+              <!-- Interior Sponge Layers (Right face) -->
+              <g class="inside-layers-right" opacity="0">
+                <path d="M210 108 L210 242 L215 242 L215 108 Z" fill="url(#spongeInside)"/>
+                <path d="M210 150 L210 156 L215 156 L215 150 Z" fill="url(#jamLayer)"/>
+                <path d="M210 196 L210 202 L215 202 L215 196 Z" fill="url(#jamLayer)"/>
+              </g>
+
+              <!-- Fresh Strawberries (Right) -->
+              <circle cx="260" cy="112" r="9" fill="#e11d48"/>
+              <circle cx="262" cy="110" r="2" fill="#ffd56b"/>
+              <path d="M256 106 Q260 100 264 106" stroke="#22c55e" stroke-width="2.5" fill="none"/>
+              <circle cx="300" cy="116" r="8" fill="#e11d48"/>
+              <circle cx="302" cy="114" r="2" fill="#ffd56b"/>
+              <path d="M296 110 Q300 104 304 110" stroke="#22c55e" stroke-width="2.5" fill="none"/>
+
+              <!-- Buttercream Piping Swirls -->
+              <ellipse cx="240" cy="174" rx="9" ry="6" fill="#fff" opacity="0.95"/>
+              <ellipse cx="280" cy="172" rx="9" ry="6" fill="#fff" opacity="0.95"/>
+              <ellipse cx="322" cy="168" rx="8" ry="6" fill="#fff" opacity="0.95"/>
+            </g>
+          </g>
+        </svg>
+
+        <!-- ── 3. FIVE CANDLES PLANTED DIRECTLY ON TOP OF THE CAKE! ── -->
+        <div class="candles-on-cake" id="candles" aria-label="Tap each candle to blow it out"></div>
+
+        <!-- ── 4. KNIFE & DRAG TO CUT OVERLAY ── -->
+        <div class="cake-cutting-overlay" id="cakeCuttingOverlay" style="display:none">
+          <div class="cake-cut-track-line" id="cakeCutTrackLine"></div>
+          <div class="knife-draggable" id="knifeCursor" title="Drag to slice the cake!">
+            <div class="knife-blade"></div>
+            <div class="knife-handle"></div>
+          </div>
+          <div class="knife-hint-pill">drag knife across to slice 🔪</div>
         </div>
 
-        <div class="cut-progress-box-full">
-          <div class="cut-progress-bar-full">
-            <div class="cut-progress-fill-full" id="cutProgressFill"></div>
-          </div>
-          <div class="cut-progress-labels-full">
-            <span>Cut Progress</span>
-            <span id="cutPercent">0% · Ready to cut</span>
-          </div>
+      </div>
+
+      <!-- Slicing Progress Bar -->
+      <div class="cut-progress-box-full" id="cutProgressBox" style="display:none">
+        <div class="cut-progress-bar-full">
+          <div class="cut-progress-fill-full" id="cutProgressFill"></div>
+        </div>
+        <div class="cut-progress-labels-full">
+          <span>Slice Progress</span>
+          <span id="cutPercent">0% · Drag to slice</span>
         </div>
       </div>
 
       <!-- Step 5: Make a Wish Modal -->
       <div class="make-wish-modal-full" id="makeWishModal">
-        <div class="wish-mascot-full">🐱🎂</div>
+        <div class="wish-mascot-full">🌠🎂</div>
         <span class="cake-drag-badge-full" style="background:rgba(255,105,180,.18);color:var(--pink)">MAKE A WISH</span>
-        <h3 style="font-family:var(--font-serif);font-size:clamp(1.5rem,5vmin,2rem);margin:8px 0 4px;color:var(--ink)">Close your eyes and make a wish</h3>
-        <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:16px">When you're ready, tap the button below.</p>
-        <button class="btn blue" id="madeWishBtn" style="padding:14px 32px;font-size:1.02rem">I Made My Wish 💖</button>
+        <h3 style="font-family:var(--font-serif);font-size:clamp(1.4rem,4.5vmin,1.9rem);margin:6px 0 3px;color:var(--ink)">Close your eyes and make a wish</h3>
+        <p style="font-size:.86rem;color:var(--ink-soft);margin-bottom:14px">When you're ready, tap the button below.</p>
+        <button class="btn blue" id="madeWishBtn" style="padding:12px 30px;font-size:1rem">I Made My Wish 💖</button>
       </div>
+
     </div>
   </div>
 
   <!-- Bottom: Wish Line & Enter -->
   <div class="stage-party-bottom">
-    <p class="wish-line-full" id="wishLine"></p>
-    <button class="btn blue" id="enterBtn" disabled style="padding:14px 36px;font-size:1.05rem">Your actual surprise ↓</button>
+    <p class="wish-line-full" id="wishLine">Turn on the lights to start the celebration ✨</p>
+    <button class="btn blue" id="enterBtn" disabled style="padding:12px 34px;font-size:1.02rem">Your actual surprise ↓</button>
   </div>
 </section>
+
 
 <!-- ================= CHANGE 2: MAIN CARD DECK (NO SCROLL, 100dvh) ================= -->
 <main id="main" class="deck-mode" aria-label="Birthday Story Deck">
@@ -1579,7 +2007,7 @@ giftBtn.addEventListener("click",()=>{
   }
 });
 
-/* ── CHANGE 1: FULL-PAGE PARTY STAGE (PULL-CORD, BALLOONS, CANDLES, CAKE) ── */
+/* ── REALISTIC PARTY ROOM CONTROLLER (LIGHTS, BALLOONS, CANDLES ON CAKE, SLICE) ── */
 let lit=false, balloonsDone=false, cutDone=false, wishMade=false;
 const candlesEl=$("#candles"), wishLine=$("#wishLine");
 const CANDLE_N=5; let candlesOut=0;
@@ -1594,10 +2022,12 @@ function activateLights(){
   partyStage.classList.add("lit");
   if(cordTag) cordTag.textContent = "Lights: ON ✨";
 
-  burst(75);
+  burst(80);
+  playSparkleChime();
 
   setTimeout(()=>{
     $("#balloonsStep").classList.add("active");
+    wishLine.textContent = "Lights on! Release the celebration balloons 🎈";
   }, 450);
 
   checkParty();
@@ -1617,7 +2047,7 @@ if(pullCord){
   });
   window.addEventListener("pointermove", e => {
     if(!isPulling || lit) return;
-    if(e.clientY - startY > 22){
+    if(e.clientY - startY > 20){
       isPulling = false;
       activateLights();
     }
@@ -1625,42 +2055,64 @@ if(pullCord){
   window.addEventListener("pointerup", () => { isPulling = false; });
 }
 
-$("#balloonsBtn").addEventListener("click",e=>{
+$("#balloonsBtn").addEventListener("click", e => {
   if(balloonsDone) return;
-  balloonsDone=true;
-  e.target.disabled=true;
-  e.target.textContent="Balloons released 🎈";
+  balloonsDone = true;
+  e.target.disabled = true;
+  e.target.textContent = "Balloons released 🎈";
 
-  const z=$("#balloonZone");
-  const emojis=["🎈","💙","🪷","🎈","💙","🪷"];
-  z.innerHTML=emojis.map((b,i)=>`<span class="balloon" style="left:${15+i*14}%;animation-delay:${i*0.28}s">${b}</span>`).join("");
-  setTimeout(()=>z.innerHTML="",5500);
+  const z = $("#balloonZone");
+  const emojis = ["🎈","💙","🪷","🎈","💙","🪷"];
+  z.innerHTML = emojis.map((b,i)=> `<span class="balloon" style="left:${15+i*14}%;animation-delay:${i*0.28}s">${b}</span>`).join("");
+  setTimeout(()=>z.innerHTML="", 5500);
 
   burst(60);
 
-  // Reveal Step 3: Dominant Centred Cake & Big Candle Tap Targets
   setTimeout(()=>{
-    $("#candlesZone").classList.add("active");
-    renderCandles();
-  }, 600);
+    renderCandlesOnCake();
+    wishLine.textContent = "Blow out each candle on the cake 🕯️";
+  }, 500);
 
   checkParty();
 });
 
-function renderCandles(){
-  candlesEl.innerHTML="";
-  candlesOut=0;
-  for(let i=0;i<CANDLE_N;i++){
-    const b=document.createElement("button");
-    b.textContent="🕯️"; b.setAttribute("aria-label","Candle "+(i+1));
-    b.addEventListener("click",()=>{
+function renderCandlesOnCake(){
+  if(!candlesEl) return;
+  candlesEl.innerHTML = "";
+  candlesOut = 0;
+  for(let i=0; i<CANDLE_N; i++){
+    const b = document.createElement("button");
+    b.className = "candle-on-cake-item";
+    b.setAttribute("aria-label", "Candle " + (i+1));
+    b.innerHTML = `
+      <div class="candle-smoke-puff">
+        <svg viewBox="0 0 30 60" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 50 Q10 38 18 28 T15 8" stroke="rgba(255,255,255,0.75)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="17" cy="18" r="4" fill="rgba(255,255,255,0.4)"/>
+        </svg>
+      </div>
+      <div class="candle-flame-wrap">
+        <div class="candle-flame-glow"></div>
+        <div class="candle-flame-core"></div>
+      </div>
+      <div class="candle-wick"></div>
+      <div class="candle-stick-body">
+        <div class="candle-stripes"></div>
+      </div>
+    `;
+
+    b.addEventListener("click", () => {
       if(b.classList.contains("out")) return;
-      b.classList.add("out"); candlesOut++;
-      if(candlesOut===CANDLE_N){
-        wishLine.textContent="All candles out! Now cut the cake 🍰";
-        setTimeout(showCakeTimeBox, 400);
+      b.classList.add("out");
+      candlesOut++;
+      burst(25);
+      playSparkleChime();
+
+      if(candlesOut === CANDLE_N){
+        wishLine.textContent = "All candles blown out! Now slice the cake 🍰";
+        setTimeout(activateCakeCutting, 500);
       } else {
-        wishLine.textContent=`${CANDLE_N-candlesOut} candle${CANDLE_N-candlesOut>1?'s':''} still burning…`;
+        wishLine.textContent = `${CANDLE_N - candlesOut} candle${CANDLE_N - candlesOut > 1 ? 's' : ''} still glowing… make a wish!`;
       }
       checkParty();
     });
@@ -1668,16 +2120,16 @@ function renderCandles(){
   }
 }
 
-function showCakeTimeBox(){
-  const box=$("#cakeTimeBox");
-  box.classList.add("active");
-  $("#candlesZone").style.display="none";
+function activateCakeCutting(){
+  const overlay = $("#cakeCuttingOverlay");
+  const progressBox = $("#cutProgressBox");
+  if(overlay) overlay.style.display = "block";
+  if(progressBox) progressBox.style.display = "block";
 }
 
-/* ── DRAG TO CUT CAKE INTERACTION ── */
-const cutArena = $("#cakeCutArena");
+/* ── DRAG TO SLICE CAKE INTERACTION ── */
+const cutOverlay = $("#cakeCuttingOverlay");
 const knifeCursor = $("#knifeCursor");
-const knifePulse = $("#knifePulse");
 const cutProgressFill = $("#cutProgressFill");
 const cutPercent = $("#cutPercent");
 let isDraggingKnife = false;
@@ -1685,26 +2137,25 @@ let cutProgress = 0;
 
 function updateCutProgress(progress){
   cutProgress = Math.min(100, Math.max(0, progress));
-  cutProgressFill.style.width = cutProgress + "%";
+  if(cutProgressFill) cutProgressFill.style.width = cutProgress + "%";
   
   if(cutProgress < 100){
-    cutPercent.textContent = Math.round(cutProgress) + "% · Almost there";
+    if(cutPercent) cutPercent.textContent = Math.round(cutProgress) + "% · Slicing through...";
   } else {
-    cutPercent.textContent = "100% · Cake Sliced! 🍰";
+    if(cutPercent) cutPercent.textContent = "100% · Cake Sliced! 🍰";
     completeCakeSlice();
   }
 }
 
 function handleKnifeMove(clientX){
-  if(!cutArena || cutDone) return;
-  const rect = cutArena.getBoundingClientRect();
+  if(!cutOverlay || cutDone) return;
+  const rect = cutOverlay.getBoundingClientRect();
   const minX = 20;
-  const maxX = rect.width - 50;
+  const maxX = rect.width - 60;
   const currentX = clientX - rect.left;
   const clampedX = Math.min(maxX, Math.max(minX, currentX));
   
-  knifeCursor.style.left = clampedX + "px";
-  if(knifePulse) knifePulse.style.left = clampedX + "px";
+  if(knifeCursor) knifeCursor.style.left = clampedX + "px";
   
   const pct = ((clampedX - minX) / (maxX - minX)) * 100;
   if(pct > cutProgress){
@@ -1712,11 +2163,10 @@ function handleKnifeMove(clientX){
   }
 }
 
-if(cutArena){
-  cutArena.addEventListener("pointerdown", e => {
+if(cutOverlay){
+  cutOverlay.addEventListener("pointerdown", e => {
     if(cutDone) return;
     isDraggingKnife = true;
-    if(knifePulse) knifePulse.style.display="none";
     handleKnifeMove(e.clientX);
   });
   window.addEventListener("pointermove", e => {
@@ -1724,7 +2174,7 @@ if(cutArena){
     handleKnifeMove(e.clientX);
   });
   window.addEventListener("pointerup", () => { isDraggingKnife = false; });
-  cutArena.addEventListener("click", e => {
+  cutOverlay.addEventListener("click", e => {
     if(cutDone) return;
     handleKnifeMove(e.clientX);
   });
@@ -1735,21 +2185,26 @@ function completeCakeSlice(){
   cutDone = true;
   const cakeHalves = $("#cakeHalves");
   if(cakeHalves) cakeHalves.classList.add("split");
-  burst(110);
+  burst(120);
+  playSparkleChime();
+  if(knifeCursor) knifeCursor.style.display = "none";
+  if(cutOverlay) cutOverlay.style.pointerEvents = "none";
+  
   setTimeout(() => {
-    $("#cakeCuttingStep").style.display = "none";
-    $("#makeWishModal").classList.add("active");
-  }, 700);
+    const modal = $("#makeWishModal");
+    if(modal) modal.classList.add("active");
+  }, 600);
 }
 
 $("#madeWishBtn").addEventListener("click", () => {
   wishMade = true;
-  burst(120);
+  burst(130);
+  playSparkleChime();
   $("#makeWishModal").innerHTML = `
     <div style="font-size:3.2rem;margin-bottom:6px">🌠✨</div>
     <span class="cake-drag-badge-full" style="background:rgba(111,163,239,.18);color:var(--blue)">WISH LOCKED IN</span>
-    <h3 style="font-family:var(--font-serif);font-size:1.45rem;margin:8px 0 4px;color:var(--ink)">First slice is yours, Niko 🍰</h3>
-    <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:12px">Your special birthday deck is unlocked below ↓</p>
+    <h3 style="font-family:var(--font-serif);font-size:1.4rem;margin:6px 0 3px;color:var(--ink)">First slice is yours, Niko 🍰</h3>
+    <p style="font-size:.86rem;color:var(--ink-soft);margin-bottom:12px">Your special birthday surprise is unlocked below ↓</p>
   `;
   wishLine.textContent = "Wish locked in! The sweetest year is waiting for you 🌸";
   $("#enterBtn").disabled = false;
@@ -2236,7 +2691,7 @@ window.addEventListener("pointerdown", autoStartMusicOnGesture, { passive: true 
   .wrap-stage{margin:auto}
   .deck-card{justify-content:flex-start;padding-bottom:max(24px,env(safe-area-inset-bottom))}
   .deck-top-bar{padding-top:max(14px,env(safe-area-inset-top))}
-  .stage-party-center{justify-content:flex-start;overflow-y:auto;min-height:0}
+  .stage-party-center{justify-content:center;overflow:hidden;min-height:0}
   .stage-party-center>*{margin-block:auto}
   .stage-party-bottom{padding-bottom:max(24px,env(safe-area-inset-bottom))}
   /* Cake phase: collapse the header so the knife + progress bar always fit */
