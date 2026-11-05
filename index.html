@@ -277,18 +277,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* Balloon Zone & 3D Metallic SVG Balloons */
 .balloon-zone-full{
-  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:8;
+  position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;overflow:hidden;
 }
-.balloon-svg-wrap{
-  position:absolute;bottom:-180px;pointer-events:none;
-  animation:floatBalloonRise 5.2s cubic-bezier(.2,.5,.4,1) forwards;
-  filter:drop-shadow(0 15px 25px rgba(0,0,0,.45));
+.balloon-item{
+  position:absolute;bottom:-140px;width:clamp(65px, 15vw, 92px);height:auto;pointer-events:none;
+  animation:balloonRiseAndFloat 6.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  filter:drop-shadow(0 14px 26px rgba(0,0,0,0.55));
 }
-@keyframes floatBalloonRise{
+@keyframes balloonRiseAndFloat{
   0%{transform:translateY(0) rotate(0deg);opacity:0}
-  10%{opacity:1}
-  85%{opacity:1}
-  100%{transform:translateY(calc(-100vh - 220px)) rotate(var(--rot, 8deg));opacity:0}
+  4%{opacity:1}
+  80%{opacity:1}
+  100%{transform:translateY(calc(-100vh - 280px)) rotate(var(--rot, 8deg));opacity:0}
 }
 
 /* Centerpiece Cake Stage (Guaranteed to fit 100dvh without vertical scroll) */
@@ -332,9 +332,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* 5 Candles Mounted Directly on Cake Top Tier */
 .candles-on-cake{
-  position:absolute;top:10%;left:22%;width:56%;height:27%;
+  position:absolute;top:15%;left:28%;width:44%;height:18%;
   display:flex;justify-content:space-between;align-items:flex-end;
   pointer-events:auto;z-index:15;
+  transition:all .55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.candles-on-cake.candles-cleared{
+  opacity:0;
+  transform:translateY(-26px) scale(0.9);
+  pointer-events:none;
 }
 .candle-on-cake-item{
   position:relative;width:22px;height:62px;
@@ -1497,9 +1503,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   </div>
 
   <!-- Center: Realistic Bakery Cake with Candles ON TOP & Drag-to-Cut -->
+  <div class="balloon-zone-full" id="balloonZone" aria-hidden="true"></div>
   <div class="stage-party-center">
-    <!-- Realistic 3D SVG Balloon Zone -->
-    <div class="balloon-zone-full" id="balloonZone" aria-hidden="true"></div>
 
     <!-- Unified Gourmet Bakery Cake Stage -->
     <div class="cake-interactive-stage" id="cakeStageWrap">
@@ -1768,9 +1773,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   <!-- Top Navigation & Segments Progress -->
   <div class="deck-top-bar">
     <div class="deck-segments-bar" id="deckSegments" aria-hidden="true">
-      <!-- 12 Segments for 12 Cards -->
+      <!-- 11 Segments for 11 Cards -->
       <div class="deck-seg active"><div class="deck-seg-fill"></div></div>
-      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
       <div class="deck-seg"><div class="deck-seg-fill"></div></div>
       <div class="deck-seg"><div class="deck-seg-fill"></div></div>
       <div class="deck-seg"><div class="deck-seg-fill"></div></div>
@@ -1784,7 +1788,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
     <div class="deck-nav-header">
       <button class="deck-nav-btn" id="deckPrevBtn" aria-label="Previous card">← Back</button>
-      <span class="deck-step-counter" id="deckCounter">1 / 12</span>
+      <span class="deck-step-counter" id="deckCounter">1 / 11</span>
       <button class="deck-nav-btn primary" id="deckNextBtn" aria-label="Next card">Next →</button>
     </div>
   </div>
@@ -1954,8 +1958,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
         <h2 class="sec-head">Scratch <span>for a surprise</span></h2>
         <div class="scratch-wrap-deck" id="scratchWrap">
           <div class="scratch-under-deck">
-            <div class="script">you're stuck with me —</div>
-            <p>not sorry. happy birthday, Niko. here's to every plan, every rant, every laugh and every 2 a.m. conversation still to come. this is permanent.</p>
+            <div class="script" style="font-size:1.35rem;line-height:1.2;margin-bottom:6px">honestly? you're intolerable — 💅</div>
+            <p style="font-size:.85rem;line-height:1.45">…and yet somehow you're still my favorite human. Happy 19th Birthday, Niko! You're stubborn, overthink literally everything, and take 3-5 business days to reply to texts. But you're also the prettiest, sharpest, most iconic diva on the planet. Thanks for matching my exact unhinged energy and 2 a.m. life rants. You're stuck with this friendship for life — zero refunds, no exchanges, permanent besties. 🪷✨</p>
           </div>
           <canvas id="scratchCanvas" aria-label="Scratch card"></canvas>
         </div>
@@ -2179,27 +2183,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
       </div>
     </div>
 
-    <!-- ── CARD 12: SONG — OCEAN EYES, BILLIE EILISH ────── -->
-    <div class="deck-card" data-deck-idx="10" aria-label="Card 11: Billie Eilish Song">
-      <div class="deck-card-content">
-        <p class="label">🎵 your song corner</p>
-        <h2 class="sec-head">Ocean Eyes &nbsp;—&nbsp; <span>Billie Eilish</span></h2>
-        <p class="sub" style="margin-bottom:0">press play.</p>
-        <div class="song-wrap-deck">
-          <iframe id="songFrame"
-            src="https://www.youtube-nocookie.com/embed/viimfQi_pUw?rel=0&modestbranding=1"
-            title="Ocean Eyes — Billie Eilish"
-            loading="lazy"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin">
-          </iframe>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── CARD 13: LETTER + FOOTER END CARD ────────────── -->
-    <div class="deck-card" data-deck-idx="11" aria-label="Card 12: A Letter for Niko">
+    <!-- ── CARD 11: LETTER + FOOTER END CARD ────────────── -->
+    <div class="deck-card" data-deck-idx="10" aria-label="Card 11: A Letter for Niko">
       <div class="washi-tape tape-cream tape-top-center"></div>
       <div class="deck-card-content">
         <div class="pin-sticker pink">💌 A LETTER FOR NIKO</div>
@@ -2448,88 +2433,53 @@ $("#balloonsBtn").addEventListener("click", e => {
   e.target.textContent = "Balloons released 🎈";
 
   const z = $("#balloonZone");
-  z.innerHTML = "";
-  
-  // 14 Realistic 3D SVG Balloons with strings & physics
-  const balloonStyles = [
-    { fill: "url(#bRoseGold)", glare: "#ffffff", string: "rgba(255,200,220,0.8)", size: 76, rot: "-6deg" },
-    { fill: "url(#bMidnight)", glare: "#93c5fd", string: "rgba(147,197,253,0.8)", size: 84, rot: "8deg" },
-    { fill: "url(#bLilac)",    glare: "#ffffff", string: "rgba(216,180,254,0.8)", size: 78, rot: "-8deg" },
-    { fill: "url(#bGold)",     glare: "#ffffff", string: "rgba(254,240,138,0.8)", size: 82, rot: "5deg" },
-    { fill: "url(#bBlush)",    glare: "#ffffff", string: "rgba(253,164,175,0.8)", size: 86, rot: "-5deg" },
-    { fill: "url(#bRoseGold)", glare: "#ffffff", string: "rgba(255,200,220,0.8)", size: 80, rot: "10deg" },
-    { fill: "url(#bMidnight)", glare: "#93c5fd", string: "rgba(147,197,253,0.8)", size: 75, rot: "-7deg" },
-    { fill: "url(#bGold)",     glare: "#ffffff", string: "rgba(254,240,138,0.8)", size: 85, rot: "6deg" },
-    { fill: "url(#bLilac)",    glare: "#ffffff", string: "rgba(216,180,254,0.8)", size: 79, rot: "-9deg" },
-    { fill: "url(#bBlush)",    glare: "#ffffff", string: "rgba(253,164,175,0.8)", size: 83, rot: "7deg" },
-    { fill: "url(#bRoseGold)", glare: "#ffffff", string: "rgba(255,200,220,0.8)", size: 77, rot: "-4deg" },
-    { fill: "url(#bMidnight)", glare: "#93c5fd", string: "rgba(147,197,253,0.8)", size: 88, rot: "5deg" },
-    { fill: "url(#bGold)",     glare: "#ffffff", string: "rgba(254,240,138,0.8)", size: 74, rot: "-8deg" },
-    { fill: "url(#bLilac)",    glare: "#ffffff", string: "rgba(216,180,254,0.8)", size: 82, rot: "4deg" }
-  ];
+  if(z) {
+    z.innerHTML = "";
+    const balloonData = [
+      { c1: "#fbcfe8", c2: "#ec4899", glare: "#ffffff", rot: -6 },
+      { c1: "#93c5fd", c2: "#2563eb", glare: "#dbeafe", rot: 7 },
+      { c1: "#e9d5ff", c2: "#9333ea", glare: "#ffffff", rot: -8 },
+      { c1: "#fef08a", c2: "#ca8a04", glare: "#ffffff", rot: 5 },
+      { c1: "#ffe4e6", c2: "#e11d48", glare: "#ffffff", rot: -5 },
+      { c1: "#fbcfe8", c2: "#db2777", glare: "#ffffff", rot: 9 },
+      { c1: "#bfdbfe", c2: "#1d4ed8", glare: "#dbeafe", rot: -7 },
+      { c1: "#fde047", c2: "#a16207", glare: "#ffffff", rot: 6 },
+      { c1: "#d8b4fe", c2: "#7e22ce", glare: "#ffffff", rot: -9 },
+      { c1: "#fda4af", c2: "#be123c", glare: "#ffffff", rot: 7 },
+      { c1: "#fbcfe8", c2: "#ec4899", glare: "#ffffff", rot: -4 },
+      { c1: "#93c5fd", c2: "#2563eb", glare: "#dbeafe", rot: 5 },
+      { c1: "#fef08a", c2: "#ca8a04", glare: "#ffffff", rot: -8 },
+      { c1: "#e9d5ff", c2: "#9333ea", glare: "#ffffff", rot: 4 }
+    ];
 
-  const defs = `
-    <svg width="0" height="0" style="position:absolute">
-      <defs>
-        <radialGradient id="bRoseGold" cx="35%" cy="30%" r="65%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="25%" stop-color="#fbcfe8"/>
-          <stop offset="60%" stop-color="#f472b6"/>
-          <stop offset="90%" stop-color="#db2777"/>
-          <stop offset="100%" stop-color="#9d174d"/>
-        </radialGradient>
-        <radialGradient id="bMidnight" cx="35%" cy="30%" r="65%">
-          <stop offset="0%" stop-color="#dbeafe"/>
-          <stop offset="30%" stop-color="#60a5fa"/>
-          <stop offset="70%" stop-color="#2563eb"/>
-          <stop offset="95%" stop-color="#1d4ed8"/>
-          <stop offset="100%" stop-color="#0f172a"/>
-        </radialGradient>
-        <radialGradient id="bLilac" cx="35%" cy="30%" r="65%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="30%" stop-color="#e9d5ff"/>
-          <stop offset="65%" stop-color="#c084fc"/>
-          <stop offset="90%" stop-color="#9333ea"/>
-          <stop offset="100%" stop-color="#581c87"/>
-        </radialGradient>
-        <radialGradient id="bGold" cx="35%" cy="30%" r="65%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="25%" stop-color="#fef08a"/>
-          <stop offset="60%" stop-color="#facc15"/>
-          <stop offset="90%" stop-color="#ca8a04"/>
-          <stop offset="100%" stop-color="#713f12"/>
-        </radialGradient>
-        <radialGradient id="bBlush" cx="35%" cy="30%" r="65%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="30%" stop-color="#ffe4e6"/>
-          <stop offset="65%" stop-color="#fb7185"/>
-          <stop offset="90%" stop-color="#e11d48"/>
-          <stop offset="100%" stop-color="#881337"/>
-        </radialGradient>
-      </defs>
-    </svg>
-  `;
-
-  let balloonsHtml = defs;
-  balloonStyles.forEach((b, i) => {
-    const leftPct = 4 + (i * 6.8);
-    const delay = (i * 0.18).toFixed(2);
-    const dur = (4.5 + (i % 3) * 0.6).toFixed(1);
-    balloonsHtml += `
-      <div class="balloon-svg-wrap" style="left:${leftPct}%;animation-delay:${delay}s;animation-duration:${dur}s;--rot:${b.rot}">
-        <svg viewBox="0 0 70 140" width="${b.size}" height="${b.size * 2}" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M35 8 C56 8, 68 28, 65 54 C62 76, 42 92, 35 96 C28 92, 8 76, 5 54 C2 28, 14 8, 35 8 Z" fill="${b.fill}"/>
-          <ellipse cx="23" cy="26" rx="7" ry="14" transform="rotate(-28 23 26)" fill="${b.glare}" opacity="0.65" filter="blur(1px)"/>
-          <circle cx="48" cy="62" r="3" fill="#ffffff" opacity="0.4"/>
-          <polygon points="31,96 39,96 42,102 28,102" fill="${b.fill}"/>
-          <path d="M35 102 Q28 114, 40 124 T30 145 T38 165 T32 185" stroke="${b.string}" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-        </svg>
-      </div>
-    `;
-  });
-
-  z.innerHTML = balloonsHtml;
-  setTimeout(() => z.innerHTML = "", 7000);
+    let bHtml = "";
+    balloonData.forEach((b, i) => {
+      const leftPct = (3 + (i * 6.9)).toFixed(1);
+      const delay = (i * 0.16).toFixed(2);
+      const dur = (5.2 + (i % 3) * 0.7).toFixed(1);
+      bHtml += `
+        <div class="balloon-item" style="left:${leftPct}%;animation-delay:${delay}s;animation-duration:${dur}s;--rot:${b.rot}deg">
+          <svg viewBox="0 0 70 160" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="balG_${i}" cx="35%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="25%" stop-color="${b.c1}"/>
+                <stop offset="70%" stop-color="${b.c2}"/>
+                <stop offset="100%" stop-color="#180e22"/>
+              </radialGradient>
+            </defs>
+            <path d="M35 8 C56 8, 68 28, 65 54 C62 76, 42 92, 35 96 C28 92, 8 76, 5 54 C2 28, 14 8, 35 8 Z" fill="url(#balG_${i})"/>
+            <ellipse cx="23" cy="26" rx="7" ry="14" transform="rotate(-28 23 26)" fill="${b.glare}" opacity="0.75"/>
+            <circle cx="48" cy="62" r="3" fill="#ffffff" opacity="0.45"/>
+            <polygon points="31,96 39,96 42,102 28,102" fill="${b.c2}"/>
+            <path d="M35 102 Q28 116, 42 128 T28 148 T38 165" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+      `;
+    });
+    z.innerHTML = bHtml;
+    setTimeout(() => { z.innerHTML = ""; }, 8000);
+  }
 
   burst(75);
   playSparkleChime();
@@ -2545,6 +2495,8 @@ $("#balloonsBtn").addEventListener("click", e => {
 function renderCandlesOnCake(){
   if(!candlesEl) return;
   candlesEl.innerHTML = "";
+  candlesEl.style.display = "flex";
+  candlesEl.classList.remove("candles-cleared");
   candlesOut = 0;
   for(let i=0; i<CANDLE_N; i++){
     const b = document.createElement("button");
@@ -2576,8 +2528,16 @@ function renderCandlesOnCake(){
       playSparkleChime();
 
       if(candlesOut === CANDLE_N){
-        wishLine.textContent = "All candles blown out! Now slice the cake 🍰";
-        setTimeout(activateCakeCutting, 500);
+        wishLine.textContent = "All candles blown out! Make a wish ✨";
+        // Gracefully remove candles so they are not left floating when cake slices
+        setTimeout(() => {
+          candlesEl.classList.add("candles-cleared");
+          setTimeout(() => {
+            candlesEl.style.display = "none";
+            activateCakeCutting();
+            wishLine.textContent = "Now drag the knife across to slice the cake 🍰";
+          }, 550);
+        }, 650);
       } else {
         wishLine.textContent = `${CANDLE_N - candlesOut} candle${CANDLE_N - candlesOut > 1 ? 's' : ''} still glowing… make a wish!`;
       }
@@ -2651,27 +2611,28 @@ function completeCakeSlice(){
   if(cutDone) return;
   cutDone = true;
   wishMade = true;
-  const cakeHalves = $("#cakeHalves");
-  if(cakeHalves) cakeHalves.classList.add("split");
-  burst(140);
-  playSparkleChime();
-  if(knifeCursor) knifeCursor.style.display = "none";
-  if(cutOverlay) cutOverlay.style.pointerEvents = "none";
 
+  // 1. Instantly hide knife overlay, dashed line, and hint pill
+  if(cutOverlay) cutOverlay.style.display = "none";
+  if(knifeCursor) knifeCursor.style.display = "none";
+
+  // 2. Hide cut progress box cleanly
   const progressBox = $("#cutProgressBox");
   if(progressBox) progressBox.style.display = "none";
 
+  // 3. Hide redundant bottom section during celebration to avoid messy overlapping buttons
+  const partyBottom = $(".stage-party-bottom");
+  if(partyBottom) partyBottom.style.display = "none";
+
+  // 4. Split cake halves with audio chime and celebratory burst
+  const cakeHalves = $("#cakeHalves");
+  if(cakeHalves) cakeHalves.classList.add("split");
+  burst(130);
+  playSparkleChime();
+
+  // 5. Show clean, centered celebration card
   const celebArea = $("#partyCelebrationArea");
   if(celebArea) celebArea.classList.add("active");
-
-  wishLine.textContent = "Wish locked in! The sweetest year is waiting for you 🌸";
-  
-  const enterBtn = $("#enterBtn");
-  if(enterBtn) {
-    enterBtn.disabled = false;
-    enterBtn.classList.add("ready-pulse");
-    enterBtn.textContent = "See Your Birthday Surprise ✨ →";
-  }
 
   const proceedBtn = $("#partyProceedBtn");
   if(proceedBtn){
@@ -2679,8 +2640,6 @@ function completeCakeSlice(){
       goStage("main");
     });
   }
-
-  checkParty();
 }
 
 function checkParty(){
@@ -3003,11 +2962,36 @@ function initWrapped(){
 } 
 /* ── BACKGROUND MUSIC CONTROLLER (BILLIE / TALWIINDER / HASAN / WEEKND) ── */
 const PLAYLIST = [
-  { title: "Billie Eilish — BIRDS OF A FEATHER", artist: "Billie Eilish", ytId: "d5gxPgJ36o4" },
-  { title: "Talwiinder — Khayaal", artist: "Talwiinder", ytId: "3X0nFh6YvLw" },
-  { title: "Hasan Raheem — Aisay Kaisay", artist: "Hasan Raheem", ytId: "r20G_fQ1s_0" },
-  { title: "The Weeknd — Die For You", artist: "The Weeknd", ytId: "QLCpqdqeoII" },
-  { title: "Billie Eilish — Ocean Eyes", artist: "Billie Eilish", ytId: "viimfQi_pUw" }
+  { 
+    title: "Billie Eilish — Birds of a Feather", 
+    artist: "Billie Eilish", 
+    ytId: "d5gf9dXbPi0", 
+    start: 35 // Famous viral hook: "I'll love you 'til the day that I die..."
+  },
+  { 
+    title: "Talwiinder — Dhundhala", 
+    artist: "Talwiinder", 
+    ytId: "3X0nFh6YvLw", 
+    start: 38 // Viral Reel drop & hook: "Dhundhala dhundhala tera chehra..."
+  },
+  { 
+    title: "Hasan Raheem — Aisay Kaisay", 
+    artist: "Hasan Raheem", 
+    ytId: "r20G_fQ1s_0", 
+    start: 24 // Iconic viral acoustic chorus hook
+  },
+  { 
+    title: "The Weeknd — Die For You", 
+    artist: "The Weeknd", 
+    ytId: "QLCpqdqeoII", 
+    start: 48 // Climax hook: "Baby, I would die for you..."
+  },
+  { 
+    title: "Talwiinder — Gaah", 
+    artist: "Talwiinder", 
+    ytId: "w_i-3p6yvC4", 
+    start: 36 // Viral high-energy hook
+  }
 ];
 
 let currentTrackIdx = 0;
@@ -3110,7 +3094,7 @@ function loadTrack(idx, autoPlay = true){
     musicPlayBtn.textContent = "⏸";
     musicPlayBtn.setAttribute("aria-label", "Pause music");
     
-    bgCarrier.innerHTML = `<iframe id="bgMusicIframe" src="https://www.youtube-nocookie.com/embed/${track.ytId}?autoplay=1&enablejsapi=1&loop=1&playlist=${track.ytId}" allow="autoplay" title="Background Music"></iframe>`;
+    bgCarrier.innerHTML = `<iframe id="bgMusicIframe" src="https://www.youtube-nocookie.com/embed/${track.ytId}?autoplay=1&enablejsapi=1&loop=1&playlist=${track.ytId}&start=${track.start || 0}&playsinline=1" allow="autoplay; encrypted-media" title="Background Music"></iframe>`;
     startSoftAmbientChords();
   }
 }
