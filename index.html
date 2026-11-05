@@ -563,9 +563,240 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .deck-card{transition:none !important}
   .wrapped-slide-deck{transition:none !important}
 }
+
+/* ── PINTEREST AESTHETIC STYLING ──────────────────────────── */
+.star-particle{
+  position:fixed;pointer-events:none;z-index:2;color:rgba(255,230,245,.4);
+  font-size:clamp(.8rem,1.8vmin,1.3rem);animation:starDrift 7s ease-in-out infinite alternate;
+}
+@keyframes starDrift{
+  0%{transform:translateY(0) rotate(0deg);opacity:.25}
+  50%{opacity:.85;transform:translateY(-14px) rotate(15deg) scale(1.15);filter:drop-shadow(0 0 6px rgba(240,126,180,.6))}
+  100%{transform:translateY(-28px) rotate(-10deg);opacity:.25}
+}
+
+.washi-tape{
+  position:absolute;z-index:15;pointer-events:none;
+  height:18px;width:70px;
+  background:rgba(240,126,180,.38);
+  backdrop-filter:blur(3px);
+  border-left:2px dashed rgba(255,255,255,.4);
+  border-right:2px dashed rgba(255,255,255,.4);
+  box-shadow:0 2px 6px rgba(0,0,0,.25);
+}
+.washi-tape.tape-left{top:-8px;left:14px;transform:rotate(-6deg)}
+.washi-tape.tape-right{top:-8px;right:14px;transform:rotate(5deg);background:rgba(111,163,239,.38)}
+.washi-tape.tape-center{top:-10px;left:50%;transform:translateX(-50%) rotate(1deg);background:rgba(192,132,252,.4)}
+
+.aesthetic-sticker{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--font-sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 12px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(10px);color:#fff;box-shadow:0 4px 15px rgba(0,0,0,.25);
+  transform:rotate(-2deg);transition:transform .2s ease;
+}
+.aesthetic-sticker:hover{transform:rotate(0deg) scale(1.06)}
+.sticker-pink{background:rgba(240,126,180,.18);border-color:rgba(240,126,180,.4);color:var(--pink)}
+.sticker-blue{background:rgba(111,163,239,.18);border-color:rgba(111,163,239,.4);color:var(--blue)}
+.sticker-lily{background:rgba(192,132,252,.18);border-color:rgba(192,132,252,.4);color:var(--lily)}
+
+.gallery-grid-deck .p-slot:nth-child(1){transform:rotate(-1.2deg)}
+.gallery-grid-deck .p-slot:nth-child(2){transform:rotate(1.5deg)}
+.gallery-grid-deck .p-slot:nth-child(3){transform:rotate(1.1deg)}
+.gallery-grid-deck .p-slot:nth-child(4){transform:rotate(-1deg)}
+.gallery-grid-deck .p-slot:hover{transform:rotate(0deg) scale(1.03)!important;z-index:5}
+
+.childhood-polaroid-deck{transform:rotate(1.6deg);transition:transform .3s ease}
+.childhood-polaroid-deck:hover{transform:rotate(0deg) scale(1.04)}
+
+/* Realistic animated candles with SVG flames & smoke */
+.candles-large{
+  display:flex;justify-content:center;gap:clamp(16px,4.5vw,30px);
+  min-height:92px;margin-bottom:12px;align-items:flex-end;
+}
+.realistic-candle{
+  position:relative;width:34px;height:80px;
+  background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:0;outline:none;user-select:none;
+}
+.realistic-candle:hover{transform:scale(1.08)}
+.candle-smoke-puff{
+  position:absolute;top:-25px;left:50%;width:18px;height:34px;
+  pointer-events:none;opacity:0;transform:translateX(-50%);
+}
+.realistic-candle.out .candle-smoke-puff{
+  animation:smokeCurl 1.8s ease-out forwards;
+}
+@keyframes smokeCurl{
+  0%{opacity:.8;transform:translateX(-50%) translateY(0) scale(.6)}
+  50%{opacity:.6;transform:translateX(-30%) translateY(-22px) scale(1.2) rotate(12deg)}
+  100%{opacity:0;transform:translateX(-70%) translateY(-48px) scale(1.8) rotate(-18deg)}
+}
+.candle-flame-wrap{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:16px;height:24px;transition:opacity .25s ease,transform .25s ease;
+}
+.candle-flame-glow{
+  position:absolute;inset:-6px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,183,3,.7) 0%, rgba(255,111,170,.3) 50%, transparent 75%);
+  animation:flameGlow 1.6s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+.candle-flame-core{
+  position:absolute;inset:0;border-radius:50% 50% 35% 35% / 60% 60% 40% 40%;
+  background:linear-gradient(180deg, #ffffff 0%, #ffea79 28%, #ff9800 70%, #2196f3 100%);
+  box-shadow:0 0 14px #ffb703, 0 0 24px rgba(255,111,170,.6);
+  animation:flameFlicker .18s infinite alternate ease-in-out;
+  transform-origin:50% 90%;
+}
+@keyframes flameFlicker{
+  0%{transform:scaleY(1) scaleX(1) rotate(-1.5deg)}
+  50%{transform:scaleY(1.08) scaleX(.94) rotate(1deg)}
+  100%{transform:scaleY(.93) scaleX(1.04) rotate(-1deg)}
+}
+@keyframes flameGlow{
+  0%{transform:scale(.9);opacity:.7}
+  100%{transform:scale(1.2);opacity:1}
+}
+.candle-wick{
+  width:2.5px;height:10px;background:#241d24;border-radius:1px;
+  position:relative;z-index:2;margin-bottom:-2px;
+}
+.realistic-candle.out .candle-wick{
+  background:#443c44;box-shadow:0 -1px 3px #ff5722;
+}
+.candle-stick-body{
+  width:22px;height:46px;border-radius:4px 4px 6px 6px;
+  background:linear-gradient(180deg, #ffb3d9 0%, #f07eb4 45%, #b45389 100%);
+  position:relative;box-shadow:0 6px 14px rgba(0,0,0,.35), inset -2px 0 4px rgba(0,0,0,.25), inset 2px 0 4px rgba(255,255,255,.4);
+  overflow:hidden;
+}
+.candle-stick-body::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:rgba(255,255,255,.7);border-radius:50%;
+}
+.candle-stripes{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,.22) 6px, rgba(255,255,255,.22) 12px);
+}
+.realistic-candle:nth-child(2) .candle-stick-body{background:linear-gradient(180deg, #b3d1ff 0%, #6fa3ef 45%, #396bc7 100%)}
+.realistic-candle:nth-child(3) .candle-stick-body{background:linear-gradient(180deg, #e5b3ff 0%, #c084fc 45%, #8843cc 100%)}
+.realistic-candle:nth-child(4) .candle-stick-body{background:linear-gradient(180deg, #ffe0b3 0%, #f5b942 45%, #b87b14 100%)}
+.realistic-candle:nth-child(5) .candle-stick-body{background:linear-gradient(180deg, #b3ffe6 0%, #5eead4 45%, #24a894 100%)}
+
+.realistic-candle.out .candle-flame-wrap{
+  opacity:0;transform:translateX(-50%) scale(.2);pointer-events:none;
+}
+
+/* Realistic Cake Slice Depth */
+.cake-halves-full{transition:transform .75s cubic-bezier(.34,1.4,.64,1)}
+.cake-halves-full.split .cake-half-left{
+  transform:translateX(-38px) rotate(-6deg);
+  filter:drop-shadow(-8px 12px 20px rgba(0,0,0,.6));
+}
+.cake-halves-full.split .cake-half-right{
+  transform:translateX(38px) rotate(6deg);
+  filter:drop-shadow(8px 12px 20px rgba(0,0,0,.6));
+}
+
+/* Floating Background Music Bar */
+.floating-music-bar{
+  position:fixed;top:14px;right:16px;z-index:90;
+  display:flex;align-items:center;gap:9px;
+  background:rgba(15,13,26,.84);backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.14);
+  padding:6px 12px 6px 8px;border-radius:999px;
+  box-shadow:0 8px 30px rgba(0,0,0,.5), 0 0 20px rgba(240,126,180,.18);
+  user-select:none;transition:box-shadow .25s,transform .2s;
+  max-width:min(340px,88vw);
+}
+.floating-music-bar:hover{
+  box-shadow:0 12px 35px rgba(0,0,0,.6), 0 0 28px rgba(240,126,180,.35);
+}
+.music-disc-wrap{
+  position:relative;width:34px;height:34px;flex-shrink:0;cursor:pointer;
+}
+.music-vinyl{
+  width:34px;height:34px;border-radius:50%;
+  background:radial-gradient(circle, #f07eb4 0%, #16102c 45%, #08060e 100%);
+  border:2px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.5);font-size:.9rem;
+}
+.floating-music-bar.playing .music-vinyl{
+  animation:vinylSpin 3.5s linear infinite;
+  box-shadow:0 0 16px rgba(240,126,180,.6);
+}
+@keyframes vinylSpin{100%{transform:rotate(360deg)}}
+
+.music-waves-eq{
+  display:flex;align-items:flex-end;gap:2px;height:14px;position:absolute;bottom:2px;right:-2px;
+}
+.music-waves-eq span{
+  width:2px;height:4px;background:var(--pink);border-radius:2px;
+}
+.floating-music-bar.playing .music-waves-eq span:nth-child(1){animation:eqWave .6s infinite alternate ease-in-out}
+.floating-music-bar.playing .music-waves-eq span:nth-child(2){animation:eqWave .8s infinite alternate ease-in-out .2s}
+.floating-music-bar.playing .music-waves-eq span:nth-child(3){animation:eqWave .5s infinite alternate ease-in-out .1s}
+.floating-music-bar.playing .music-waves-eq span:nth-child(4){animation:eqWave .7s infinite alternate ease-in-out .3s}
+@keyframes eqWave{from{height:3px}to{height:13px}}
+
+.music-meta{
+  display:flex;flex-direction:column;overflow:hidden;white-space:nowrap;
+  max-width:160px;cursor:pointer;
+}
+.music-artist-title{
+  font-size:.78rem;font-weight:700;color:#fff;
+  letter-spacing:.02em;text-overflow:ellipsis;overflow:hidden;
+}
+.music-artist-sub{
+  font-size:.66rem;color:var(--pink);font-weight:500;
+  display:flex;align-items:center;gap:4px;
+}
+.music-actions{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.music-btn-icon{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  color:#fff;width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;cursor:pointer;transition:transform .12s,background .15s;
+}
+.music-btn-icon:hover{background:rgba(255,255,255,.2);transform:scale(1.1)}
+.music-btn-icon.play-btn{background:var(--pink);color:#fff;border-color:transparent}
+.music-btn-icon.play-btn:hover{background:var(--pink-bright);box-shadow:0 0 14px rgba(240,126,180,.6)}
+
 </style>
 </head>
 <body>
+
+  <!-- Floating Ambient Particles (Pinterest Sparkle Dust) -->
+  <div class="star-particle" style="top:12%;left:8%;animation-delay:0s">✦</div>
+  <div class="star-particle" style="top:25%;right:12%;animation-delay:1.5s;font-size:1.4rem;color:var(--pink)">✧</div>
+  <div class="star-particle" style="top:48%;left:15%;animation-delay:2.8s;color:var(--lily)">⋆</div>
+  <div class="star-particle" style="top:70%;right:10%;animation-delay:3.6s;font-size:1.1rem;color:var(--blue)">｡°✩</div>
+  <div class="star-particle" style="top:85%;left:22%;animation-delay:4.5s">✦</div>
+
+  <!-- Pinterest-Style Floating Background Music Bar -->
+  <div class="floating-music-bar" id="floatingMusicBar" aria-label="Soft Background Music Player">
+    <div class="music-disc-wrap" id="musicToggleDisc" title="Click to play / pause music">
+      <div class="music-vinyl">🎵</div>
+      <div class="music-waves-eq" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="music-meta" id="musicMetaClick" title="Switch song">
+      <span class="music-artist-title" id="musicTrackTitle">Billie Eilish — BIRDS OF A FEATHER</span>
+      <span class="music-artist-sub"><span style="font-size:.6rem">●</span> Soft vibes playlist</span>
+    </div>
+    <div class="music-actions">
+      <button class="music-btn-icon play-btn" id="musicPlayBtn" aria-label="Play or pause" title="Play / Pause">▶</button>
+      <button class="music-btn-icon" id="musicNextBtn" aria-label="Next song" title="Next soft track (Talwiinder / Hasan / Billie / Weeknd)">⏭</button>
+    </div>
+    <!-- Hidden carrier for audio streaming -->
+    <div id="bgAudioCarrier" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden"></div>
+  </div>
+
 <canvas id="confetti" aria-hidden="true"></canvas>
 
 <!-- ================= STAGE 1 · GATE ================= -->
@@ -736,9 +967,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   <!-- Top Navigation & Segments Progress -->
   <div class="deck-top-bar">
     <div class="deck-segments-bar" id="deckSegments" aria-hidden="true">
-      <!-- 13 Segments for 13 Cards -->
+      <!-- 12 Segments for 12 Cards -->
       <div class="deck-seg active"><div class="deck-seg-fill"></div></div>
-      <div class="deck-seg"><div class="deck-seg-fill"></div></div>
       <div class="deck-seg"><div class="deck-seg-fill"></div></div>
       <div class="deck-seg"><div class="deck-seg-fill"></div></div>
       <div class="deck-seg"><div class="deck-seg-fill"></div></div>
@@ -753,7 +983,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
     <div class="deck-nav-header">
       <button class="deck-nav-btn" id="deckPrevBtn" aria-label="Previous card">← Back</button>
-      <span class="deck-step-counter" id="deckCounter">1 / 13</span>
+      <span class="deck-step-counter" id="deckCounter">1 / 12</span>
       <button class="deck-nav-btn primary" id="deckNextBtn" aria-label="Next card">Next →</button>
     </div>
   </div>
@@ -766,40 +996,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
       <div class="deck-card-content">
         <div class="lily-divider">🪷 ✦ 🪷 ✦ 🪷</div>
         <p class="label" style="margin-top:16px">it's official</p>
-        <h1 class="hero-name">Happy Birthday,<br><em>Priya “Niko” Tomar</em> 🎉</h1>
+        <div style="display:flex;justify-content:center;gap:8px;margin-bottom:6px">
+     <span class="aesthetic-sticker sticker-pink">✿ certified diva</span>
+     <span class="aesthetic-sticker sticker-blue">💅 baddie era</span>
+     <span class="aesthetic-sticker sticker-lily">✨ main character</span>
+   </div>
+   <h1 class="hero-name">Happy Birthday,<br><em>Priya “Niko” Tomar</em> 🎉</h1>
         <div style="text-align:center;margin:12px 0 8px">
-          <span class="hero-tag">🗓️ 30 October &nbsp;·&nbsp; Lucknow &nbsp;·&nbsp; Your day</span>
+          <span class="hero-tag">🗓️ 30 October &nbsp;·&nbsp; Certified Diva 💅 &nbsp;·&nbsp; Baddie Era ✨</span>
         </div>
-        <div><span class="hero-badge">certified birthday legend · one day only, non-refundable</span></div>
+        <div><span class="hero-badge">certified diva · main character energy · 100% baddie 🩵</span></div>
         <p class="hero-date">today belongs to you</p>
       </div>
     </div>
 
-    <!-- ── CARD 2: PHONE MESSAGES ───────────────────────── -->
-    <div class="deck-card" data-deck-idx="1" aria-label="Card 2: Birthday Texts">
-      <div class="deck-card-content">
-        <div class="phone-mockup" id="phoneMockup">
-          <div class="phone-notch"><span class="phone-cam"></span></div>
-          <div class="phone-chat-messages" id="chatMessages">
-            <div class="chat-bubble" data-msg-idx="0">HAPPY BIRTHDAY, NIKO 🎉</div>
-            <div class="chat-bubble" data-msg-idx="1">30 October. Officially your day.</div>
-            <div class="chat-bubble" data-msg-idx="2">lilies &gt; roses. always. ✿</div>
-            <div class="chat-bubble" data-msg-idx="3">Billie on repeat today. No skips.</div>
-            <div class="chat-bubble" data-msg-idx="4">Lucknow's favourite — happy birthday.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- ── CARD 3: PHOTO GALLERY 1 ──────────────────────── -->
-    <div class="deck-card" data-deck-idx="2" aria-label="Card 3: Photo Gallery Part 1">
+    <div class="deck-card" data-deck-idx="1" aria-label="Card 2: Photo Gallery Part 1">
       <div class="deck-card-content">
         <p class="label">moments 📸</p>
         <h2 class="sec-head">The Niko <span>gallery</span></h2>
         <p class="sub" style="margin-bottom:4px">A few snapshots of you.</p>
 
         <div class="gallery-grid-deck">
-          <div class="p-slot tall" id="slot1">
+          <div class="p-slot tall" id="slot1"><div class="washi-tape tape-left"></div>
             <img src="photos/photo-05-green-saree-outdoor.jpg" alt="Priya in a green and red saree outdoors" loading="lazy">
           </div>
           <div class="p-slot" id="slot2">
@@ -808,7 +1027,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
           <div class="p-slot" id="slot3">
             <img src="photos/photo-03-mirror-white-top.jpg" alt="Mirror selfie in a white top" loading="lazy">
           </div>
-          <div class="p-slot wide" id="slot4">
+          <div class="p-slot wide" id="slot4"><div class="washi-tape tape-right"></div>
             <img src="photos/photo-01-brown-tee.jpg" alt="Priya in a brown airplane t-shirt" loading="lazy">
           </div>
         </div>
@@ -816,7 +1035,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 4: PHOTO GALLERY 2 & CHILDHOOD POLAROID ─── -->
-    <div class="deck-card" data-deck-idx="3" aria-label="Card 4: Gallery Part 2 & Childhood Polaroid">
+    <div class="deck-card" data-deck-idx="2" aria-label="Card 3: Gallery Part 2 & Childhood Polaroid">
       <div class="deck-card-content">
         <p class="label">memories ✨</p>
         <h2 class="sec-head">More <span>favourites</span></h2>
@@ -830,7 +1049,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
           </div>
         </div>
 
-        <figure class="childhood-polaroid-deck">
+        <figure class="childhood-polaroid-deck"><div class="washi-tape tape-center"></div>
           <div class="polar-frame">
             <img src="photos/photo-06-childhood-tiger.jpg" alt="Priya as a small child in an orange tiger sweater" loading="lazy">
           </div>
@@ -840,7 +1059,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 5: BIRTHDAY REEL ────────────────────────── -->
-    <div class="deck-card" data-deck-idx="4" aria-label="Card 5: Birthday Reel Video">
+    <div class="deck-card" data-deck-idx="3" aria-label="Card 4: Birthday Reel Video">
       <div class="deck-card-content">
         <p class="label">watch 🎬</p>
         <h2 class="sec-head">The Birthday <span>Reel</span></h2>
@@ -850,7 +1069,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 6: HER CLIPS STRIP ──────────────────────── -->
-    <div class="deck-card" data-deck-idx="5" aria-label="Card 6: Video Clips Strip">
+    <div class="deck-card" data-deck-idx="4" aria-label="Card 5: Video Clips Strip">
       <div class="deck-card-content">
         <p class="label">clips 🎞️</p>
         <h2 class="sec-head">Her <span>clips</span></h2>
@@ -868,7 +1087,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 7: A FEW THINGS ABOUT YOU (SCALED TRAITS) ─ -->
-    <div class="deck-card deck-card-traits" data-deck-idx="6" aria-label="Card 7: Traits Showcase">
+    <div class="deck-card deck-card-traits" data-deck-idx="5" aria-label="Card 6: Traits Showcase">
       <div class="deck-card-content">
         <p class="label">🎞️ us</p>
         <h2 class="sec-head">A few <span>things about you</span></h2>
@@ -880,7 +1099,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 8: THREE BOXES ──────────────────────────── -->
-    <div class="deck-card" data-deck-idx="7" aria-label="Card 8: Three Gift Boxes">
+    <div class="deck-card" data-deck-idx="6" aria-label="Card 7: Three Gift Boxes">
       <div class="deck-card-content">
         <p class="label">🎁 surprises</p>
         <h2 class="sec-head">Three <span>boxes</span></h2>
@@ -918,7 +1137,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 9: SCRATCH CARD ─────────────────────────── -->
-    <div class="deck-card" data-deck-idx="8" aria-label="Card 9: Scratch Card">
+    <div class="deck-card" data-deck-idx="7" aria-label="Card 8: Scratch Card">
       <div class="deck-card-content">
         <p class="label">secret message 🎁</p>
         <h2 class="sec-head">Scratch <span>for a surprise</span></h2>
@@ -934,7 +1153,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 10: FLIP WISHES ─────────────────────────── -->
-    <div class="deck-card" data-deck-idx="9" aria-label="Card 10: Flip Wishes">
+    <div class="deck-card" data-deck-idx="8" aria-label="Card 9: Flip Wishes">
       <div class="deck-card-content">
         <p class="label">🌸 birthday wishes</p>
         <h2 class="sec-head">Reveal your <span>birthday wishes</span></h2>
@@ -1081,7 +1300,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 11: NIKO WRAPPED ────────────────────────── -->
-    <div class="deck-card" data-deck-idx="10" aria-label="Card 11: Niko Wrapped Recap">
+    <div class="deck-card" data-deck-idx="9" aria-label="Card 10: Niko Wrapped Recap">
       <div class="deck-card-content">
         <p class="label">✨ your 2026 recap</p>
         <h2 class="sec-head">Niko <span>Wrapped</span></h2>
@@ -1112,9 +1331,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
             </div>
 
             <div class="wrapped-slide-deck" data-slide="2" style="background:linear-gradient(145deg, #1a0f26, #2d1645);">
-              <div class="wrapped-kicker-deck">HOMETOWN PRIDE</div>
-              <div class="wrapped-big-text-deck">home city: <span style="color:var(--lily)">Lucknow</span></div>
-              <div class="wrapped-badge-deck">🌆 City of Nawabs</div>
+              <div class="wrapped-kicker-deck">PURE AURA</div>
+              <div class="wrapped-big-text-deck">status: <span style="color:var(--lily)">Certified Diva &amp; Baddie 💅</span></div>
+              <div class="wrapped-badge-deck">✨ 100% main character energy · unmatched</div>
             </div>
 
             <div class="wrapped-slide-deck" data-slide="3" style="background:linear-gradient(145deg, #240c1e, #3d1433);">
@@ -1149,7 +1368,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 12: SONG — OCEAN EYES, BILLIE EILISH ────── -->
-    <div class="deck-card" data-deck-idx="11" aria-label="Card 12: Billie Eilish Song">
+    <div class="deck-card" data-deck-idx="10" aria-label="Card 11: Billie Eilish Song">
       <div class="deck-card-content">
         <p class="label">🎵 your song corner</p>
         <h2 class="sec-head">Ocean Eyes &nbsp;—&nbsp; <span>Billie Eilish</span></h2>
@@ -1168,7 +1387,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     </div>
 
     <!-- ── CARD 13: LETTER + FOOTER END CARD ────────────── -->
-    <div class="deck-card" data-deck-idx="12" aria-label="Card 13: A Letter for Niko">
+    <div class="deck-card" data-deck-idx="11" aria-label="Card 12: A Letter for Niko">
       <div class="deck-card-content">
         <p class="label">💌 last thing</p>
         <h2 class="sec-head">A <span>letter</span></h2>
@@ -1550,7 +1769,7 @@ $("#enterBtn").addEventListener("click",()=>{
 /* ── CHANGE 2: CARD DECK CONTROLLER (13 CARDS, 100dvh, NO SCROLL) ── */
 let deckCur = 0;
 const deckCards = $$(".deck-card");
-const deckTotal = deckCards.length || 13;
+const deckTotal = deckCards.length || 12;
 const deckSegments = $$(".deck-seg");
 const deckCounter = $("#deckCounter");
 const deckPrevBtn = $("#deckPrevBtn");
@@ -1564,7 +1783,7 @@ function initDeck(){
   goToDeckCard(0);
 
   // Card interactions init
-  initPhoneTexts();
+  // phone card removed
   initReel();
   initScratch();
   initWishes();
@@ -1583,7 +1802,7 @@ function initDeck(){
     if(!$("#main").classList.contains("on")) return;
     if(e.key === "ArrowRight"){
       // If on Wrapped card and not at final slide, let Wrapped handle it
-      if(deckCur === 10 && wrappedCur < 6) return;
+      if(deckCur === 9 && wrappedCur < 6) return;
       if(deckCur < deckTotal - 1) goToDeckCard(deckCur + 1);
     } else if(e.key === "ArrowLeft"){
       if(deckCur > 0) goToDeckCard(deckCur - 1);
@@ -1612,7 +1831,7 @@ function initDeck(){
     if(Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5){
       if(deltaX < 0){
         // Swipe Left -> Next
-        if(deckCur === 10 && wrappedCur < 6) return;
+        if(deckCur === 9 && wrappedCur < 6) return;
         if(deckCur < deckTotal - 1) goToDeckCard(deckCur + 1);
       } else {
         // Swipe Right -> Prev
@@ -1654,20 +1873,18 @@ function goToDeckCard(idx){
   }
 
   // Trigger special card effects
-  if(deckCur === 1){ // Phone messages
-    triggerPhoneTexts();
-  }
+  
 }
 
 function pauseMediaOnLeave(idx){
-  if(idx === 4){ // Birthday Reel
+  if(idx === 3){ // Birthday Reel
     const v = $("#birthdayReelVideo");
     if(v) v.pause();
   }
-  if(idx === 5){ // Clips Strip
+  if(idx === 4){ // Clips Strip
     $$(".niko-clips video").forEach(v => v.pause());
   }
-  if(idx === 11){ // Song
+  if(idx === 10){ // Song
     const f = $("#songFrame");
     if(f && f.src){
       const s = f.src;
@@ -1677,22 +1894,7 @@ function pauseMediaOnLeave(idx){
   }
 }
 
-/* ── CARD 2: PHONE MESSAGES ───────────────────────── */
-let phoneTriggered = false;
-function initPhoneTexts(){
-  if(rm) $$("#chatMessages .chat-bubble").forEach(b => b.classList.add("bubble-visible"));
-}
-function triggerPhoneTexts(){
-  if(phoneTriggered || rm) return;
-  phoneTriggered = true;
-  const bubbles = $$("#chatMessages .chat-bubble");
-  bubbles.forEach((b, idx) => {
-    setTimeout(() => {
-      b.classList.add("bubble-visible");
-      if(idx === bubbles.length - 1) burst(25);
-    }, 280 + idx * 620);
-  });
-}
+// Card 2 phone texts removed
 
 /* ── CARD 7: A FEW THINGS ABOUT YOU (TRAITS REEL) ─── */
 function initReel(){
@@ -1701,7 +1903,7 @@ function initReel(){
     {emo:"🎵",cap:"Ocean Eyes era",small:"Billie understood the assignment"},
     {emo:"💙",cap:"Blue, black, pink",small:"her colours — no explanation needed"},
     {emo:"😂",cap:"The okay-vala crazy",small:"the best kind of person to exist"},
-    {emo:"🌆",cap:"Lucknow girl",small:"city of nawabs, home of Niko"},
+    {emo:"💅",cap:"Certified Diva & Baddie",small:"radiating 100% main character aura every single day"},
     {emo:"🎂",cap:"Birthday legend",small:"today's headline — every year, same star"},
   ];
   const BG=[
@@ -1872,7 +2074,159 @@ function initWrapped(){
       goToDeckCard(deckCur + 1);
     });
   }
-} </script>
+} 
+/* ── BACKGROUND MUSIC CONTROLLER (BILLIE / TALWIINDER / HASAN / WEEKND) ── */
+const PLAYLIST = [
+  { title: "Billie Eilish — BIRDS OF A FEATHER", artist: "Billie Eilish", ytId: "d5gxPgJ36o4" },
+  { title: "Talwiinder — Khayaal", artist: "Talwiinder", ytId: "3X0nFh6YvLw" },
+  { title: "Hasan Raheem — Aisay Kaisay", artist: "Hasan Raheem", ytId: "r20G_fQ1s_0" },
+  { title: "The Weeknd — Die For You", artist: "The Weeknd", ytId: "QLCpqdqeoII" },
+  { title: "Billie Eilish — Ocean Eyes", artist: "Billie Eilish", ytId: "viimfQi_pUw" }
+];
+
+let currentTrackIdx = 0;
+let isMusicPlaying = false;
+let audioCtx = null;
+let synthTimer = null;
+
+const musicBar = $("#floatingMusicBar");
+const musicPlayBtn = $("#musicPlayBtn");
+const musicNextBtn = $("#musicNextBtn");
+const musicTrackTitle = $("#musicTrackTitle");
+const musicToggleDisc = $("#musicToggleDisc");
+const musicMetaClick = $("#musicMetaClick");
+const bgCarrier = $("#bgAudioCarrier");
+
+function initAudioContext(){
+  if(!audioCtx){
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(AudioContext) audioCtx = new AudioContext();
+  }
+  if(audioCtx && audioCtx.state === "suspended"){
+    audioCtx.resume();
+  }
+}
+
+function playSparkleChime(){
+  try {
+    initAudioContext();
+    if(!audioCtx) return;
+    const now = audioCtx.currentTime;
+    const notes = [523.25, 659.25, 783.99, 1046.50];
+    notes.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+      gain.gain.setValueAtTime(0.08, now + idx * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 0.6);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now + idx * 0.08);
+      osc.stop(now + idx * 0.08 + 0.6);
+    });
+  } catch(e){}
+}
+
+function startSoftAmbientChords(){
+  if(synthTimer) return;
+  initAudioContext();
+  if(!audioCtx) return;
+
+  const chords = [
+    [261.63, 329.63, 392.00, 493.88], // Cmaj7
+    [220.00, 261.63, 329.63, 392.00], // Am7
+    [174.61, 220.00, 261.63, 329.63], // Fmaj7
+    [196.00, 246.94, 293.66, 392.00]  // G6
+  ];
+  let chordIdx = 0;
+
+  function playChord(){
+    if(!isMusicPlaying || !audioCtx) return;
+    const now = audioCtx.currentTime;
+    const chord = chords[chordIdx % chords.length];
+    chordIdx++;
+
+    chord.forEach(freq => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.025, now + 1.2);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.8);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 4.0);
+    });
+  }
+
+  playChord();
+  synthTimer = setInterval(playChord, 3800);
+}
+
+function stopSoftAmbientChords(){
+  if(synthTimer){
+    clearInterval(synthTimer);
+    synthTimer = null;
+  }
+}
+
+function loadTrack(idx, autoPlay = true){
+  currentTrackIdx = (idx + PLAYLIST.length) % PLAYLIST.length;
+  const track = PLAYLIST[currentTrackIdx];
+  musicTrackTitle.textContent = track.title;
+
+  if(autoPlay){
+    isMusicPlaying = true;
+    musicBar.classList.add("playing");
+    musicPlayBtn.textContent = "⏸";
+    musicPlayBtn.setAttribute("aria-label", "Pause music");
+    
+    bgCarrier.innerHTML = `<iframe id="bgMusicIframe" src="https://www.youtube-nocookie.com/embed/${track.ytId}?autoplay=1&enablejsapi=1&loop=1&playlist=${track.ytId}" allow="autoplay" title="Background Music"></iframe>`;
+    startSoftAmbientChords();
+  }
+}
+
+function toggleMusic(){
+  initAudioContext();
+  if(isMusicPlaying){
+    isMusicPlaying = false;
+    musicBar.classList.remove("playing");
+    musicPlayBtn.textContent = "▶";
+    musicPlayBtn.setAttribute("aria-label", "Play music");
+    bgCarrier.innerHTML = "";
+    stopSoftAmbientChords();
+  } else {
+    loadTrack(currentTrackIdx, true);
+  }
+}
+
+function nextTrack(){
+  burst(30);
+  playSparkleChime();
+  loadTrack(currentTrackIdx + 1, true);
+}
+
+if(musicPlayBtn) musicPlayBtn.addEventListener("click", toggleMusic);
+if(musicToggleDisc) musicToggleDisc.addEventListener("click", toggleMusic);
+if(musicMetaClick) musicMetaClick.addEventListener("click", nextTrack);
+if(musicNextBtn) musicNextBtn.addEventListener("click", nextTrack);
+
+let firstInteraction = false;
+function autoStartMusicOnGesture(){
+  if(firstInteraction) return;
+  firstInteraction = true;
+  initAudioContext();
+  if(!isMusicPlaying){
+    loadTrack(0, true);
+  }
+  window.removeEventListener("pointerdown", autoStartMusicOnGesture);
+}
+window.addEventListener("pointerdown", autoStartMusicOnGesture, { passive: true });
+
+</script>
 <script>
   (() => { 
   /* ---------- 1. CSS fixes (injected after your styles so they win) ---------- */
@@ -1935,7 +2289,7 @@ function initWrapped(){
 
   /* ---------- 6. Arrow-right now advances the Wrapped card too ---------- */
   addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' && $('#main').classList.contains('on') && deckCur === 10 && wrappedCur < 6) {
+    if (e.key === 'ArrowRight' && $('#main').classList.contains('on') && deckCur === 9 && wrappedCur < 6) {
       $('#wrappedCard').click();
     }
   });
