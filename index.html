@@ -548,6 +548,36 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 }
 
 /* ── PINTEREST SCRAPBOOK & MOODBOARD DECK CARD STYLES ── */
+
+/* Pinterest Cute Ribbons, Bows & Sticker Accents */
+.cute-ribbon-bow{
+  position:absolute;z-index:18;pointer-events:none;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+  animation:ribbonFloat 3s infinite ease-in-out alternate;
+}
+@keyframes ribbonFloat{
+  0%{transform:scale(1) rotate(-2deg)}
+  100%{transform:scale(1.05) rotate(2deg)}
+}
+.cute-sticker-pin{
+  position:absolute;z-index:15;pointer-events:none;font-size:1.4rem;
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,0.4));
+  transition:transform .2s ease;
+}
+.letter-paper-wrap{
+  position:relative;width:min(520px, 92vw);background:linear-gradient(135deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.03) 100%);
+  border:1.5px solid rgba(255,182,193,.3);border-radius:20px;padding:22px 24px;
+  box-shadow:0 16px 45px rgba(0,0,0,.6), inset 0 0 25px rgba(240,126,180,.08);
+  backdrop-filter:blur(10px);
+}
+.letter-wax-seal{
+  width:42px;height:42px;border-radius:50%;margin:-32px auto 12px;
+  background:radial-gradient(circle at 40% 35%, #f43f5e 0%, #be123c 60%, #881337 100%);
+  border:2px solid #fda4af;box-shadow:0 6px 18px rgba(190,18,60,.6), inset 0 0 6px rgba(255,255,255,.5);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);
+  font-weight:700;font-size:1.25rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+
 .washi-tape{
   position:absolute;height:18px;width:76px;z-index:12;pointer-events:none;
   background:rgba(255,182,193,.68);backdrop-filter:blur(3px);
@@ -2449,36 +2479,48 @@ $("#balloonsBtn").addEventListener("click", e => {
       { c1: "#fbcfe8", c2: "#ec4899", glare: "#ffffff", rot: -4 },
       { c1: "#93c5fd", c2: "#2563eb", glare: "#dbeafe", rot: 5 },
       { c1: "#fef08a", c2: "#ca8a04", glare: "#ffffff", rot: -8 },
-      { c1: "#e9d5ff", c2: "#9333ea", glare: "#ffffff", rot: 4 }
+      { c1: "#e9d5ff", c2: "#9333ea", glare: "#ffffff", rot: 4 },
+      { c1: "#fbcfe8", c2: "#db2777", glare: "#ffffff", rot: 6 },
+      { c1: "#93c5fd", c2: "#2563eb", glare: "#dbeafe", rot: -5 }
     ];
 
-    let bHtml = "";
     balloonData.forEach((b, i) => {
-      const leftPct = (3 + (i * 6.9)).toFixed(1);
-      const delay = (i * 0.16).toFixed(2);
-      const dur = (5.2 + (i % 3) * 0.7).toFixed(1);
-      bHtml += `
-        <div class="balloon-item" style="left:${leftPct}%;animation-delay:${delay}s;animation-duration:${dur}s;--rot:${b.rot}deg">
-          <svg viewBox="0 0 70 160" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="balG_${i}" cx="35%" cy="30%" r="65%">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="25%" stop-color="${b.c1}"/>
-                <stop offset="70%" stop-color="${b.c2}"/>
-                <stop offset="100%" stop-color="#180e22"/>
-              </radialGradient>
-            </defs>
-            <path d="M35 8 C56 8, 68 28, 65 54 C62 76, 42 92, 35 96 C28 92, 8 76, 5 54 C2 28, 14 8, 35 8 Z" fill="url(#balG_${i})"/>
-            <ellipse cx="23" cy="26" rx="7" ry="14" transform="rotate(-28 23 26)" fill="${b.glare}" opacity="0.75"/>
-            <circle cx="48" cy="62" r="3" fill="#ffffff" opacity="0.45"/>
-            <polygon points="31,96 39,96 42,102 28,102" fill="${b.c2}"/>
-            <path d="M35 102 Q28 116, 42 128 T28 148 T38 165" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
+      const leftPct = (2.5 + (i * 6.2)).toFixed(1);
+      const delay = (i * 0.14).toFixed(2);
+      const dur = (5.5 + (i % 4) * 0.5).toFixed(1);
+
+      const el = document.createElement("div");
+      el.className = "balloon-item";
+      el.style.left = leftPct + "%";
+      el.style.animationDelay = delay + "s";
+      el.style.animationDuration = dur + "s";
+      el.style.setProperty("--rot", b.rot + "deg");
+
+      el.innerHTML = `
+        <svg viewBox="0 0 70 160" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="balG_${i}" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="25%" stop-color="${b.c1}"/>
+              <stop offset="70%" stop-color="${b.c2}"/>
+              <stop offset="100%" stop-color="#180e22"/>
+            </radialGradient>
+          </defs>
+          <path d="M35 8 C56 8, 68 28, 65 54 C62 76, 42 92, 35 96 C28 92, 8 76, 5 54 C2 28, 14 8, 35 8 Z" fill="url(#balG_${i})"/>
+          <ellipse cx="23" cy="26" rx="7" ry="14" transform="rotate(-28 23 26)" fill="${b.glare}" opacity="0.75"/>
+          <circle cx="48" cy="62" r="3" fill="#ffffff" opacity="0.45"/>
+          <polygon points="31,96 39,96 42,102 28,102" fill="${b.c2}"/>
+          <path d="M35 102 Q28 116, 42 128 T28 148 T38 165" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
       `;
+
+      // Only clean up each balloon once it has safely floated all the way off the top of the screen!
+      el.addEventListener("animationend", () => {
+        el.remove();
+      });
+
+      z.appendChild(el);
     });
-    z.innerHTML = bHtml;
-    setTimeout(() => { z.innerHTML = ""; }, 8000);
   }
 
   burst(75);
@@ -2966,31 +3008,31 @@ const PLAYLIST = [
     title: "Billie Eilish — Birds of a Feather", 
     artist: "Billie Eilish", 
     ytId: "d5gf9dXbPi0", 
-    start: 35 // Famous viral hook: "I'll love you 'til the day that I die..."
+    start: 35 // Viral Hook: "I'll love you 'til the day that I die..."
   },
   { 
     title: "Talwiinder — Dhundhala", 
     artist: "Talwiinder", 
-    ytId: "3X0nFh6YvLw", 
-    start: 38 // Viral Reel drop & hook: "Dhundhala dhundhala tera chehra..."
+    ytId: "9CJfSLzELfM", 
+    start: 40 // Viral Drop & Chorus: "Dhundhala dhundhala..."
   },
   { 
     title: "Hasan Raheem — Aisay Kaisay", 
     artist: "Hasan Raheem", 
-    ytId: "r20G_fQ1s_0", 
-    start: 24 // Iconic viral acoustic chorus hook
+    ytId: "wS7wz14Q4Yg", 
+    start: 22 // Iconic Viral Acoustic Chorus
   },
   { 
     title: "The Weeknd — Die For You", 
     artist: "The Weeknd", 
     ytId: "QLCpqdqeoII", 
-    start: 48 // Climax hook: "Baby, I would die for you..."
+    start: 48 // Climax Hook: "Baby, I would die for you..."
   },
   { 
-    title: "Talwiinder — Gaah", 
+    title: "Talwiinder — Khoya", 
     artist: "Talwiinder", 
-    ytId: "w_i-3p6yvC4", 
-    start: 36 // Viral high-energy hook
+    ytId: "2Q5TVhvoKFs", 
+    start: 30 // Famous Viral Chorus Hook
   }
 ];
 
