@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Happy Birthday, Niko! 🎉</title>
+<title>Happy Birthday, priyaa! 🎉</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -317,24 +317,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .hero-badge{display:inline-block;margin-top:14px;background:rgba(255,255,255,.05);border:1.5px dashed var(--pink);color:var(--pink);font-weight:600;padding:7px 18px;border-radius:999px;font-size:.82rem}
 .hero-date{color:var(--ink-soft);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin-top:10px}
 
-/* Card 2 Phone Messages */
-.phone-mockup{
-  width:min(340px,92vw);margin:0 auto;background:#0d0c14;border:2.5px solid rgba(255,255,255,.14);
-  border-radius:38px;padding:14px 14px 22px;box-shadow:0 20px 50px rgba(0,0,0,.65);box-sizing:border-box;
-}
-.phone-notch{width:84px;height:16px;background:#000;border-radius:99px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center}
-.phone-cam{width:7px;height:7px;border-radius:50%;background:#1b1926}
-.phone-chat-header{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:8px}
-.phone-header-title{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-.phone-header-date{font-size:.66rem;color:rgba(255,255,255,.38)}
-.phone-chat-messages{display:flex;flex-direction:column;gap:9px;text-align:left;min-height:200px}
-.chat-bubble{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#f3eef8;
-  padding:9px 13px;border-radius:16px 16px 16px 4px;font-size:.86rem;line-height:1.4;
-  max-width:88%;align-self:flex-start;box-shadow:0 4px 14px rgba(0,0,0,.25);box-sizing:border-box;
-  opacity:0;transform:translateY(12px) scale(.96);transition:opacity .4s ease,transform .4s cubic-bezier(.34,1.56,.64,1);
-}
-.chat-bubble.bubble-visible{opacity:1;transform:translateY(0) scale(1)}
 
 /* Card 3 & 4 Gallery (Split into two cards for perfect 390x844 fit & orange saree headroom) */
 .gallery-grid-deck{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:min(520px,100%);margin-top:16px}
@@ -449,8 +431,118 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .wrapped-tap-hint-deck{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.1em;pointer-events:none;z-index:10}
 
 /* Card 12 Song */
-.song-wrap-deck{width:min(520px,94vw);margin:18px auto 0;border-radius:20px;overflow:hidden;border:1px solid var(--card-border);aspect-ratio:16/9}
+.song-wrap-deck{width:min(520px,94vw);margin:18px auto 0;border-radius:20px;overflow:hidden;border:1px solid var(--card-border);aspect-ratio:16/9;box-shadow:0 20px 50px rgba(0,0,0,.55)}
 .song-wrap-deck iframe{width:100%;height:100%;border:none;display:block;border-radius:20px}
+
+/* ── VISUAL POLISH LAYER ──────────────────────────── */
+
+/* Gate stage — glowing border on card */
+.gate-card{
+  box-shadow:0 0 0 1px rgba(240,126,180,.15),0 24px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.gate-card:focus-within{box-shadow:0 0 0 2px rgba(240,126,180,.4),0 24px 60px rgba(0,0,0,.5)}
+
+/* Key press ripple feel */
+.key:hover{background:rgba(255,255,255,.09);transform:scale(1.04)}
+
+/* Hero card — big glowing name */
+.hero-name{
+  background:linear-gradient(135deg, #f8e8ff 0%, var(--pink) 45%, var(--blue) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 2px 24px rgba(240,126,180,.35));
+  letter-spacing:-.02em;
+}
+.hero-name em{-webkit-text-fill-color:transparent}
+.hero-tag{
+  background:rgba(255,255,255,.04);
+  box-shadow:0 0 0 1px rgba(255,255,255,.1),inset 0 1px 0 rgba(255,255,255,.07);
+  transition:background .2s;
+}
+.hero-badge{
+  box-shadow:0 0 20px rgba(240,126,180,.2);
+  animation:badgePulse 3s ease-in-out infinite;
+}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 20px rgba(240,126,180,.2)}50%{box-shadow:0 0 36px rgba(240,126,180,.45)}}
+
+/* Deck cards — frosted glass glow */
+.deck-card-content{
+  background:radial-gradient(ellipse 100% 80% at 50% 0%, rgba(255,255,255,.025) 0%, transparent 70%);
+}
+
+/* Gallery — hover lift */
+.gallery-grid-deck .p-slot{
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.gallery-grid-deck .p-slot:hover{
+  transform:scale(1.025);
+  box-shadow:0 12px 32px rgba(0,0,0,.55),0 0 0 1px rgba(240,126,180,.2);
+}
+
+/* Phone mockup — cleaner centered minimal look */
+.phone-mockup{
+  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 70px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.chat-bubble{
+  box-shadow:0 2px 12px rgba(0,0,0,.3);
+  border-left:2px solid rgba(240,126,180,.35);
+}
+.chat-bubble:last-child{border-left-color:var(--lily)}
+
+/* Reel video — glowing frame */
+.reel-video-deck{
+  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 20px 60px rgba(0,0,0,.7),0 0 60px rgba(240,126,180,.12);
+}
+
+/* Clips strip scrollbar */
+.niko-clips::-webkit-scrollbar{height:3px}
+.niko-clips::-webkit-scrollbar-track{background:transparent}
+.niko-clips::-webkit-scrollbar-thumb{background:rgba(240,126,180,.4);border-radius:99px}
+
+/* Gift unwrap — shimmer on the gift button */
+.gift-btn{
+  animation:giftFloat 2.4s ease-in-out infinite;
+}
+@keyframes giftFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.03)}}
+.gift-btn.shake-mild,.gift-btn.shake-med,.gift-btn.shake-wild{animation:none}
+
+/* Btn hover glow */
+.btn:hover{box-shadow:0 0 28px rgba(240,126,180,.4);transform:translateY(-1px) scale(1.02)}
+.btn.blue:hover{box-shadow:0 0 28px rgba(58,111,216,.5)}
+.btn:active{transform:scale(.96)!important}
+
+/* Deck nav buttons — pill glow */
+.deck-nav-btn.primary:hover{box-shadow:0 0 20px rgba(240,126,180,.55)}
+
+/* Letter card — warm glow border */
+.letter-deck{
+  box-shadow:0 0 0 1px rgba(240,126,180,.12),0 20px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* Scratch card hint pulse */
+.scratch-note-deck{animation:hintPulse 2.2s ease-in-out infinite}
+@keyframes hintPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* Flip wish cards — hover shadow */
+.deck-flip-card:hover .deck-flip-inner{transform:translateY(-3px)}
+.deck-flip-card.flipped .deck-flip-inner{transform:rotateY(180deg)!important}
+
+/* Wrapped — shimmer top bar */
+.wrapped-story-bars-deck::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+}
+
+/* Skip intro button */
+.skip-intro{
+  display:block;margin:18px auto 0;font-size:.78rem;color:rgba(255,255,255,.4);
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer;
+  transition:color .15s;
+}
+.skip-intro:hover{color:rgba(255,255,255,.7)}
+
+/* Segments bar — pink active fill */
+.deck-seg.active .deck-seg-fill{background:linear-gradient(90deg,var(--pink),var(--lily))}
+.deck-seg.done .deck-seg-fill{background:rgba(255,255,255,.55)}
 
 /* Card 13 Letter + Footer */
 .letter-deck{
@@ -686,13 +778,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <!-- ── CARD 2: PHONE MESSAGES ───────────────────────── -->
     <div class="deck-card" data-deck-idx="1" aria-label="Card 2: Birthday Texts">
       <div class="deck-card-content">
-        <p class="label">incoming messages 💬</p>
         <div class="phone-mockup" id="phoneMockup">
           <div class="phone-notch"><span class="phone-cam"></span></div>
-          <div class="phone-chat-header">
-            <span class="phone-header-title">Messages</span>
-            <span class="phone-header-date">Today</span>
-          </div>
           <div class="phone-chat-messages" id="chatMessages">
             <div class="chat-bubble" data-msg-idx="0">HAPPY BIRTHDAY, NIKO 🎉</div>
             <div class="chat-bubble" data-msg-idx="1">30 October. Officially your day.</div>
@@ -1087,17 +1174,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
         <h2 class="sec-head">A <span>letter</span></h2>
         <div class="letter-deck">
           <div class="salutation">Dear Niko,</div>
-          <p>Happy birthday. I could've just texted, but you deserve a whole corner of the internet — so here we are. Somewhere between the date gate and the cake, I hope at least one thing made you smile. That was the whole point.</p>
-          <p>You're the kind of person who accepts people as they are — the okay-vala crazy, the weird parts, all of it. That's rare. You don't always hear it enough, so it's going in writing where you can't interrupt me: you're genuinely appreciated.</p>
+          <p>Happy birthday. I could've just texted, but you deserve a whole corner of the internet — so here we are. I hope at least one thing made you smile. That was the whole point.</p>
+          <p>I hope your special day is filled with all your favorite things, plenty of laughter, and the kind of joy you constantly bring to those around you. You deserve to be celebrated today and every day for the incredible person you are. Happy birthday! I wanted to take a moment to tell you how much I appreciate having you in my life. You have such a wonderful way of making everything more bright and fun just by being there — the okay-vala crazy, the weird parts, all of it. That's rare. You don't always hear it enough, so it's going in writing where you can't interrupt me: you're genuinely appreciated.</p>
           <p>This year — loud happiness. Good days, big wins, lily flowers everywhere, and whatever song you're obsessed with on repeat. You've got me in your corner. That's not a birthday offer. That's permanent.</p>
-          <p>Now go enjoy your day like you actually own it.</p>
-          <div class="sign">— your friend, Kushagra 🩵</div>
+          <p>Now go enjoy your day like you actually own it.
+          </p>
+          <div class="sign">— your akaza 🩵</div>
         </div>
 
         <div class="lily-divider" style="padding:14px 0 0">🪷 ✦ 🪷 ✦ 🪷</div>
         <div class="footer-deck">
           <span class="script">made for Niko, with way too much effort and zero regrets</span>
-          Priya "Niko" · 30 October · Lucknow · Happy Birthday 🎂
+          Priya "Niko" · 30 October · Happy Birthday 🎂
         </div>
       </div>
     </div>
@@ -1106,6 +1194,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 </main>
 
 <script>
+
+
 /* ── CONFIG ───────────────────────────────────── */
 const C = {
   name:"Niko",
@@ -1782,7 +1872,133 @@ function initWrapped(){
       goToDeckCard(deckCur + 1);
     });
   }
-}
+} </script>
+<script>
+  (() => { 
+  /* ---------- 1. CSS fixes (injected after your styles so they win) ---------- */
+  const css = `
+  /* Small phones: centred flex boxes clipped their top and could not scroll */
+  #stage-gate,#stage-unwrap{justify-content:flex-start;padding-top:max(24px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom))}
+  .wrap-stage{margin:auto}
+  .deck-card{justify-content:flex-start;padding-bottom:max(24px,env(safe-area-inset-bottom))}
+  .deck-top-bar{padding-top:max(14px,env(safe-area-inset-top))}
+  .stage-party-center{justify-content:flex-start;overflow-y:auto;min-height:0}
+  .stage-party-center>*{margin-block:auto}
+  .stage-party-bottom{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+  /* Cake phase: collapse the header so the knife + progress bar always fit */
+  #stage-party.cake-phase .stage-pull-cord,
+  #stage-party.cake-phase #balloonsStep,
+  #stage-party.cake-phase .stage-party-bulbs{display:none}
+  /* Touch targets (44px+) and no double-tap zoom without blocking pinch-zoom */
+  .deck-nav-btn{min-height:44px;min-width:76px}
+  .key,.candles-large button{min-height:48px}
+  button,.deck-flip-card,.stage-pull-cord{touch-action:manipulation}
+  /* Landscape phones */
+  @media (max-height:520px){
+    .cake-dominant{font-size:5rem}.hero-name{font-size:2rem}
+    .reel-video-deck{max-height:68vh}.lily-divider,.stage-party-bulbs{display:none}
+  }
+  .skip-intro{margin-top:14px;padding:10px;font-size:.8rem;color:var(--ink-soft);text-decoration:underline}
+  `;
+  const st = document.createElement('style');
+  st.textContent = css;
+  document.head.append(st);
+
+  /* ---------- 2. Small head fixes ---------- */
+  document.title = 'Happy Birthday, Niko! 🎉';            // was "priyaa"
+  const vp = document.querySelector('meta[name=viewport]');
+  if (vp) vp.content = 'width=device-width, initial-scale=1, viewport-fit=cover'; // allow pinch-zoom (accessibility)
+  const tc = document.createElement('meta');
+  tc.name = 'theme-color'; tc.content = '#0a0a0f';
+  document.head.append(tc);
+
+  /* ---------- 3. Progress bar had 13 segments for 12 cards ---------- */
+  deckSegments.slice(deckCards.length).forEach(s => (s.style.display = 'none'));
+  deckCounter.setAttribute('aria-live', 'polite');
+
+  /* ---------- 4. Cake phase: free up vertical space ---------- */
+  showCakeTimeBox = function () {
+    $('#stage-party').classList.add('cake-phase');
+    $('#cakeTimeBox').classList.add('active');
+    $('#candlesZone').style.display = 'none';
+  };
+
+  /* ---------- 5. Videos: don't download 8 files up front ---------- */
+  $$('video').forEach(v => (v.preload = 'none'));
+  const _go = goToDeckCard;
+  goToDeckCard = function (i) {
+    _go(i);
+    $$('.deck-card.active video').forEach(v => { if (v.preload === 'none') v.preload = 'metadata'; });
+    if (deckCur === deckTotal - 1) deckNextBtn.textContent = 'The end 💙'; // was a dead "Finish" button
+    try { localStorage.setItem('niko-seen', '1'); } catch (e) {}
+  };
+
+  /* ---------- 6. Arrow-right now advances the Wrapped card too ---------- */
+  addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' && $('#main').classList.contains('on') && deckCur === 10 && wrappedCur < 6) {
+      $('#wrappedCard').click();
+    }
+  });
+
+  /* ---------- 7. Scratch card: sharp on retina, no lag, pointer capture ---------- */
+  initScratch = function () {
+    if (scratchInitDone) return;
+    const cv = $('#scratchCanvas'), wrap = $('#scratchWrap');
+    if (!cv || !wrap) return;
+    scratchInitDone = true;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = wrap.offsetWidth, H = wrap.offsetHeight;   // offset* ignores the hidden card's scale()
+    cv.width = W * dpr; cv.height = H * dpr;
+    const c = cv.getContext('2d');
+    c.scale(dpr, dpr);
+    const g = c.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, '#1c1a32'); g.addColorStop(.5, '#282246'); g.addColorStop(1, '#1c1a32');
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+    c.fillStyle = 'rgba(255,255,255,.5)';
+    c.font = "600 18px 'DM Sans', sans-serif"; c.textAlign = 'center';
+    c.fillText('scratch to reveal 🪷', W / 2, H / 2 + 6);
+    c.globalCompositeOperation = 'destination-out';
+    let down = false, moves = 0, done = false;
+    const dot = e => {
+      if (!down || done) return;
+      const b = cv.getBoundingClientRect();
+      const x = (e.clientX - b.left) * (W / b.width), y = (e.clientY - b.top) * (H / b.height);
+      c.beginPath(); c.arc(x, y, 28, 0, 7); c.fill();
+      if (++moves % 6) return;                            // only measure every 6th move
+      const d = c.getImageData(0, 0, cv.width, cv.height).data;
+      let cl = 0, t = 0;
+      for (let i = 3; i < d.length; i += 400) { t++; if (!d[i]) cl++; }
+      if (cl / t > .45) {
+        done = true; cv.style.transition = 'opacity .7s'; cv.style.opacity = '0';
+        setTimeout(() => cv.remove(), 750); burst(80);
+      }
+    };
+    cv.addEventListener('pointerdown', e => { down = true; cv.setPointerCapture(e.pointerId); dot(e); });
+    cv.addEventListener('pointermove', dot);
+    cv.addEventListener('pointerup', () => (down = false));
+    cv.addEventListener('pointercancel', () => (down = false));
+  };
+
+  /* ---------- 8. Returning visitors can skip the intro; replay on last card ---------- */
+  try {
+    if (localStorage.getItem('niko-seen')) {
+      const b = document.createElement('button');
+      b.className = 'skip-intro';
+      b.textContent = 'Seen it already? Jump to the cards →';
+      b.onclick = () => goStage('main');
+      $('#stage-gate .wrap-stage').append(b);
+    }
+  } catch (e) {}
+  const foot = deckCards[deckCards.length - 1].querySelector('.footer-deck');
+  if (foot) {
+    const r = document.createElement('button');
+    r.className = 'btn outline'; r.style.marginTop = '14px';
+    r.textContent = 'Replay from the start ↺';
+    r.onclick = () => { goToDeckCard(0); burst(100); };
+    foot.append(r);
+  }
+})();
+
 </script>
 </body>
 </html>
